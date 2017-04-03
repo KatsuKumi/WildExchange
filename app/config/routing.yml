@@ -1,0 +1,7 @@
+wcs_wild_exchange:
+    resource: "@WCSWildExchangeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
