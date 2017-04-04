@@ -1,0 +1,55 @@
+/* Body */
+ body {
+     font-family: "inherit";
+ }
+
+/* NAVBAR */
+
+.navbar-brand {
+    font-size: 32px;
+    margin-top: 10px;
+}
+nav li{
+    font-size: 20px;
+    color: black;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+.accueil {
+    border: 1px solid #1fa597;
+    border-radius: 20px;
+    background-color: #1fa597; 
+}
+img {
+    width: 70px; 
+    height: 70px;
+}
+footer{
+    text-align: center;
+}
+/* FOOTER */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+footer { background-color:#1fa597; min-height:350px; font-family: 'Open Sans', sans-serif; }
+
+.footerleft p { color:#fff; font-size:12px !important; font-family: 'Open Sans', sans-serif; margin-bottom:15px;}
+.footerleft p i { width:20px; color:#999;}
+
+
+.paddingtop-bottom {  margin-top:50px;}
+.footer-ul { list-style-type:none;  padding-left:0px; margin-left:2px;}
+.footer-ul li { line-height:29px; font-size:12px;}
+.footer-ul li a { color:white; transition: color 0.2s linear 0s, background 0.2s linear 0s; }
+.footer-ul i { margin-right:10px;}
+.footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#ff670f; }
+
+
+ 
+ .copyright { min-height:40px; background-color:#1fa597;}
+ .copyright p { text-align:center; color:#FFF; padding:10px 0; margin-bottom:0px;}
+ .heading7 { font-size:21px; font-weight:700; color:#d9d6d6; margin-bottom:22px;}
+
+.ligne_footer {
+border-bottom:1px solid white;
+min-width:1400px;
+}
