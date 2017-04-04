@@ -1,13 +1,139 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>Base</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen">
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Wild exchange</a>
+            <img src= "logoBlue.png" >
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="accueil"><a href="#">Accueil</a></li>
+                <li><a href="#">Explorer</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utilisateur<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Hello!</a></li>
+                        <li><a href="#">Mon profil</a></li>
+                        <li><a href="#">Dashboard</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Se déconnecter</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+<footer>
+    <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+
+    <div class="copyright">
+        <div class="container">
+            <p>Suivez-nous sur vos reseaux favoris</p>
+            <p>[icon FB]    [icon TWT]    [icon IN]   [icon YT]    [icon INST]    [icon GIT] </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>La Wild Code School</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="#"> Le concept</a></li>
+                    <li><a href="#"> Notre programme</a></li>
+                    <li><a href="#"> Comment candidater</a></li>
+                    <li><a href="#"> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>Nos écoles</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="#"> La Loupe</a></li>
+                    <li><a href="#"> Fontainebleau</a></li>
+                    <li><a href="#"> Orléans</a></li>
+                    <li><a href="#"> Bordeaux</a></li>
+                    <li><a href="#"> Lyon</a></li>
+                    <li><a href="#"> Toulouse</a></li>
+                    <li><a href="#"> Paris</a></li>
+                    <li><a href="#"> Lille</a></li>
+                    <li><a href="#"> Starsbourg</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>Plan du site</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="#"> Accueil</a></li>
+                    <li><a href="#"> Dashboard</a></li>
+                    <li><a href="#"> Profil</a></li>
+                    <li><a href="#"> Inscription</a></li>
+                    <li><a href="#"> Se connecter</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>Notre blog</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="#"> La Loupe</a></li>
+                    <li><a href="#"> Fontainebleau</a></li>
+                    <li><a href="#"> Orléans</a></li>
+                    <li><a href="#"> Bordeaux</a></li>
+                    <li><a href="#"> Lyon</a></li>
+                    <li><a href="#"> Toulouse</a></li>
+                    <li><a href="#"> Paris</a></li>
+                    <li><a href="#"> Lille</a></li>
+                    <li><a href="#"> Starsbourg</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>A propos</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="#"> Nous contacter</a></li>
+                    <li><a href="#"> Notre programme</a></li>
+                    <li><a href="#"> Offres d'emploi</a></li>
+                    <li><a href="#"> Recruter un développeur</a></li>
+                    <li><a href="#"> Développer un projet</a></li>
+                    <li><a href="#"> Nous soutenir</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <img src="lightLogo-1.png">
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="ligne_footer"></div>
+
+    <div class="copyright">
+        <div class="container">
+            <p>Made with love by Wild Code School</p>
+        </div>
+    </div>
+
+</footer>
 </html>
