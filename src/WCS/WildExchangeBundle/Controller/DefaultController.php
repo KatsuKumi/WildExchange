@@ -10,4 +10,8 @@ class DefaultController extends Controller
     {
         return $this->render('WCSWildExchangeBundle:Default:index.html.twig');
     }
+    public function testAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:test.html.twig');
+    }
 }

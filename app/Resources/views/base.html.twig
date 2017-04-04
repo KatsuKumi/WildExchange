@@ -3,11 +3,23 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <style src="style.css"></style>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="navbar">
+
+        </div>
+        <div id="content">
+            {% block body %}
+
+            {% endblock %}
+        </div>
+        <div id="footer">
+
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+

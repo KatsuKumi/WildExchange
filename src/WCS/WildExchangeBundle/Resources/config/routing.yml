@@ -1,3 +1,6 @@
 wcs_wild_exchange_homepage:
     path:     /
     defaults: { _controller: WCSWildExchangeBundle:Default:index }
+testtemplate:
+    path:     /template
+    defaults: { _controller: WCSWildExchangeBundle:Default:test }
