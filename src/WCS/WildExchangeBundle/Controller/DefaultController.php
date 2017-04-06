@@ -15,9 +15,22 @@ class DefaultController extends Controller
     {
         return $this->render('WCSWildExchangeBundle:Default:index.html.twig');
     }
-    public function connexionAction()
+    public function connexionAction(Request $request)
     {
-        return $this->render('WCSWildExchangeBundle:Default:connexion.html.twig');
+
+        $user = $this->getUser();
+        if ($user instanceof UserInterface) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        /** @var AuthenticationException $exception */
+        $exception = $this->get('security.authentication_utils')
+            ->getLastAuthenticationError();
+
+        echo $exception->getMessage();
+        return $this->render('WCSWildExchangeBundle:Default:connexion.html.twig', [
+            'error' => $exception ? $exception->getMessage() : NULL,
+        ]);
     }
     public function inscriptionAction()
     {

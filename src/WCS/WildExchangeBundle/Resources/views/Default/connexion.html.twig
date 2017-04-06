@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block style %}
-    <link href="{{ asset('seconnecter.css') }}" rel="stylesheet" type="text/css" media="screen">
     <style>
         body{
             background: url('{{ asset('seconnecter.jpg') }}') no-repeat center fixed;
@@ -24,25 +23,29 @@
                 <div class="wrap">
                     <p class="form-title">
                         Se Connecter</p>
-                    <form class="login" action="{{ path('connexion') }}" method="post">
-                        <input type="text" placeholder="Pseudo" name="_username" value="{{ last_username }}"/>
-                        <input type="password" placeholder="Mot de passe" name="_password" />
-                        <input type="submit" value="Se connecter" class="btn btn-success btn-sm" />
-                        <div class="remember-forgot">
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <form class="login" action="{{ path('login') }}" method="post">
+                        <input type="text" placeholder="Pseudo" name="_username" value=""/>
+                        <input type="password" placeholder="Mot de passe" name="_password" value=""/>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" />
-                                            Se souvenir de moi
-                                        </label>
+                                    <div class="checkbox icheck-primary">
+                                        <input type="checkbox" id="someCheckboxId1" />
+                                        <label for="someCheckboxId1">Se souvenir de moi</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6 forgot-pass-content">
-                                    <a href="" class="forgot-pass">Mot de passe oublié?</a>
+                                <div class="col-md-6">
+
+                                    <div class="checkbox icheck-primary">
+                                        <label><a href="" class="forgot-pass">Mot de passe oublié?</a></label>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
+                        <input type="submit" value="Se connecter" class="btn btn-success btn-sm" />
                     </form>
                 </div>
             </div>

@@ -9,7 +9,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bantikyan/icheck-bootstrap/9bd0c21a/icheck-bootstrap.min.css" />
+
     <link href="{{ asset('style.css') }}" rel="stylesheet" type="text/css" media="screen">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog-jim.css') }}" />
+    <script src="{{ asset('js/snap.svg-min.js') }}"></script>
+    <script src="{{ asset('js/modernizr.custom.js') }}"></script>
+
     <title>Wild Exchange - {% block title %}{% endblock %}</title>
     {% block style %}{% endblock %}
 </head>
@@ -46,7 +54,7 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="#">Se connecter</a></li>
+                    <li><a href="connexion">Se connecter</a></li>
                 {% endif %}
 
             </ul>
@@ -54,6 +62,85 @@
     </div>
 </nav>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{{ asset('js/classie.js') }}"></script>
+<script src="{{ asset('js/dialogFx.js') }}"></script>
+{% for type, flash_messages in app.session.flashBag.all %}
+    {% for flash_message in flash_messages %}
+
+        <div class="container">
+            <div class="content">
+                <header class="codrops-header">
+                    <div class="button-wrap"><button data-dialog="somedialog" class="trigger" id="flash-{{ type }}" style="display:none;">Open Dialog</button></div>
+                </header>
+                <div id="somedialog" class="dialog">
+                    <div class="dialog__overlay"></div>
+                    <div class="dialog__content">
+                        <div class="morph-shape" data-morph-open="M199.5,100c0,54.955-44.768,99.5-100,99.5s-100-44.545-100-99.5c0-54.956,44.769-99.5,100-99.5
+	S199.5,45.044,199.5,100z">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+                                <path d="M199.5,100c0,0.552-44.768,1-100,1s-100-0.448-100-1s44.769-1,100-1S199.5,99.448,199.5,100z"></path>
+                            </svg>
+                        </div>
+                        <div class="dialog-inner">
+                            <h2>{{ flash_message }}</h2><div><button class="action" data-dialog-close>Fermer</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /content -->
+        </div><!-- /container -->
+
+        <script>
+            (function() {
+
+                var dlgtrigger = document.querySelector( '[data-dialog]' ),
+
+                    somedialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog' ) ),
+                    // svg..
+                    morphEl = somedialog.querySelector( '.morph-shape' ),
+                    s = Snap( morphEl.querySelector( 'svg' ) ),
+                    path = s.select( 'path' ),
+                    initialPath = path.attr('d'),
+                    steps = {
+                        open : morphEl.getAttribute( 'data-morph-open' )
+                    },
+                    dlg = new DialogFx( somedialog, {
+                        onOpenDialog : function( instance ) {
+                            // reset path
+                            morphEl.querySelector( 'svg > path' ).setAttribute( 'd', initialPath );
+                            // animate path
+                            path.stop().animate( { 'path' : steps.open }, 300, mina.easein );
+                        }
+                    } );
+
+                dlgtrigger.addEventListener( 'click', dlg.toggle.bind(dlg) );
+                document.getElementById('flash-{{ type }}').click();
+            })();
+        </script>
+    {% endfor %}
+{% endfor %}
 {% block body %}{% endblock %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -133,8 +220,6 @@
             </div>
         </div>
     </div>
-    </div>
-
     <div class="ligne_footer"></div>
 
     <div class="copyright">

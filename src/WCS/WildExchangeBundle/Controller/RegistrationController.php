@@ -38,7 +38,14 @@ class RegistrationController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('replace_with_some_route');
+
+            $this->addFlash(
+                'inscriptionsuccess',
+                'Vous êtes bien inscrit !'
+            );
+            // $this->addFlash() is equivalent to $request->getSession()->getFlashBag()->add()
+
+            return $this->redirectToRoute('wcs_wild_exchange_homepage');
         }
 
         return $this->render(
