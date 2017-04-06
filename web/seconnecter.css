@@ -1,7 +1,5 @@
 body
 {
-    background: url('images/seconnecter.jpg') fixed;
-    background-size: cover;
     padding: 0;
     margin: 0;
 }
@@ -11,12 +9,31 @@ body
     width: 100%;
     height: 100%;
     min-height: 100%;
-    position: absolute;
     top: 0;
     left: 0;
     z-index: 99;
 }
+::-webkit-input-placeholder {
+    color: white;
+    opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
+}
 
+:-moz-placeholder { /* Firefox 18- */
+    color: white;
+    opacity: 0.9 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: white;
+    opacity: 0.9 !important;
+}
+
+:-ms-input-placeholder {
+    color: white;
+}
+.tag{
+    border: solid white 1px;
+}
 p.form-title
 {
     font-family: 'Open Sans' , sans-serif;
@@ -31,16 +48,24 @@ p.form-title
 
 form
 {
-    width: 500px;
-    height: 300px;
-    margin: 0 auto;
-}
+    max-width: 500px;
+    margin: 30px auto;
 
-form.login input[type="text"], form.login input[type="password"]
+}
+.label{
+    display: inline-block;
+    margin-top: 5px;
+}
+.bootstrap-tagsinput{
+
+    min-height: 60px;
+}
+form input, .bootstrap-tagsinput, form select
 {
+    background-color: none;
     width: 100%;
     margin: 0;
-    padding: 5px 10px;
+    min-height: 35px;
     background: 0;
     border: 0;
     border-bottom: 1px solid #FFFFFF;
@@ -50,9 +75,12 @@ form.login input[type="text"], form.login input[type="password"]
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 1px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     color: #FFFFFF;
     outline: 0;
+}
+option{
+    color: black;
 }
 
 input::-webkit-input-placeholder {

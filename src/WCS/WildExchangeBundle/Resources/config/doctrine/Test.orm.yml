@@ -1,0 +1,16 @@
+WCS\WildExchangeBundle\Entity\Test:
+    type: entity
+    table: null
+    repositoryClass: WCS\WildExchangeBundle\Repository\TestRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        qsdqs:
+            type: string
+            length: 255
+            nullable: true
+    lifecycleCallbacks: {  }

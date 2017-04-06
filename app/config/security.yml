@@ -15,6 +15,14 @@ security:
 
         main:
             anonymous: ~
+            form_login:
+                login_path: connexion
+                check_path: connexion
+    encoders:
+        WCS\WildExchangeBundle\Entity\User: bcrypt
+        WCS\WildExchangeBundle\Entity\Utilisateur:
+                    algorithm: bcrypt
+
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

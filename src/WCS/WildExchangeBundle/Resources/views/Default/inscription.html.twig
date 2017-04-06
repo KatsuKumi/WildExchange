@@ -1,0 +1,56 @@
+    {% extends 'base.html.twig' %}
+    {% block title %}Acceuil{% endblock %}
+    {% block style %}
+        <link href="{{ asset('seconnecter.css') }}" rel="stylesheet" type="text/css" media="screen">
+        <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+        <style>
+            body{
+                background: url('{{ asset('seconnecter.jpg') }}') no-repeat center fixed;
+                background-size: cover;
+            }
+        </style>
+    {% endblock %}
+    {% block body %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="wrap login">
+                        <p class="form-title">
+                            Coordonnées</p>
+                        {{ form_start(form, { 'attr' : { 'class': 'login' } }) }}
+
+                        {{ form_errors(form.pseudo) }}
+                        {{ form_widget(form.pseudo  ) }}
+
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.email) }}
+
+                        {{ form_errors(form.motDePasse.first) }}
+                        {{ form_widget(form.motDePasse.first) }}
+
+                        {{ form_errors(form.motDePasse.second) }}
+                        {{ form_widget(form.motDePasse.second) }}
+
+                        {{ form_errors(form.nom) }}
+                        {{ form_widget(form.nom) }}
+
+                        {{ form_errors(form.prenom) }}
+                        {{ form_widget(form.prenom) }}
+
+                        {{ form_errors(form.interet) }}
+                        {{ form_widget(form.interet) }}
+
+                        {{ form_errors(form.IDEcole) }}
+                        {{ form_widget(form.IDEcole) }}
+
+                        <input type="submit" value="Enregistrer" class="btn btn-success btn-sm" />
+                        {{ form_end(form) }}
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{{ asset('bootstrap-tagsinput.min.js') }}"></script>
+{% endblock %}

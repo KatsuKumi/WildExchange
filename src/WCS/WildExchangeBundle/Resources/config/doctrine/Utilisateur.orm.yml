@@ -1,0 +1,78 @@
+WCS\WildExchangeBundle\Entity\Utilisateur:
+    type: entity
+    table: null
+    repositoryClass: WCS\WildExchangeBundle\Repository\UtilisateurRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        pseudo:
+            type: string
+            length: 255
+            column: Pseudo
+        motDePasse:
+            type: string
+            length: 255
+            column: Mot_de_passe
+        email:
+            type: string
+            length: 255
+            column: Email
+        nom:
+            type: string
+            length: 255
+            column: Nom
+        prenom:
+            type: string
+            length: 255
+            column: Prenom
+        interet:
+            type: string
+            length: 255
+            column: interet
+            nullable: true
+        gitHub:
+            type: string
+            length: 255
+            column: GitHub
+            nullable: true
+        faceBook:
+            type: string
+            length: 255
+            column: FaceBook
+            nullable: true
+        twitter:
+            type: string
+            length: 255
+            column: Twitter
+            nullable: true
+        linkedIn:
+            type: string
+            length: 255
+            column: LinkedIn
+            nullable: true
+        avatarURL:
+            type: string
+            length: 255
+            column: AvatarURL
+            nullable: true
+        dateInscription:
+            type: datetime
+            column: Date_Inscription
+        dateConnexion:
+            type: datetime
+            column: Date_Connexion
+            nullable: true
+        iDRang:
+            type: integer
+            column: IDRang
+            nullable: true
+        iDEcole:
+            type: string
+            length: 255
+            column: IDEcole
+            nullable: true
+    lifecycleCallbacks: {  }
