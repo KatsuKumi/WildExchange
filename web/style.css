@@ -53,15 +53,15 @@ img {
 
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
-footer { background-color:#1fa597; min-height:350px; font-family: 'Open Sans', sans-serif; text-align: center;}
+footer { background-color:#1fa597; min-height:350px; text-align: center;}
 
-.footerleft p { color:#fff; font-size:12px !important; font-family: 'Open Sans', sans-serif; margin-bottom:15px;}
+.footerleft p { color:#fff; font-size:12px !important; margin-bottom:15px;}
 .footerleft p i { width:20px; color:#999;}
 
 
 .paddingtop-bottom {  margin-top:50px; position: inherit}
 .footer-ul { list-style-type:none;  padding-left:0px; margin-left:2px;}
-.footer-ul li { line-height:29px; font-size:12px;}
+.footer-ul li { line-height:29px; font-size:13px;}
 .footer-ul li a { color:white; transition: color 0.2s linear 0s, background 0.2s linear 0s; }
 .footer-ul i { margin-right:10px;}
 .footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#ff670f; }
@@ -70,7 +70,7 @@ footer { background-color:#1fa597; min-height:350px; font-family: 'Open Sans', s
  
  .copyright { min-height:40px; background-color:#1fa597;}
  .copyright p { text-align:center; color:#FFF; padding:10px 0; margin-bottom:0px;}
- .heading7 { font-size:21px; font-weight:700; color:#d9d6d6; margin-bottom:22px;}
+ .heading7 { font-size:21px; font-weight:700; color:#FFFFFF; margin-bottom:22px;}
 
 .ligne_footer {
 border-bottom:1px solid white;
@@ -143,7 +143,6 @@ body
 }
 p.form-title
 {
-    font-family: 'Open Sans' , sans-serif;
     font-size: 40px;
     font-weight: 600;
     text-align: center;
@@ -447,7 +446,11 @@ form.login a:hover
     font-size: 20px;
     line-height: 26px;
 }
+
 @media (max-width: 768px) {
+    .navbar-brand{
+        display : none;
+    }
     .publication-blog-home h2 {
         text-align: center;
         font-weight: 300;

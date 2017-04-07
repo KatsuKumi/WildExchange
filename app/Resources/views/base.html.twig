@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="https://fontawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bantikyan/icheck-bootstrap/9bd0c21a/icheck-bootstrap.min.css" />
 
@@ -17,7 +17,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog-jim.css') }}" />
     <script src="{{ asset('js/snap.svg-min.js') }}"></script>
     <script src="{{ asset('js/modernizr.custom.js') }}"></script>
-
+<style>
+    @font-face {
+        font-family: wcsfont;
+        src: url('{{ asset('Alwyn Regular.ttf') }}');
+    }
+    @font-face {
+        font-family: wcsfont;
+        src: url('{{ asset('Alwyn Bold.ttf') }}');
+        font-weight: bold;
+    }
+    body{
+        font-family: "Open Sans", sans-serif;
+    }
+</style>
     <title>Wild Exchange - {% block title %}{% endblock %}</title>
     {% block style %}{% endblock %}
 </head>
@@ -38,23 +51,23 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="accueil"><a href="#">Accueil</a></li>
-                <li><a href="#">Explorer</a></li>
+                <li class="accueil"><a href="{{ path('wcs_wild_exchange_homepage') }}">Accueil</a></li>
+                <li><a href="{{ path('tagspage') }}">Explorer</a></li>
                 {% if app.user %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utilisateur<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Bonjour, {{ app.user.username }}!</a></li>
+                            <li><a href="#">Bonjour, {{ app.user.username }} !</a></li>
+                            <li class="divider"></li>
                             <li><a href="#">Mon profil</a></li>
                             <li><a href="#">Dashboard</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Se déconnecter</a></li>
+                            <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
                         </ul>
                     </li>
                 {% else %}
                     <li><a href="{{ path('connectionpage') }}">Se connecter</a></li>
+                    <li><a href="{{ path('inscriptionpage') }}">S'inscrire</a></li>
                 {% endif %}
 
             </ul>

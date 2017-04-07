@@ -23,9 +23,6 @@
                 <div class="wrap">
                     <p class="form-title">
                         Se Connecter</p>
-                    {% if error %}
-                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
 
                     <form class="login" action="{{ path('login') }}" method="post">
                         <input type="text" placeholder="Pseudo" name="_username" value=""/>

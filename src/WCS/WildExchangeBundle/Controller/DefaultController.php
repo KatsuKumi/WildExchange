@@ -14,6 +14,14 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $refer = $this->getRequest()->headers->get('referer');
+        if (strpos($refer, 'connexion') !== false && $this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $this->addFlash('connexion', "Bonjour , ".$usr->getPseudo()."!");
+        }
+
+
         return $this->render('WCSWildExchangeBundle:Default:index.html.twig');
     }
     public function connexionAction(Request $request)
@@ -22,15 +30,22 @@ class DefaultController extends Controller
         // Si le visiteur est déjà identifié, on le redirige vers l'accueil
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $usr= $this->get('security.context')->getToken()->getUser();
-            $usr->getUsername();
             $this->addFlash('connexion', "Bonjour ,".$usr->getPseudo()."!");
             return $this->redirectToRoute('wcs_wild_exchange_homepage');
         }
-
         $authenticationUtils = $this->get('security.authentication_utils');
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        if ($error){
+            $this->addFlash(
+                'connectionfailed',
+                $error->getMessageKey()
+            );
+        }
         return $this->render('WCSWildExchangeBundle:Default:connexion.html.twig', array(
             'last_username' => $authenticationUtils->getLastUsername(),
-            'error'         => $authenticationUtils->getLastAuthenticationError(),
+            'error'         => $error,
         ));
     }
     public function inscriptionAction()
@@ -43,8 +58,6 @@ class DefaultController extends Controller
     }
     public function loginAction()
     {
-        $this->addFlash('warning', $this->get('translator')->trans('login_expired'));
-        return $this->redirect($this->generateUrl('connexion'));
     }
 
     /**

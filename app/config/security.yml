@@ -32,6 +32,8 @@ security:
                 login_path: connexion
                 check_path: login
                 remember_me: true
+            logout: true
+
     encoders:
         WCS\WildExchangeBundle\Entity\Utilisateur: bcrypt
 
