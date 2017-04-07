@@ -7,3 +7,6 @@ connectionpage:
 inscriptionpage:
     path:     /inscription
     defaults: {  _controller: WCSWildExchangeBundle:Registration:register }
+tagspage:
+    path:     /tags
+    defaults: {  _controller: WCSWildExchangeBundle:Default:tags }

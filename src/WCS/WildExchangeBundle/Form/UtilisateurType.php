@@ -30,7 +30,7 @@ class UtilisateurType extends AbstractType
             ->add('email', EmailType::class,array('attr' => array('placeholder' => 'Email')))
             ->add('nom', TextType::class,array('attr' => array('placeholder' => 'Nom')))
             ->add('prenom', TextType::class,array('attr' => array('placeholder' => 'Prénom')))
-            ->add('interet', TextType::class,array('attr' => array('placeholder' => 'Centre d\'intéret', "data-role" => "tagsinput", "value" => "Programmation, Chaussettes", "class" => "noEnterSubmit")))
+            ->add('interet', TextType::class,array('attr' => array('placeholder' => 'Centre d\'intéret', "data-role" => "tagsinput", "value" => "Programmation, Chaussettes")))
             ->add('IDEcole', EntityType::class, array(
                 'class' => 'WCSWildExchangeBundle:Ecole',
                 'empty_value' => "Choisissez une école",

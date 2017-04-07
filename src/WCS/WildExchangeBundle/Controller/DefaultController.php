@@ -36,5 +36,8 @@ class DefaultController extends Controller
     {
         return $this->render('WCSWildExchangeBundle:Default:inscription.html.twig');
     }
-
+    public function tagsAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:tags.html.twig');
+    }
 }
