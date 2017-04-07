@@ -29,10 +29,19 @@ security:
         main:
             anonymous: ~
             form_login:
+                csrf_token_generator: security.csrf.token_manager
                 login_path: connexion
                 check_path: login
                 remember_me: true
             logout: true
+             ###
+            #logout:
+                #path:   /logout
+                #success_handler: redirect.after.logout
+                #invalidate_session: false
+
+          ####
+
 
     encoders:
         WCS\WildExchangeBundle\Entity\Utilisateur: bcrypt
