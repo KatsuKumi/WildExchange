@@ -11,7 +11,7 @@
     {% endblock %}
     {% block body %}
 
-        <div class="container-fluid">
+        <div class="container-fluid paddingtop">
             <div class="row">
                 <div class="col-md-12">
                     <div class="wrap login">
@@ -52,4 +52,23 @@
 {% endblock %}
 {% block js %}
     <script src="{{ asset('bootstrap-tagsinput.min.js') }}"></script>
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
 {% endblock %}

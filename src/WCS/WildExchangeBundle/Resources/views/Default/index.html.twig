@@ -3,11 +3,10 @@
 {% block style %}
     <style>
         .image{
-            background: url('{{ asset('accueil.jpg') }}') no-repeat center fixed;
+            background: url('{{ asset('accueil1.jpg') }}') no-repeat center fixed;
             background-size: cover;
             background-position: 0 100%;
             min-height: 500px;
-            margin-top: -20px;
         }
     </style>
 {% endblock %}
@@ -131,4 +130,25 @@
             </div>
         </div>
     </section>
+{% endblock %}
+{% block js %}
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
 {% endblock %}

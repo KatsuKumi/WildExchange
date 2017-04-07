@@ -9,7 +9,7 @@
     </style>
 {% endblock %}
 {% block body %}
-    <div class="container">
+    <div class="container paddingtop">
         <div class="row">
             <div class="col-md-12">
                 <div class="pr-wrap">
@@ -50,4 +50,25 @@
         </div>
     </div>
 
+{% endblock %}
+{% block js %}
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
 {% endblock %}

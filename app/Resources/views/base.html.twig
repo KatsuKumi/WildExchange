@@ -36,7 +36,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-defaultt">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -45,14 +45,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('wcs_wild_exchange_homepage') }}">Wild exchange</a>
             <img src= "{{ asset('logoBlue.png') }}" >
+            <a class="navbar-titre" href="{{ path('wcs_wild_exchange_homepage') }}">Wild exchange</a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="accueil"><a href="{{ path('wcs_wild_exchange_homepage') }}">Accueil</a></li>
-                <li><a href="{{ path('tagspage') }}">Explorer</a></li>
+                <li><a class="accueil active" href="{{ path('wcs_wild_exchange_homepage') }}">Accueil</a></li>
+                <li><a class="accueil" href="{{ path('tagspage') }}">Explorer</a></li>
                 {% if app.user %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utilisateur<span class="caret"></span></a>
@@ -66,8 +67,8 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="{{ path('connectionpage') }}">Se connecter</a></li>
-                    <li><a href="{{ path('inscriptionpage') }}">S'inscrire</a></li>
+                    <li><a class="accueil" href="{{ path('connectionpage') }}">Se connecter</a></li>
+                    <li><a class="accueil" href="{{ path('inscriptionpage') }}">S'inscrire</a></li>
                 {% endif %}
 
             </ul>
@@ -157,6 +158,7 @@
 {% block body %}{% endblock %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 {% block js %}{% endblock %}
 </body>
 <footer>
