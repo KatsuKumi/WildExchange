@@ -451,6 +451,9 @@ form.login a:hover
     .navbar-brand{
         display : none;
     }
+    .slogan {
+        margin-left: 0;
+    }
     .publication-blog-home h2 {
         text-align: center;
         font-weight: 300;
