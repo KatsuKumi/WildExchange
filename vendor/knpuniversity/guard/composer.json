@@ -1,0 +1,24 @@
+{
+    "name": "knpuniversity/guard",
+    "description": "Provides Guard-style authentication in Symfony's security component",
+    "keywords": ["security"],
+    "homepage": "http://knpuniversity.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ryan Weaver",
+            "email": "weaverryan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "symfony/security-core": "~2.6",
+        "symfony/security-http": "~2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.7"
+    },
+    "autoload": {
+        "psr-4": { "KnpU\\Guard\\": "src/" }
+    }
+}

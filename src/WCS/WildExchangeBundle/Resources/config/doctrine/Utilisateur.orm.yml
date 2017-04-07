@@ -13,6 +13,7 @@ WCS\WildExchangeBundle\Entity\Utilisateur:
             type: string
             length: 255
             column: Pseudo
+            unique: true
         motDePasse:
             type: string
             length: 255
@@ -21,6 +22,7 @@ WCS\WildExchangeBundle\Entity\Utilisateur:
             type: string
             length: 255
             column: Email
+            unique: true
         nom:
             type: string
             length: 255

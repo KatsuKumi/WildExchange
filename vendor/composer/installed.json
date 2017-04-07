@@ -17,7 +17,7 @@
         "require": {
             "php": ">=5.3.2"
         },
-        "time": "2014-09-09T13:34:57+00:00",
+        "time": "2014-09-09 13:34:57",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -78,7 +78,7 @@
             "doctrine/cache": "1.*",
             "phpunit/phpunit": "4.*"
         },
-        "time": "2015-08-31T12:32:49+00:00",
+        "time": "2015-08-31 12:32:49",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -148,7 +148,7 @@
             "symfony/debug": "~2.7",
             "symfony/phpunit-bridge": "~3.2"
         },
-        "time": "2017-02-27T00:07:03+00:00",
+        "time": "2017-02-27 00:07:03",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -283,7 +283,7 @@
             "sensio/framework-extra-bundle": "^3.0.2",
             "symfony/phpunit-bridge": "~3.2"
         },
-        "time": "2017-03-06T03:54:50+00:00",
+        "time": "2017-03-06 03:54:50",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -358,7 +358,7 @@
             "symfony/class-loader": "For using the ACL generateSql script",
             "symfony/finder": "For using the ACL generateSql script"
         },
-        "time": "2015-12-28T09:39:09+00:00",
+        "time": "2015-12-28 09:39:09",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -409,7 +409,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -469,7 +469,7 @@
         "suggest": {
             "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
         },
-        "time": "2017-03-03T20:43:42+00:00",
+        "time": "2017-03-03 20:43:42",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -514,7 +514,7 @@
             "paragonie/random_compat": "~1.0|~2.0",
             "php": ">=5.3.3"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -575,7 +575,7 @@
             "php": ">=5.3.3",
             "symfony/polyfill-util": "~1.0"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -632,7 +632,7 @@
         "require-dev": {
             "phpunit/phpunit": "4.*"
         },
-        "time": "2014-11-20T16:49:30+00:00",
+        "time": "2014-11-20 16:49:30",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -677,7 +677,7 @@
             "ircmaxell/password-compat": "~1.0",
             "php": ">=5.3.3"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -734,7 +734,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -797,7 +797,7 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -859,7 +859,7 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -915,7 +915,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2016-11-14T01:06:16+00:00",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -970,7 +970,7 @@
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2016-10-10T12:19:37+00:00",
+        "time": "2016-10-10 12:19:37",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1022,7 +1022,7 @@
         "require-dev": {
             "phpunit/phpunit": "4.*"
         },
-        "time": "2015-11-06T14:35:42+00:00",
+        "time": "2015-11-06 14:35:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1091,7 +1091,7 @@
         "require-dev": {
             "phpunit/phpunit": "~4.0"
         },
-        "time": "2015-04-14T22:21:58+00:00",
+        "time": "2015-04-14 22:21:58",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1164,7 +1164,7 @@
             "predis/predis": "~1.0",
             "satooshi/php-coveralls": "~0.6"
         },
-        "time": "2015-12-19T05:03:47+00:00",
+        "time": "2015-12-19 05:03:47",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1236,7 +1236,7 @@
         "require-dev": {
             "phpunit/phpunit": "~3.7"
         },
-        "time": "2015-12-25T13:10:16+00:00",
+        "time": "2015-12-25 13:10:16",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1306,7 +1306,7 @@
         "require-dev": {
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2014-01-12T16:20:24+00:00",
+        "time": "2014-01-12 16:20:24",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1377,7 +1377,7 @@
         "suggest": {
             "symfony/security-acl": "For using this bundle to cache ACLs"
         },
-        "time": "2016-01-26T17:28:51+00:00",
+        "time": "2016-01-26 17:28:51",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1453,7 +1453,7 @@
         "suggest": {
             "symfony/console": "For helpful console commands such as SQL execution and import of files."
         },
-        "time": "2017-02-08T12:53:47+00:00",
+        "time": "2017-02-08 12:53:47",
         "bin": [
             "bin/doctrine-dbal"
         ],
@@ -1539,7 +1539,7 @@
             "doctrine/orm": "The Doctrine ORM integration is optional in the bundle.",
             "symfony/web-profiler-bundle": "To use the data collector."
         },
-        "time": "2016-08-10T15:35:22+00:00",
+        "time": "2016-08-10 15:35:22",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1612,7 +1612,7 @@
         "suggest": {
             "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
         },
-        "time": "2015-08-31T13:19:01+00:00",
+        "time": "2015-08-31 13:19:01",
         "bin": [
             "bin/doctrine",
             "bin/doctrine.php"
@@ -1682,7 +1682,7 @@
             "phpspec/prophecy-phpunit": "~1.0",
             "symfony/filesystem": "~2.2"
         },
-        "time": "2015-11-10T17:04:01+00:00",
+        "time": "2015-11-10 17:04:01",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1729,7 +1729,7 @@
         "require": {
             "symfony/console": "~2.0|~3.0"
         },
-        "time": "2015-11-07T08:07:40+00:00",
+        "time": "2015-11-07 08:07:40",
         "bin": [
             "security-checker"
         ],
@@ -1790,7 +1790,7 @@
             "symfony/validator": "If you want to use the configurator",
             "symfony/yaml": "If you want to use  the configurator"
         },
-        "time": "2017-01-04T13:34:44+00:00",
+        "time": "2017-01-04 13:34:44",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1862,7 +1862,7 @@
             "symfony/psr-http-message-bridge": "To use the PSR-7 converters",
             "symfony/security-bundle": ""
         },
-        "time": "2017-03-02T20:17:28+00:00",
+        "time": "2017-03-02 20:17:28",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -1935,7 +1935,7 @@
             "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
             "twig/twig": "Assetic provides the integration with the Twig templating engine"
         },
-        "time": "2016-11-11T18:43:20+00:00",
+        "time": "2016-11-11 18:43:20",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2010,7 +2010,7 @@
             "kriswallsmith/spork": "to be able to dump assets in parallel",
             "symfony/twig-bundle": "to use the Twig integration"
         },
-        "time": "2016-11-22T11:42:57+00:00",
+        "time": "2016-11-22 11:42:57",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2090,7 +2090,7 @@
             "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
             "sentry/sentry": "Allow sending log messages to a Sentry server"
         },
-        "time": "2016-11-26T00:15:39+00:00",
+        "time": "2016-11-26 00:15:39",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2150,7 +2150,7 @@
             "symfony/console": "~2.3|~3.0",
             "symfony/yaml": "~2.3|~3.0"
         },
-        "time": "2017-01-10T20:01:51+00:00",
+        "time": "2017-01-10 20:01:51",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2206,7 +2206,7 @@
             "mockery/mockery": "~0.9.1",
             "symfony/phpunit-bridge": "~3.2"
         },
-        "time": "2017-02-13T07:52:53+00:00",
+        "time": "2017-02-13 07:52:53",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2271,7 +2271,7 @@
         "suggest": {
             "psr/log": "Allows logging"
         },
-        "time": "2017-03-02T16:47:57+00:00",
+        "time": "2017-03-02 16:47:57",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2327,7 +2327,7 @@
             "doctrine/orm": "~2.4",
             "symfony/doctrine-bridge": "~2.7|~3.0"
         },
-        "time": "2017-03-03T15:22:50+00:00",
+        "time": "2017-03-03 15:22:50",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
@@ -2379,7 +2379,7 @@
         "suggest": {
             "symfony/debug": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
         },
-        "time": "2017-03-01T19:11:57+00:00",
+        "time": "2017-03-01 19:11:57",
         "type": "symfony-bridge",
         "extra": {
             "branch-alias": {
@@ -2414,5 +2414,166 @@
         ],
         "description": "Symfony PHPUnit Bridge",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "friendsofsymfony/user-bundle",
+        "version": "v1.3.7",
+        "version_normalized": "1.3.7.0",
+        "target-dir": "FOS/UserBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+            "reference": "113cc4e48fac19d20fc039cfecae9b41103be706"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/113cc4e48fac19d20fc039cfecae9b41103be706",
+            "reference": "113cc4e48fac19d20fc039cfecae9b41103be706",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "symfony/framework-bundle": "~2.3",
+            "symfony/security-bundle": "~2.3"
+        },
+        "require-dev": {
+            "doctrine/doctrine-bundle": "~1.3",
+            "swiftmailer/swiftmailer": "~4.3|~5",
+            "symfony/validator": "~2.3",
+            "symfony/yaml": "~2.3",
+            "twig/twig": "~1.5",
+            "willdurand/propel-typehintable-behavior": "~1.0"
+        },
+        "suggest": {
+            "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
+        },
+        "time": "2016-08-12 09:53:32",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "FOS\\UserBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Christophe Coevoet",
+                "email": "stof@notk.org"
+            },
+            {
+                "name": "FriendsOfSymfony Community",
+                "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
+            },
+            {
+                "name": "Thibault Duplessis",
+                "email": "thibault.duplessis@gmail.com"
+            }
+        ],
+        "description": "Symfony FOSUserBundle",
+        "homepage": "http://friendsofsymfony.github.com",
+        "keywords": [
+            "User management"
+        ]
+    },
+    {
+        "name": "knpuniversity/guard",
+        "version": "0.5",
+        "version_normalized": "0.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/knpuniversity/KnpUGuard.git",
+            "reference": "a9b972544587d7a7b1b1d2e038da321e8c5c9b08"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/knpuniversity/KnpUGuard/zipball/a9b972544587d7a7b1b1d2e038da321e8c5c9b08",
+            "reference": "a9b972544587d7a7b1b1d2e038da321e8c5c9b08",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9",
+            "symfony/security-core": "~2.6",
+            "symfony/security-http": "~2.6"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.7"
+        },
+        "time": "2015-09-07 12:52:30",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "KnpU\\Guard\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ryan Weaver",
+                "email": "weaverryan@gmail.com"
+            }
+        ],
+        "description": "Provides Guard-style authentication in Symfony's security component",
+        "homepage": "http://knpuniversity.com",
+        "keywords": [
+            "security"
+        ]
+    },
+    {
+        "name": "knpuniversity/guard-bundle",
+        "version": "0.3",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/knpuniversity/KnpUGuardBundle.git",
+            "reference": "66ee9e482c0491d175785836d6b3e7ec4754ac6a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/knpuniversity/KnpUGuardBundle/zipball/66ee9e482c0491d175785836d6b3e7ec4754ac6a",
+            "reference": "66ee9e482c0491d175785836d6b3e7ec4754ac6a",
+            "shasum": ""
+        },
+        "require": {
+            "knpuniversity/guard": "~0.1",
+            "php": ">=5.3.9",
+            "symfony/framework-bundle": "~2.3",
+            "symfony/security-bundle": "~2.6"
+        },
+        "time": "2015-06-28 19:02:52",
+        "type": "symfony-bundle",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "KnpU\\GuardBundle\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ryan Weaver",
+                "email": "weaverryan@gmail.com"
+            }
+        ],
+        "description": "This Bundle provides Guard-style authentication in Symfony",
+        "homepage": "http://knpuniversity.com",
+        "keywords": [
+            "security"
+        ]
     }
 ]

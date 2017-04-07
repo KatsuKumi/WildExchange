@@ -4,8 +4,21 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        our_db_provider:
+            entity:
+                class: WCSWildExchangeBundle:Utilisateur
+                property: pseudo
+                # if you're using multiple entity managers
+                # manager_name: customer
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    admin:
+                        password: pass
+                        roles: ROLE_ADMIN
+                    foo:
+                        password: foo
+                        roles: ROLE_USER
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -17,16 +30,25 @@ security:
             anonymous: ~
             form_login:
                 login_path: connexion
-                check_path: connexion
+                check_path: login
+                remember_me: true
     encoders:
-        WCS\WildExchangeBundle\Entity\User: bcrypt
-        WCS\WildExchangeBundle\Entity\Utilisateur:
-                    algorithm: bcrypt
+        WCS\WildExchangeBundle\Entity\Utilisateur: bcrypt
 
-            # activate different ways to authenticate
 
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+            logout:       true
+            anonymous:    true
 
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            #form_login: ~
+    access_control:
+        - { path: ^/connexion, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscription, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
