@@ -42,9 +42,9 @@
                 <li><a href="#">Explorer</a></li>
                 {% if app.user %}
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" daxta-toggle="dropdown" role="button" aria-expanded="false">Utilisateur<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Utilisateur<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Hello!</a></li>
+                            <li><a href="#">Bonjour, {{ app.user.username }}!</a></li>
                             <li><a href="#">Mon profil</a></li>
                             <li><a href="#">Dashboard</a></li>
                             <li class="divider"></li>
@@ -54,7 +54,7 @@
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="connexion">Se connecter</a></li>
+                    <li><a href="{{ path('connectionpage') }}">Se connecter</a></li>
                 {% endif %}
 
             </ul>
