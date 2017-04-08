@@ -575,8 +575,22 @@ form.login a:hover
     max-height: 340px;
     margin: auto;
     margin-top: 50px;
+    background-size: cover;
+    height: 300px;
+    display: flex;
+    background-position: center;
 }
 
+.centertext{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
 .img-responsive:hover {
     filter: none; /* IE6-9 */
     -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
