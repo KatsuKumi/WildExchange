@@ -33,6 +33,7 @@ class RegistrationController extends Controller
             // 4) save the User!
             $ecoleobj = $user->getIDEcole();
             $user->setIDEcole($ecoleobj->getID());
+            $user->setAvatarURL("avatar/avatar.png");
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

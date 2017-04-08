@@ -597,3 +597,16 @@ form.login a:hover
 
 }
 
+/*//// Avatar ////*/
+
+ .avatar-16x{
+     height: 50px;
+     width: 50px;
+     overflow: hidden;
+     border-radius: 50px;
+ }
+ .navbar-avatar{
+     display: inline-block;
+     margin : 0 auto;
+     padding: 0 !important;
+ }
