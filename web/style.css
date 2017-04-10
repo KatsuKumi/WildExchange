@@ -637,7 +637,6 @@ form.login a:hover
 }
 .content {
     margin-top: 150px;
-    margin-left: 30px;
     width: 100%;
 }
 .panelbg{
@@ -645,12 +644,12 @@ form.login a:hover
 }
 
 .table-filter .media-meta {
-    font-size: 11px;
+    font-size: 15px;
     color: #999;
 }
 .table-filter .media .title {
     color: #1FA597;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     line-height: normal;
     margin: 0;
