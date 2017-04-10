@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Security\Core\SecurityContext;
 use WCS\WildExchangeBundle\Entity\Task;
 
+
 class DefaultController extends Controller
 {
     public function indexAction()
