@@ -1,8 +1,9 @@
+
 /*///// BODY /////*/
 
- body {
-     font-family: "inherit";
- }
+body {
+    font-family: "inherit";
+}
 
 /*///// ACCUEIL /////*/
 
@@ -82,7 +83,7 @@ nav li{
     color: #000 ;
 }
 img {
-    width: 70px; 
+    width: 70px;
     height: 70px;
 }
 
@@ -104,19 +105,19 @@ footer { background-color:#1fa597; min-height:350px; text-align: center;}
 .footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#ff670f; }
 
 
- 
- .copyright { min-height:40px; background-color:#1fa597;}
- .copyright p { text-align:center; color:#FFF; padding:10px 0; margin-bottom:0px;}
- .heading7 { font-size:21px; font-weight:700; color:#FFFFFF; margin-bottom:22px;}
+
+.copyright { min-height:40px; background-color:#1fa597;}
+.copyright p { text-align:center; color:#FFF; padding:10px 0; margin-bottom:0px;}
+.heading7 { font-size:21px; font-weight:700; color:#FFFFFF; margin-bottom:22px;}
 
 .ligne_footer {
-border-bottom:1px solid white;
+    border-bottom:1px solid white;
 }
 
 i{
     margin-right: 25px;
 }
- /*///// MODAL //////*/
+/*///// MODAL //////*/
 
 a, button {
     color: #74716D;
@@ -355,7 +356,7 @@ form.login a:hover
 .checkbox{
     position:   inherit;
 }
- /*//// BLOC ACCUEIL/////*/
+/*//// BLOC ACCUEIL/////*/
 
 .publication-blog-home {
     padding-bottom: 50px;
@@ -575,12 +576,38 @@ form.login a:hover
     max-height: 340px;
     margin: auto;
     margin-top: 50px;
+    background-size: cover;
+    height: 300px;
+    display: flex;
+    background-position: center;
 }
 
+.centertext{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
 .img-responsive:hover {
     filter: none; /* IE6-9 */
     -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
 
 }
 
+/*//// Avatar ////*/
 
+.avatar-16x{
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border-radius: 50px;
+}
+.navbar-avatar{
+    display: inline-block;
+    margin : 0 auto;
+    padding: 0 !important;
+}
