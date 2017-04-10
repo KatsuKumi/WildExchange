@@ -9,6 +9,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Utilisateur
+ * @ORM\Table(name="utilisateur")
+ * @UniqueEntity(fields="email", message="Email déjà utilisé")
+ * @UniqueEntity(fields="pseudo", message="Pseudo déjà utilisé")
  */
 class Utilisateur implements UserInterface
 {

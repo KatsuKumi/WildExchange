@@ -1,12 +1,19 @@
 wcs_wild_exchange_homepage:
     path:     /
     defaults: { _controller: WCSWildExchangeBundle:Default:index }
+
 connectionpage:
     path:     /connexion
-    defaults: { _controller: WCSWildExchangeBundle:Default:connexion }
+    defaults: { _controller: WCSWildExchangeBundle:Security:connexion }
+
+login:
+    path:     /login
+    defaults: { _controller: WCSWildExchangeBundle:Security:login }
+
 inscriptionpage:
     path:     /inscription
     defaults: {  _controller: WCSWildExchangeBundle:Registration:register }
+
 tagspage:
     path:     /tags
     defaults: {  _controller: WCSWildExchangeBundle:Default:tags }

@@ -16,7 +16,6 @@ class DefaultController extends Controller
     {
         $refer = $this->getRequest()->headers->get('referer');
         if (strpos($refer, 'connexion') !== false && $this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-
             $usr= $this->get('security.context')->getToken()->getUser();
             $this->addFlash('connexion', "Bonjour , ".$usr->getPseudo()."!");
         }
@@ -24,30 +23,7 @@ class DefaultController extends Controller
 
         return $this->render('WCSWildExchangeBundle:Default:index.html.twig');
     }
-    public function connexionAction(Request $request)
-    {
 
-        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
-        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Bonjour ,".$usr->getPseudo()."!");
-            return $this->redirectToRoute('wcs_wild_exchange_homepage');
-        }
-        $authenticationUtils = $this->get('security.authentication_utils');
-
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        if ($error){
-            $this->addFlash(
-                'connectionfailed',
-                $error->getMessageKey()
-            );
-        }
-        return $this->render('WCSWildExchangeBundle:Default:connexion.html.twig', array(
-            'last_username' => $authenticationUtils->getLastUsername(),
-            'error'         => $error,
-        ));
-    }
     public function inscriptionAction()
     {
         return $this->render('WCSWildExchangeBundle:Default:inscription.html.twig');

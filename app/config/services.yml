@@ -13,5 +13,5 @@ services:
     arguments: [@router]
 
   redirect.after.logout:
-    class: Webaki\UserBundle\Redirection\AfterLogoutRedirection
-    arguments: [@router, @security.context]
+    class: WCS\WildExchangeBundle\Redirection\LogoutRedirection
+    arguments: [@security.context, @router, @session]

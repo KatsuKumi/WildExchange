@@ -204,6 +204,10 @@ form
 
     min-height: 60px;
 }
+form ul li{
+    color: white;
+    list-style-type: none;
+}
 form input, .bootstrap-tagsinput, form select
 {
     background-color: none;

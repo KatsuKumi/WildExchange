@@ -23,7 +23,6 @@ class RegistrationController extends Controller
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            try {
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getMotDePasse());
@@ -44,14 +43,6 @@ class RegistrationController extends Controller
                 'Vous êtes bien inscrit !'
             );
             return $this->redirectToRoute('wcs_wild_exchange_homepage');
-            }
-            catch(\Exception $e) {
-                $this->addFlash(
-                    'inscriptionsuccess',
-                    'Déjà inscrit !'
-                );
-                return $this->redirectToRoute('inscriptionpage');
-            }
         }
 
         return $this->render(

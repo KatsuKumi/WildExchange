@@ -2,6 +2,13 @@
 # http://symfony.com/doc/current/security.html
 security:
 
+
+    encoders:
+        WCS\WildExchangeBundle\Entity\Utilisateur: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         our_db_provider:
@@ -27,36 +34,18 @@ security:
             security: false
 
         main:
+            pattern: ^/
             anonymous: ~
             form_login:
+                provider: our_db_provider
                 csrf_token_generator: security.csrf.token_manager
-                login_path: connexion
+                login_path: connectionpage
                 check_path: login
                 remember_me: true
-            logout: true
-             ###
-            #logout:
-                #path:   /logout
-                #success_handler: redirect.after.logout
-                #invalidate_session: false
-
-          ####
-
-
-    encoders:
-        WCS\WildExchangeBundle\Entity\Utilisateur: bcrypt
-
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
-    firewalls:
-        main:
-            pattern: ^/
-            form_login:
-                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
-            logout:       true
-            anonymous:    true
+            logout:
+                path:   /logout
+                success_handler: redirect.after.logout
+                invalidate_session: false
 
     access_control:
         - { path: ^/connexion, role: IS_AUTHENTICATED_ANONYMOUSLY }
