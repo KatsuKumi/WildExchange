@@ -17,3 +17,6 @@ inscriptionpage:
 tagspage:
     path:     /tags
     defaults: {  _controller: WCSWildExchangeBundle:Default:tags }
+questionqpage:
+        path:     /questions
+        defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
