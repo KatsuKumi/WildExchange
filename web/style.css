@@ -640,13 +640,16 @@ form.login a:hover
     margin-left: 30px;
     width: 100%;
 }
+.panelbg{
+    background-color: rgba(255,255,255,0.8) !important;
+}
 
 .table-filter .media-meta {
     font-size: 11px;
     color: #999;
 }
 .table-filter .media .title {
-    color: #2BBCDE;
+    color: #1FA597;
     font-size: 14px;
     font-weight: bold;
     line-height: normal;
