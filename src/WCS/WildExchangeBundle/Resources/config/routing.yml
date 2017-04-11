@@ -22,4 +22,4 @@ questionqpage:
         defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
 ajoutpage:
         path:     /ajout
-        defaults: {  _controller: WCSWildExchangeBundle:Default:ajout }
+        defaults: {  _controller: WCSWildExchangeBundle:Question:ajout }

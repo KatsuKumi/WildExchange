@@ -2,10 +2,12 @@
 
 namespace WCS\WildExchangeBundle\Controller;
 
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use WCS\WildExchangeBundle\Entity\Questions;
 use WCS\WildExchangeBundle\Form\QuestionsType;
 use WCS\WildExchangeBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
@@ -17,13 +19,12 @@ class QuestionController extends Controller
     public function ajoutAction(Request $request)
     {
         // 1) build the form
-        $question = new Question();
+        $question = new Questions();
         $form = $this->createForm(QuestionsType::class, $question);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $question->setTitre($titre);
             $question->setDateInscription(new \DateTime());
             $question->setQuestion(1);
             // 4) save the User!
@@ -40,7 +41,7 @@ class QuestionController extends Controller
         }
 
         return $this->render(
-            'WCSWildExchangeBundle:Default:inscription.html.twig',
+            'WCSWildExchangeBundle:Default:ajout.html.twig',
             array('form' => $form->createView())
         );
     }

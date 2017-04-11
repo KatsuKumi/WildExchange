@@ -1,26 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block style %}
-    <style>
-        .imagetaghtml{
-            background-image: url({{ asset('html.jpg') }});
-        }
-        .imagetagcss{
-            background-image: url({{ asset('css.jpeg') }});
-        }
-        .imagetagjavascript{
-            background-image: url({{ asset('javascript.jpg') }});
-        }
-        .imagetagphp{
-            background-image: url({{ asset('php.jpg') }});
-        }
-        .imagetagruby{
-            background-image: url({{ asset('ruby.png') }});
-        }
-        .imagetagmysql{
-            background-image: url({{ asset('mysql.png') }});
-        }
-    </style>
-{% endblock %}
 {% block body %}
 
     <div class="container-fluid paddingtop">
@@ -32,49 +10,17 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12 ">
-                <div class="imagetagcss img-responsive">
-                    <div class="centertext">
-                        CSS
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="imagetaghtml img-responsive">
-                    <div class="centertext">
-                        HTML
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="imagetagjavascript img-responsive">
-                    <div class="centertext">
-                        JavaScript
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="imagetagphp img-responsive">
+            {% for value in attributes %}
 
-                    <div class="centertext">
-                        PHP
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                    <div class="img-responsive" style="background-image: url({{ asset(value.imageurl) |replace({"\n":'', "\r":'', ' ':''})}});">
+                        <div class="centertext">
+                            {{ value.nom }}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="imagetagruby img-responsive">
-                    <div class="centertext">
-                        Ruby
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="imagetagmysql img-responsive">
-                    <div class="centertext">
-                        MySql
-                    </div>
-                </div>
-            </div>
+
+            {% endfor %}
         </div>
     </div>
 

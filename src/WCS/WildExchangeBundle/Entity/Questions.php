@@ -31,7 +31,7 @@ class Questions
     /**
      * @var string
      *
-     * @ORM\Column(name="Contenu", type="string", length=255)
+     * @ORM\Column(name="Contenu", type="text")
      */
     private $contenu;
 

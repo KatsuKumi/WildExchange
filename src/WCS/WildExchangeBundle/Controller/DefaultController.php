@@ -31,7 +31,12 @@ class DefaultController extends Controller
     }
     public function tagsAction()
     {
-        return $this->render('WCSWildExchangeBundle:Default:tags.html.twig');
+        $repository = $this->getDoctrine()->getRepository('WCSWildExchangeBundle:Tags');
+        $taglist = $repository->findAll();
+
+        return $this->render('WCSWildExchangeBundle:Default:tags.html.twig',array(
+            'attributes' => $taglist
+        ));
     }
     public function loginAction()
     {
