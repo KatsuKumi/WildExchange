@@ -43,40 +43,4 @@ class SecurityController extends Controller
 
     }
 
-    public static function IsStrenghtEnought($password){
-        if(strlen($password) < 8){
-            return false;
-        }
-        elseif(!preg_match("#[0-9]+#",$password)) {
-            return false;
-            $passwordErr = "Your password must contain at least 1 number!";
-        }
-        elseif(!preg_match("#[A-Z]+#",$password)) {
-            return false;
-            $passwordErr = "Your password must contain at least 1 Capital Letter!";
-        }
-        elseif(!preg_match("#[a-z]+#",$password)) {
-            return false;
-            $passwordErr = "Your password must contain at least 1 Lowercase Letter!";
-        } else {
-            return true;
-        }
-    }
-    public static function GetPasswordError($password){
-        $passwordErr = "";
-        if(strlen($password) < 8){
-            $passwordErr = "Your Password Must Contain At Least 8 Characters!";
-        }
-        elseif(!preg_match("#[0-9]+#",$password)) {
-            $passwordErr = "Your Password Must Contain At Least 1 Number!";
-        }
-        elseif(!preg_match("#[A-Z]+#",$password)) {
-            $passwordErr = "Your Password Must Contain At Least 1 Capital Letter!";
-        }
-        elseif(!preg_match("#[a-z]+#",$password)) {
-            $passwordErr = "Your Password Must Contain At Least 1 Lowercase Letter!";
-        }
-        return $passwordErr;
-
-    }
 }

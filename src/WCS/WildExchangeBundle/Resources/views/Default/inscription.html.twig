@@ -18,7 +18,11 @@
                     <div class="wrap login">
                         <p class="form-title">
                             Coordonnées</p>
+                        {% if error %}
+                            <h3>{{ error }}</h3>
+                        {% endif %}
                         {{ form_start(form, { 'attr' : { 'class': 'login' } }) }}
+
 
                         {{ form_errors(form.pseudo) }}
                         {{ form_widget(form.pseudo  ) }}
