@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <style>
+        body{
+            background: url('{{ asset('questions.jpg') }}') no-repeat center fixed;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-page col-sm-1 col-md-9">
+                    <hgroup>
+                        <h1 class="free">Ajouter une question</h1>
+                    </hgroup>
+                    <div class="ajout">
+                        {{ form_start(form, { 'attr' : { 'class': 'question' } }) }}
+
+                        {{ form_errors(form.titre) }}
+                        {{ form_widget(form.titre  ) }}
+
+                        {{ form_errors(form.question) }}
+                        {{ form_widget(form.question) }}
+                        {{ form_end(form) }}
+
+                        <form action="#">
+                            <div class="input-group">
+                                <input class="btn btn-lg" name="titre" id="titre" type="text" placeholder="Titre de ta question" required>
+                                <input class="btn btn-lg" name="question" id="question" type="text" placeholder="Ta question" required>
+                                <button class="btn btn-info btn-lg" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
+{% endblock %}

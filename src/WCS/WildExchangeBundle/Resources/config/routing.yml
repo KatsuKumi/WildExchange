@@ -20,3 +20,6 @@ tagspage:
 questionqpage:
         path:     /questions
         defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
+ajoutpage:
+        path:     /ajout
+        defaults: {  _controller: WCSWildExchangeBundle:Default:ajout }

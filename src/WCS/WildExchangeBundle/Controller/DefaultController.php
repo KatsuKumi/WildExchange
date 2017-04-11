@@ -41,6 +41,10 @@ class DefaultController extends Controller
     {
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig');
     }
+    public function ajoutAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:ajout.html.twig');
+    }
 
     /**
      * @Route("/logout", name="logout")
