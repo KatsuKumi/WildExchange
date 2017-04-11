@@ -6,7 +6,6 @@ namespace WCS\WildExchangeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use WCS\WildExchangeBundle\Entity\Questions;
 use WCS\WildExchangeBundle\Form\QuestionsType;
-use WCS\WildExchangeBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;

@@ -20,7 +20,7 @@ class QuestionsType extends AbstractType
                 'placeholder' => 'Titre'
             )))->add('contenu', TextareaType::class,array(
             'attr' => array(
-                'placeholder' => ''
+                'placeholder' => 'Question'
             )));
     }
     
