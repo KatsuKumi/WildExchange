@@ -17,9 +17,11 @@ inscriptionpage:
 tagspage:
     path:     /tags
     defaults: {  _controller: WCSWildExchangeBundle:Default:tags }
-questionqpage:
+
+questionpage:
         path:     /questions
         defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
+
 ajoutpage:
         path:     /ajout
         defaults: {  _controller: WCSWildExchangeBundle:Question:ajout }
