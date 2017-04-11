@@ -25,8 +25,7 @@ class QuestionController extends Controller
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $question->setDateInscription(new \DateTime());
-            $question->setQuestion(1);
+            $question->setDate(new \DateTime());
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
