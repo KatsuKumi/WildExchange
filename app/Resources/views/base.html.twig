@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bantikyan/icheck-bootstrap/9bd0c21a/icheck-bootstrap.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bantikyan/icheck-bootstrap/9bd0c21a/icheck-bootstrap.min.css" /> -->
 
     <link href="{{ asset('style.css') }}" rel="stylesheet" type="text/css" media="screen">
 
@@ -61,8 +61,8 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Bonjour, {{ app.user.username }} !</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Mon profil</a></li>
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="{{ path('wcs_wild_exchange_homepage') }}">Mon profil</a></li>
+                            <li><a href="{{ path('wcs_wild_exchange_homepage') }}">Dashboard</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
                         </ul>
@@ -167,7 +167,12 @@
     <div class="copyright">
         <div class="container">
             <p>Suivez-nous sur vos reseaux favoris</p>
-            <p><i class="fa fa-github fa-3x" aria-hidden="true"></i> <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i> <i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i><i class="fa fa-youtube fa-3x" aria-hidden="true"></i><i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+            <p><i class="fa fa-github fa-3x" aria-hidden="true"> <a></a></i>
+                <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-youtube fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
             </p>
         </div>
     </div>
