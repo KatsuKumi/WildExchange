@@ -505,6 +505,13 @@ form.login a:hover
 }
 
 @media (max-width: 768px) {
+    .accueil{
+        background-color: rgba(255,255,255,0.5);
+        color: black;
+    }
+    .x-navbar-fixed-top a{
+        color: black;
+    }
     .navbar-titre{
         display : none;
     }
@@ -662,7 +669,6 @@ form.login a:hover
 
 section {
     padding: 100px 0;
-    text-align: center;
 }
 select.frecuency {
     border: none;
@@ -702,7 +708,6 @@ input.btn.btn-lg:focus {
     margin: 20px;
 }
 button.btn {
-    width: 40%;
     height: 60px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -710,4 +715,12 @@ button.btn {
 }
 .promise {
     color: #999;
+}
+.navbar-toggle{
+    background: #1fa597;
+}
+.icon-bar{
+    background-color: black;
+    height: 2px;
+    width: 10px;
 }
