@@ -34,6 +34,11 @@ class DefaultController extends Controller
     }
     public function loginAction()
     {
+
+    }
+    public function questionsAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig');
     }
 
     /**

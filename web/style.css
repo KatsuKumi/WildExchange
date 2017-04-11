@@ -87,6 +87,21 @@ img {
     height: 70px;
 }
 
+/*//// Avatar ////*/
+
+.avatar-16x{
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border-radius: 50px;
+}
+.navbar-avatar{
+    display: inline-block;
+    margin : 0 auto;
+    padding: 0 !important;
+}
+
+
 /*///// FOOTER /////*/
 
 
@@ -575,11 +590,11 @@ form.login a:hover
     -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
-    margin-bottom:20px;
     width: 80%;
     max-height: 340px;
     margin: auto;
     margin-top: 50px;
+    margin-bottom:50px;
     background-size: cover;
     height: 300px;
     display: flex;
@@ -602,16 +617,45 @@ form.login a:hover
 
 }
 
-/*//// Avatar ////*/
 
-.avatar-16x{
-    height: 50px;
-    width: 50px;
-    overflow: hidden;
-    border-radius: 50px;
+/*//// QUESTIONS ////*/
+
+.table-filter .media .title span.resolu {
+    color: #5cb85c;
 }
-.navbar-avatar{
-    display: inline-block;
-    margin : 0 auto;
-    padding: 0 !important;
+
+.table-filter .media .title span.encours {
+    color: #f0ad4e;
 }
+
+.table-filter .media .title span.annule {
+    color: #d9534f;
+}
+
+.content h1 {
+    text-align: center;
+}
+.content {
+    margin-top: 150px;
+    width: 100%;
+}
+.panelbg{
+    background-color: rgba(255,255,255,0.8) !important;
+}
+
+.table-filter .media-meta {
+    font-size: 15px;
+    color: #999;
+}
+.table-filter .media .title {
+    color: #1FA597;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
+}
+.table-filter .media .title span {
+    font-size: .8em;
+    margin-right: 20px;
+}
+
