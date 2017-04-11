@@ -3,99 +3,136 @@
 namespace WCS\WildExchangeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Utilisateur
- * @ORM\Table(name="utilisateur")
+ *
+ * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1D1C63B381604CAB", columns={"Pseudo"}), @ORM\UniqueConstraint(name="UNIQ_1D1C63B326535370", columns={"Email"})})
+ * @ORM\Entity
  * @UniqueEntity(fields="email", message="Email déjà utilisé")
  * @UniqueEntity(fields="pseudo", message="Pseudo déjà utilisé")
  */
 class Utilisateur implements UserInterface
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Pseudo", type="string", length=255, nullable=false)
      */
     private $pseudo;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Mot_de_passe", type="string", length=255, nullable=false)
      */
     private $motDePasse;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Prenom", type="string", length=255, nullable=false)
      */
     private $prenom;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="interet", type="string", length=255, nullable=true)
      */
     private $interet;
-    /**
-     * @var string
-     */
-    private $gitHub;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="GitHub", type="string", length=255, nullable=true)
      */
-    private $faceBook;
+    private $github;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="FaceBook", type="string", length=255, nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Twitter", type="string", length=255, nullable=true)
      */
     private $twitter;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="LinkedIn", type="string", length=255, nullable=true)
      */
-    private $linkedIn;
+    private $linkedin;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="AvatarURL", type="string", length=255, nullable=true)
      */
-    private $avatarURL;
+    private $avatarurl;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="Date_Inscription", type="datetime", nullable=false)
      */
     private $dateInscription;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="Date_Connexion", type="datetime", nullable=true)
      */
     private $dateConnexion;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="IDRang", type="integer", nullable=true)
      */
-    private $iDRang;
+    private $idrang;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="IDEcole", type="string", length=255, nullable=true)
      */
-    private $iDEcole;
+    private $idecole;
 
     public function getRoles() { return array('ROLE_USER'); }
-
     public function getPassword()
     {
         return $this->motDePasse;
@@ -243,49 +280,72 @@ class Utilisateur implements UserInterface
     }
 
     /**
-     * Set gitHub
+     * Set interet
      *
-     * @param string $gitHub
+     * @param string $interet
      * @return Utilisateur
      */
-    public function setGitHub($gitHub)
+    public function setInteret($interet)
     {
-        $this->gitHub = $gitHub;
+        $this->interet = $interet;
 
         return $this;
     }
 
     /**
-     * Get gitHub
+     * Get interet
      *
      * @return string 
      */
-    public function getGitHub()
+    public function getInteret()
     {
-        return $this->gitHub;
+        return $this->interet;
     }
 
     /**
-     * Set faceBook
+     * Set github
      *
-     * @param string $faceBook
+     * @param string $github
      * @return Utilisateur
      */
-    public function setFaceBook($faceBook)
+    public function setGithub($github)
     {
-        $this->faceBook = $faceBook;
+        $this->github = $github;
 
         return $this;
     }
 
     /**
-     * Get faceBook
+     * Get github
      *
      * @return string 
      */
-    public function getFaceBook()
+    public function getGithub()
     {
-        return $this->faceBook;
+        return $this->github;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     * @return Utilisateur
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string 
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
     }
 
     /**
@@ -300,6 +360,7 @@ class Utilisateur implements UserInterface
 
         return $this;
     }
+
     /**
      * Get twitter
      *
@@ -311,49 +372,49 @@ class Utilisateur implements UserInterface
     }
 
     /**
-     * Set linkedIn
+     * Set linkedin
      *
-     * @param string $linkedIn
+     * @param string $linkedin
      * @return Utilisateur
      */
-    public function setLinkedIn($linkedIn)
+    public function setLinkedin($linkedin)
     {
-        $this->linkedIn = $linkedIn;
+        $this->linkedin = $linkedin;
 
         return $this;
     }
 
     /**
-     * Get linkedIn
+     * Get linkedin
      *
      * @return string 
      */
-    public function getLinkedIn()
+    public function getLinkedin()
     {
-        return $this->linkedIn;
+        return $this->linkedin;
     }
 
     /**
-     * Set avatarURL
+     * Set avatarurl
      *
-     * @param string $avatarURL
+     * @param string $avatarurl
      * @return Utilisateur
      */
-    public function setAvatarURL($avatarURL)
+    public function setAvatarurl($avatarurl)
     {
-        $this->avatarURL = $avatarURL;
+        $this->avatarurl = $avatarurl;
 
         return $this;
     }
 
     /**
-     * Get avatarURL
+     * Get avatarurl
      *
      * @return string 
      */
-    public function getAvatarURL()
+    public function getAvatarurl()
     {
-        return $this->avatarURL;
+        return $this->avatarurl;
     }
 
     /**
@@ -403,70 +464,48 @@ class Utilisateur implements UserInterface
     }
 
     /**
-     * Set iDRang
+     * Set idrang
      *
-     * @param integer $iDRang
+     * @param integer $idrang
      * @return Utilisateur
      */
-    public function setIDRang($iDRang)
+    public function setIdrang($idrang)
     {
-        $this->iDRang = $iDRang;
+        $this->idrang = $idrang;
 
         return $this;
     }
 
     /**
-     * Get iDRang
+     * Get idrang
      *
      * @return integer 
      */
-    public function getIDRang()
+    public function getIdrang()
     {
-        return $this->iDRang;
+        return $this->idrang;
     }
 
     /**
-     * Set iDEcole
+     * Set idecole
      *
-     * @param string $iDEcole
+     * @param string $idecole
      * @return Utilisateur
      */
-    public function setIDEcole($iDEcole)
+    public function setIdecole($idecole)
     {
-        $this->iDEcole = $iDEcole;
+        $this->idecole = $idecole;
 
         return $this;
     }
 
     /**
-     * Get iDEcole
+     * Get idecole
      *
      * @return string 
      */
-    public function getIDEcole()
+    public function getIdecole()
     {
-        return $this->iDEcole;
-    }
-    /**
-     * Set interet
-     *
-     * @param string $interet
-     * @return Utilisateur
-     */
-    public function setInteret($interet)
-    {
-        $this->interet = $interet;
-
-        return $this;
-    }
-
-    /**
-     * Get interet
-     *
-     * @return string 
-     */
-    public function getInteret()
-    {
-        return $this->interet;
+        return $this->idecole;
     }
 }

@@ -5,36 +5,35 @@ namespace WCS\WildExchangeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ecole
+ * Tags
  *
- * @ORM\Table(name="ecole")
- * @ORM\Entity
+ * @ORM\Table(name="tags")
+ * @ORM\Entity(repositoryClass="WCS\WildExchangeBundle\Repository\TagsRepository")
  */
-class Ecole
+class Tags
 {
     /**
-     * @var integer
+     * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=255, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Ville", type="string", length=255, nullable=false)
+     * @ORM\Column(name="imageurl", type="string", length=255)
      */
-    private $ville;
-
+    private $imageurl;
 
 
     /**
@@ -51,7 +50,7 @@ class Ecole
      * Set nom
      *
      * @param string $nom
-     * @return Ecole
+     * @return Tags
      */
     public function setNom($nom)
     {
@@ -71,25 +70,25 @@ class Ecole
     }
 
     /**
-     * Set ville
+     * Set imageurl
      *
-     * @param string $ville
-     * @return Ecole
+     * @param string $imageurl
+     * @return Tags
      */
-    public function setVille($ville)
+    public function setImageurl($imageurl)
     {
-        $this->ville = $ville;
+        $this->imageurl = $imageurl;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get imageurl
      *
      * @return string 
      */
-    public function getVille()
+    public function getImageurl()
     {
-        return $this->ville;
+        return $this->imageurl;
     }
 }
