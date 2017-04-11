@@ -17,20 +17,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog-jim.css') }}" />
     <script src="{{ asset('js/snap.svg-min.js') }}"></script>
     <script src="{{ asset('js/modernizr.custom.js') }}"></script>
-<style>
-    @font-face {
-        font-family: wcsfont;
-        src: url('{{ asset('Alwyn Regular.ttf') }}');
-    }
-    @font-face {
-        font-family: wcsfont;
-        src: url('{{ asset('Alwyn Bold.ttf') }}');
-        font-weight: bold;
-    }
-    body{
-        font-family: "Open Sans", sans-serif;
-    }
-</style>
+    <style>
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Regular.ttf') }}');
+        }
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Bold.ttf') }}');
+            font-weight: bold;
+        }
+        body{
+            font-family: "Open Sans", sans-serif;
+        }
+    </style>
     <title>Wild Exchange - {% block title %}{% endblock %}</title>
     {% block style %}{% endblock %}
 </head>
@@ -46,7 +46,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="" href="{{ path('wcs_wild_exchange_homepage') }}">
-            <img src= "{{ asset('logoBlue.png') }}" ><div class="navbar-titre">Wild exchange</div></a>
+                <img src= "{{ asset('logoBlue.png') }}" ><div class="navbar-titre">Wild exchange</div></a>
 
         </div>
 
@@ -175,59 +175,54 @@
             <div class="col-md-2 col-sm-6 paddingtop-bottom">
                 <h6 class="heading7"><u>La Wild Code School</u></h6>
                 <ul class="footer-ul">
-                    <li><a href="#"> Le concept</a></li>
-                    <li><a href="#"> Notre programme</a></li>
-                    <li><a href="#"> Comment candidater</a></li>
-                    <li><a href="#"> FAQ</a></li>
+                    <li><a href="https://wildcodeschool.fr/questcequela-wildcodeschool/"> Le concept</a></li>
+                    <li><a href="https://wildcodeschool.fr/nos-formations-initiation-approfondissement-developpeur/"> Notre programme</a></li>
+                    <li><a href="https://wildcodeschool.fr/candidat/"> Comment candidater</a></li>
+                    <li><a href="https://wildcodeschool.fr/faq/"> FAQ</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 paddingtop-bottom">
                 <h6 class="heading7"><u>Nos écoles</u></h6>
                 <ul class="footer-ul">
-                    <li><a href="#"> La Loupe</a></li>
-                    <li><a href="#"> Fontainebleau</a></li>
-                    <li><a href="#"> Orléans</a></li>
-                    <li><a href="#"> Bordeaux</a></li>
-                    <li><a href="#"> Lyon</a></li>
-                    <li><a href="#"> Toulouse</a></li>
-                    <li><a href="#"> Paris</a></li>
-                    <li><a href="#"> Lille</a></li>
-                    <li><a href="#"> Starsbourg</a></li>
+                    <li><a href="https://wildcodeschool.fr/la-loupe/"> La Loupe</a></li>
+                    <li><a href="https://wildcodeschool.fr/fontainebleau/"> Fontainebleau</a></li>
+                    <li><a href="https://wildcodeschool.fr/orleans/"> Orléans</a></li>
+                    <li><a href="https://wildcodeschool.fr/bordeaux/"> Bordeaux</a></li>
+                    <li><a href="https://wildcodeschool.fr/lyon/"> Lyon</a></li>
+                    <li><a href="https://wildcodeschool.fr/toulouse/"> Toulouse</a></li>
+                    <li><a href="https://wildcodeschool.fr/paris/"> Paris</a></li>
+                    <li><a href="https://wildcodeschool.fr/lille/"> Lille</a></li>
+                    <li><a href="https://wildcodeschool.fr/strasbourg/"> Starsbourg</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 paddingtop-bottom">
                 <h6 class="heading7"><u>Plan du site</u></h6>
                 <ul class="footer-ul">
-                    <li><a href="#"> Accueil</a></li>
-                    <li><a href="#"> Dashboard</a></li>
-                    <li><a href="#"> Profil</a></li>
-                    <li><a href="#"> Inscription</a></li>
-                    <li><a href="#"> Se connecter</a></li>
+                    <li><a href="{{ path('wcs_wild_exchange_homepage') }}"> Accueil</a></li>
+                    <li><a href="{{ path('wcs_wild_exchange_homepage') }}"> Dashboard</a></li>
+                    <li><a href="{{ path('wcs_wild_exchange_homepage') }}"> Profil</a></li>
+                    <li><a href="{{ path('tagspage') }}"> Tags</a></li>
+                    <li><a href="{{ path('inscriptionpage') }}"> Inscription</a></li>
+                    <li><a href="{{ path('connectionpage') }}"> Se connecter</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 paddingtop-bottom">
                 <h6 class="heading7"><u>Notre blog</u></h6>
                 <ul class="footer-ul">
-                    <li><a href="#"> La Loupe</a></li>
-                    <li><a href="#"> Fontainebleau</a></li>
-                    <li><a href="#"> Orléans</a></li>
-                    <li><a href="#"> Bordeaux</a></li>
-                    <li><a href="#"> Lyon</a></li>
-                    <li><a href="#"> Toulouse</a></li>
-                    <li><a href="#"> Paris</a></li>
-                    <li><a href="#"> Lille</a></li>
-                    <li><a href="#"> Starsbourg</a></li>
+                    <li><a href="https://wildcodeschool.fr/blog/formation-courte-code/"> > La Wild Code School propose de nouvelles formations adaptées à tous les besoins (dynamique)</a></li>
+                    <li><a href="https://wildcodeschool.fr/blog/formation-code-lille-paris-strasbourg/"> > La Wild Code School arrive à Lille, Paris et Strasbourg ! (dynamique)</a></li>
+                    <li><a href="https://wildcodeschool.fr/blog/pourquoi-se-former-code/"> > Pourquoi se former au code ? (dynamique)</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 paddingtop-bottom">
-                <h6 class="heading7"><u>A propos</u></h6>
+                <h6 class="heading7"><u>À propos</u></h6>
                 <ul class="footer-ul">
-                    <li><a href="#"> Nous contacter</a></li>
-                    <li><a href="#"> Notre programme</a></li>
-                    <li><a href="#"> Offres d'emploi</a></li>
-                    <li><a href="#"> Recruter un développeur</a></li>
-                    <li><a href="#"> Développer un projet</a></li>
-                    <li><a href="#"> Nous soutenir</a></li>
+                    <li><a href="https://wildcodeschool.fr/contact/"> Nous contacter</a></li>
+                    <li><a href="https://wildcodeschool.fr/equipe/"> Notre équipe</a></li>
+                    <li><a href="https://wildcodeschool.fr/offres-emplois/"> Offres d'emploi</a></li>
+                    <li><a href="https://wildcodeschool.fr/recruter-un-developpeur/"> Recruter un développeur</a></li>
+                    <li><a href="https://wildcodeschool.fr/developper-un-projet/"> Développer un projet</a></li>
+                    <li><a href="https://wildcodeschool.fr/nous-soutenir/"> Nous soutenir</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 paddingtop-bottom">
