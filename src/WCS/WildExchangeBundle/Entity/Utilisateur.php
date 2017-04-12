@@ -132,7 +132,7 @@ class Utilisateur implements UserInterface
     private $ecole;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Questions", mappedBy="createur")
+     * @ORM\OneToMany(targetEntity="Questions", mappedBy="createur")
      */
     private $questions;
 

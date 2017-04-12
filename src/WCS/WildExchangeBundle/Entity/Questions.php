@@ -50,7 +50,7 @@ class Questions
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Utilisateurs", inversedBy="questions")
+     * @ORM\ManyToOne(targetEntity="Utilisateurs", inversedBy="questions")
      */
     private $createur;
 
