@@ -126,7 +126,7 @@
         $('#btnplus').click(function()
         {
             $.ajax({
-                url: 'http://localhost/WildExchange/web/app_dev.php/vote',
+                url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
                 type:'POST',
                 data:
                     {
