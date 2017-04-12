@@ -604,6 +604,8 @@ textarea {
 .paddingtop{
     padding-top: 150px;
     padding-bottom: 100px;
+}
+h1 {
     text-align: center;
 }
 .chat
@@ -620,10 +622,22 @@ textarea {
 }
 .left {
     text-align: left;
+    width: 50%;
 }
-.right {
+.primary-font {
+    color: #1FA597;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
     text-align: right;
 }
+.right p {
+    width: 50%;
+    text-align: right;
+    float: right;
+}
+
 .media-photo {
     margin: 10px;
 }
