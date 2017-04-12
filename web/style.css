@@ -373,6 +373,7 @@ button {
     font-size: 40px;
     font-weight: 100;
     text-align: center;
+    color: #1FA597;
 }
 
 .img-responsive {
@@ -430,19 +431,22 @@ button {
     color: #d9534f;
 }
 
-.content h1 {
-    text-align: center;
-}
 .content {
     width: 100%;
 }
 .panelbg{
     background-color: rgba(255,255,255,0.8) !important;
 }
-
+h1 {
+    color: #1FA597;
+}
+.summary {
+    text-align: left;
+}
 .table-filter .media-meta {
     font-size: 15px;
     color: #999;
+    text-align: left;
 }
 .table-filter .media .title {
     color: #1FA597;
@@ -450,10 +454,12 @@ button {
     font-weight: bold;
     line-height: normal;
     margin: 0;
+    text-align: left;
 }
 .table-filter .media .title span {
     font-size: .8em;
     margin-right: 20px;
+    text-align: left;
 }
 
 /*//// AJOUT ////*/
