@@ -50,7 +50,10 @@ class DefaultController extends Controller
     {
         return $this->render('WCSWildExchangeBundle:Default:ajout.html.twig');
     }
-
+    public function reponsesAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:reponses.html.twig');
+    }
     public function dashboardAction()
     {
         return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig');

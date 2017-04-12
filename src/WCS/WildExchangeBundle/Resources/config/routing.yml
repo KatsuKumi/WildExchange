@@ -26,6 +26,10 @@ ajoutpage:
         path:     /ajout
         defaults: {  _controller: WCSWildExchangeBundle:Question:ajout }
 
+reponsepage:
+        path:     /reponses
+        defaults: {  _controller: WCSWildExchangeBundle:Default:reponses }
+
 dashboardpage:
         path:     /dashboard
         defaults: {  _controller: WCSWildExchangeBundle:Default:dashboard }
