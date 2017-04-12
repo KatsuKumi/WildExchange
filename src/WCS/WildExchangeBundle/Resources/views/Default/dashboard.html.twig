@@ -42,16 +42,30 @@
                         <li data-target="Autre">Autre</li>
                     </ul>
                 </nav>
-            </div>
+
+
+        <!---- DETAILS ----->
         <div class="tab-target targeted" id="Détails">
-            <p>Contenu (Détails) ICI ...</p>
+            <div class="avatar">
+            <label class="control-label">Avatar</label>
+              <div class="file">
+                <label for="file-input">Changer d'Avatar</label>
+                <input type="file" id="file-input">
+              </div>
             </div>
+        </div>
+        <!---- HISTORIQUE ----->
+
         <div class="tab-target" id="Historique">
             <p>Contenu (Historique) ICI ...</p>
         </div>
+
+        <!---- AUTRE ----->
         <div class="tab-target" id="Autre">
             <p>Contenu (Autre) ICI ...</p>
         </div>
+
+            </div>
     </div>
     </div>
 {% endblock %}

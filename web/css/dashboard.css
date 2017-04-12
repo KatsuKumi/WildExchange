@@ -331,8 +331,6 @@ body {
 .tab-target {
     width:100%;
     left:0;
-    padding:0 50px 50px 350px;
-    position:absolute;
     opacity:0;
     overflow:hidden;
 }
@@ -346,4 +344,48 @@ body {
     height: 200px;
     margin-top: 20px;
     border-radius:10px;
+}
+
+/*// BOUTON UPLOAD ////*/
+
+.file {
+    position: relative;
+    height: 37px;
+    width: 200px;
+}
+
+.file > input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
+.file > label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 10px;
+    bottom: 0;
+    background-color: darkgrey;
+    color: #fff;
+    border-radius: 5px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer
+}
+
+.avatar {
+    display: inline-flex;
+    color: #7B7B7B;
+    font-size: 20px;
+    padding-top: 20px;
+
+}
+
+.control-label {
+    padding-right: 200px;
+    font-size: 22px;
 }
