@@ -5,17 +5,15 @@
     <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
 {% endblock %}
 {% block body %}
-    <div class="container paddingtop">
-    </div>
-    <div class="container-fluid">
+    <div class="container-fluid smallpaddingtop">
     <div id="menu-overlay"></div>
     <div id="menu-toggle" class="closed" data-title="Menu">
         <i class="fa fa-bars"></i>
         <i class="fa fa-times"></i>
     </div>
-    <section id="content">
+    <div id="content">
 
-            <div class="container">
+            <div class="container ">
                 <div class="row">
                     <div class="col-md-12 blue">
                         <img src="{{ asset('avatar/avatar.png') }}" class="avatar-160x">
@@ -40,7 +38,7 @@
         <div class="tab-target" id="Autre">
             <p>Contenu (Autre) ICI ...</p>
         </div>
-    </section>
+    </div>
     </div>
 {% endblock %}
 {% block js %}

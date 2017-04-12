@@ -579,6 +579,10 @@ textarea {
 
 /*//// REPONSES ////*/
 
+.smallpaddingtop{
+    padding-top: 110px;
+    padding-bottom: 30px;
+}
 .paddingtop{
     padding-top: 150px;
     padding-bottom: 100px;
