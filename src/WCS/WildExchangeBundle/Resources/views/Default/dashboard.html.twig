@@ -3,6 +3,20 @@
 {% block style %}
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" type="text/css" media="screen">
     <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <style>
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Regular.ttf') }}');
+        }
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Bold.ttf') }}');
+            font-weight: bold;
+        }
+        body{
+            font-family: "Open Sans", sans-serif;
+        }
+    </style>
 {% endblock %}
 {% block body %}
     <div class="container-fluid smallpaddingtop">
