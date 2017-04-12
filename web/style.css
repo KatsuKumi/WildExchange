@@ -449,6 +449,16 @@ button {
 
 /*//// QUESTIONS ////*/
 
+.btn-filter {
+    margin-bottom: 20px;
+    padding: 1em 2em;
+    outline: none;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    background: #1fa597;
+}
+
 .table-filter .media .title span.resolu {
     color: #5cb85c;
 }
@@ -507,7 +517,9 @@ h1 {
     vertical-align: middle;
     margin-left:20px;
 }
+
 /*//// AJOUT ////*/
+
 select.frecuency {
     border: none;
     font-style: italic;
@@ -548,22 +560,18 @@ textarea {
     width: 70%;
     height: 120px;
 }
-input.btn.btn-lg,
-input.btn.btn-lg:focus {
-    outline: none;
-    width: 60%;
-    height: 60px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    background: white;
-    margin: 20px;
-}
-button.btn-info {
-    height: 60px;
+
+.btn-lg {
     display: flex;
     margin: auto;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    padding: 1em 2em;
+    outline: none;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    background: #1fa597;
 }
 ::-webkit-input-placeholder {
     color: grey;
@@ -618,4 +626,13 @@ textarea {
 }
 .media-photo {
     margin: 10px;
+}
+.btn-sm {
+    padding: 1em 2em;
+    outline: none;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    background: #1fa597;
+    margin-bottom: 10px;
 }
