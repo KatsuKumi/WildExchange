@@ -299,13 +299,17 @@ button {
     line-height: 26px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
+
+    .x-navbar-fixed-top a:not(.dropdown){
+        color: black !important;
+    }
     .accueil{
         background-color: rgba(255,255,255,0.5);
         color: black;
     }
     .x-navbar-fixed-top a{
-        color: black;
+        color: black !important;
     }
     .navbar-titre{
         display : none;

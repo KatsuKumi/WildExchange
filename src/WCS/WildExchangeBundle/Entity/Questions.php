@@ -47,6 +47,13 @@ class Questions
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="questions")
      */
     private $tags;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Utilisateurs", inversedBy="questions")
+     */
+    private $createur;
+
     /**
      * Get id
      *
