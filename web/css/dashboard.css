@@ -303,7 +303,7 @@ body {
     list-style-type:none;
     height:65px;
     padding:0;
-    margin:10px 10px 50px 250px;
+    margin:0px 10px 40px 230px;
 }
 
 #tabs li {
@@ -416,5 +416,14 @@ body {
     padding-left: 15px;
     font-size: 48px;
     color: #7b7b7b;
+    text-decoration: none solid rgb(123, 123, 123);
+}
+
+.date {
+    font-size: 26px;
+    padding-bottom: 20px;
+    padding-left: 80px;
+    color: #7b7b7b;
+    font-style: italic;
     text-decoration: none solid rgb(123, 123, 123);
 }
