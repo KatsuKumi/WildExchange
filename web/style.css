@@ -299,13 +299,17 @@ button {
     line-height: 26px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
+
+    .x-navbar-fixed-top a:not(.dropdown){
+        color: black !important;
+    }
     .accueil{
         background-color: rgba(255,255,255,0.5);
         color: black;
     }
     .x-navbar-fixed-top a{
-        color: black;
+        color: black !important;
     }
     .navbar-titre{
         display : none;
@@ -466,6 +470,23 @@ h1 {
     margin-right: 20px;
     text-align: left;
 }
+.btn-number {
+    height: 35px;
+}
+.ckbox{
+    min-width: 200px;
+    display: inline-block;
+}
+.ckbox ul{
+    list-style-type: none;
+    padding: 0;
+}
+.ckbox li{
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left:20px;
+}
 
 /*//// AJOUT ////*/
 
@@ -525,7 +546,7 @@ input.btn.btn-lg:focus {
     background: white;
     margin: 20px;
 }
-button.btn {
+button.btn-info {
     height: 60px;
     display: flex;
     margin: auto;

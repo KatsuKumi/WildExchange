@@ -131,6 +131,11 @@ class Utilisateur implements UserInterface
      */
     private $ecole;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Questions", mappedBy="createur")
+     */
+    private $questions;
+
     public function getRoles() { return array('ROLE_USER'); }
     public function getPassword()
     {
