@@ -56,35 +56,47 @@ class QuestionController extends Controller
 
     public function VoteAction(Request $request)
     {
-        $referer = $request->headers->get('referer');
-
+        $usr= $this->get('security.context')->getToken()->getUser();
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usr= $this->get('security.context')->getToken()->getUser();
             return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
         }
-        var_dump($_POST['question_id']);
-
-        $usr= $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
+
         $question = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($_POST['question_id']);
+
+        $votebool = $_POST['vote'] == 'plus' ? true : false;
+
         $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
             ->findBy (['votant'=>$usr, 'question'=> $question], ['votant'=>'DESC'], 5, 0);
-        if (!empty($existingvote)){
-            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
-        }
-        $vote = new Vote();
-        $vote->setDate(new \DateTime());
-        $vote->setVotant($usr);
-        $vote->setValue($_POST['vote'] == 'plus' ? true : false);
 
-        if (empty($question)){
-            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
+        var_dump($existingvote);
+        if (!empty($existingvote)){
+            if(($existingvote[1]->getValue() == $votebool)){
+                return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
+            }
+            else{
+
+                $vote = $em->getRepository('WCSWildExchangeBundle:Vote')
+                    ->find($existingvote[0]->getId());
+                $vote->setValue($votebool);
+                $em->flush();
+            }
         }
-        $vote->setQuestion($question);
-        $em->persist($vote);
-        $em->flush();
+        else{
+            $vote = new Vote();
+            $vote->setDate(new \DateTime());
+            $vote->setVotant($usr);
+            $vote->setValue($votebool);
+
+            if (empty($question)){
+                return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
+            }
+            $vote->setQuestion($question);
+            $em->persist($vote);
+            $em->flush();
+        }
         return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
     }
 }
