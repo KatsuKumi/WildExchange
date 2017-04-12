@@ -315,9 +315,12 @@ button {
 @media (max-width: 950px) {
     .avatar-160x{
         height: auto;
-        max-width: 100px;
+        max-width: 200px;
         overflow: hidden;
         border-radius: 100px;
+    }
+    #tabs {
+        margin: 0 0 0 -280px;
     }
     .x-navbar-fixed-top a:not(.dropdown){
         color: black !important;
