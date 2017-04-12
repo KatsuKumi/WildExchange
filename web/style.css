@@ -104,9 +104,16 @@ nav li{
     width: 70px;
     height: 70px;
 }
-
+td:first-child{
+    vertical-align: middle !important;
+    margin:auto;
+}
 /*//// Avatar ////*/
-
+.avatar-32x{
+    height: 100px !important;
+    width: 100px !important;
+    overflow: hidden;
+}
 .avatar-16x{
     height: 50px !important;
     width: 50px !important;

@@ -15,7 +15,7 @@ class QuestionController extends Controller
     /**
      * @Route("/ajout", name="question_ajout")
      */
-    public function ajoutAction(Request $request)
+    public function ajoutAction(Request $request, $tag)
     {
         // 1) build the form
         $question = new Questions();
@@ -25,17 +25,21 @@ class QuestionController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $question->setDate(new \DateTime());
-            // 4) save the User!
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $question->setCreateur($usr);
             $em = $this->getDoctrine()->getManager();
+            $tagobj = $em
+                ->getRepository('WCSWildExchangeBundle:Tags')
+                ->findByNom($tag);
+            $question->addTag($tagobj[0]);
             $em->persist($question);
             $em->flush();
-
-
             $this->addFlash(
                 'ajoutsuccess',
                 'Votre question a bien été ajoutée !'
             );
-            return $this->redirectToRoute('wcs_wild_exchange_homepage');
+
+            return $this->redirectToRoute('questionpage', array('tag'=>$tag));
         }
 
         return $this->render(

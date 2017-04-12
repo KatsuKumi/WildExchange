@@ -535,4 +535,44 @@ class Utilisateur implements UserInterface
     {
         return $this->ecole;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add questions
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Questions $questions
+     * @return Utilisateur
+     */
+    public function addQuestion(\WCS\WildExchangeBundle\Entity\Questions $questions)
+    {
+        $this->questions[] = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Remove questions
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Questions $questions
+     */
+    public function removeQuestion(\WCS\WildExchangeBundle\Entity\Questions $questions)
+    {
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
 }

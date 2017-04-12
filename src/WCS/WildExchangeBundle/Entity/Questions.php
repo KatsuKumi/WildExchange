@@ -44,16 +44,16 @@ class Questions
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="questions")
-     */
-    private $tags;
-
-
-    /**
      * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="questions")
      */
     private $createur;
 
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="questions")
+     * @ORM\JoinTable(name="users_groups")
+     */
+    private $tags;
     /**
      * Get id
      *
@@ -171,5 +171,28 @@ class Questions
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set createur
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Utilisateur $createur
+     * @return Questions
+     */
+    public function setCreateur(\WCS\WildExchangeBundle\Entity\Utilisateur $createur = null)
+    {
+        $this->createur = $createur;
+
+        return $this;
+    }
+
+    /**
+     * Get createur
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Utilisateur 
+     */
+    public function getCreateur()
+    {
+        return $this->createur;
     }
 }

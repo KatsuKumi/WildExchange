@@ -44,7 +44,14 @@ class DefaultController extends Controller
     }
     public function questionsAction($tag)
     {
-        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $tagobj = $em
+            ->getRepository('WCSWildExchangeBundle:Tags')
+            ->findByNom($tag);
+
+        $listquestion = $tagobj[0]->getQuestions();
+        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion));
     }
     public function ajoutAction()
     {

@@ -23,7 +23,7 @@ questionpage:
     defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
 
 ajoutpage:
-        path:     /ajout
+        path:     /ajout/{tag}
         defaults: {  _controller: WCSWildExchangeBundle:Question:ajout }
 
 reponsepage:
