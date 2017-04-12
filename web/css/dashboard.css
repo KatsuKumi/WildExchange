@@ -382,7 +382,7 @@ body {
     color: #7B7B7B;
     font-size: 20px;
     padding-top: 20px;
-
+    padding-bottom: 20px;
 }
 
 .control-label {
@@ -393,4 +393,13 @@ body {
 .smallpaddingtop {
     padding-top: 110px;
     padding-bottom: 230px;
+}
+
+.verticalLine {
+    display:inline-block;
+    width: 711px;
+    height: 11px;
+    fill: black;
+    transform: rotate(90deg);
+    margin-left: 400px;
 }
