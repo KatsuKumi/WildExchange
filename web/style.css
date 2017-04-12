@@ -466,6 +466,23 @@ h1 {
     margin-right: 20px;
     text-align: left;
 }
+.btn-number {
+    height: 35px;
+}
+.ckbox{
+    min-width: 200px;
+    display: inline-block;
+}
+.ckbox ul{
+    list-style-type: none;
+    padding: 0;
+}
+.ckbox li{
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left:20px;
+}
 
 /*//// AJOUT ////*/
 
@@ -525,7 +542,7 @@ input.btn.btn-lg:focus {
     background: white;
     margin: 20px;
 }
-button.btn {
+button.btn-info {
     height: 60px;
     display: flex;
     margin: auto;
