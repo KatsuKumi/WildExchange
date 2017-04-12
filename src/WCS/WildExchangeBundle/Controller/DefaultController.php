@@ -68,7 +68,10 @@ class DefaultController extends Controller
     {
         return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig');
     }
-
+    public function profilAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:profil.html.twig');
+    }
 
     /**
      * @Route("/logout", name="logout")

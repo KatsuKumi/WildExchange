@@ -33,3 +33,7 @@ reponsepage:
 dashboardpage:
         path:     /dashboard
         defaults: {  _controller: WCSWildExchangeBundle:Default:dashboard }
+
+profilpage:
+        path:     /profil
+        defaults: {  _controller: WCSWildExchangeBundle:Default:profil}
