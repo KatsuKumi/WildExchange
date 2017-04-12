@@ -482,6 +482,7 @@ select.frecuency:focus {
 }
 .free {
     text-transform: uppercase;
+    color: #1FA597;
 }
 .input-group {
     margin: auto;
@@ -497,6 +498,7 @@ input {
     margin-top: 20px;
     width: 70%;
     height: 60px;
+    text-align: center;
 }
 textarea {
     width: 70%;
@@ -514,27 +516,27 @@ input.btn.btn-lg:focus {
 }
 button.btn {
     height: 60px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    margin: 20px;
     display: flex;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 ::-webkit-input-placeholder {
-    color: black;
+    color: grey;
     opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
 }
 
 ::-moz-placeholder { /* Firefox 18- */
-    color: black;
+    color: grey;
     opacity: 0.9 !important;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-    color: black;
+    color: grey;
     opacity: 0.9 !important;
 }
 
 :-ms-input-placeholder {
-    color: black;
+    color: grey;
 }
 
