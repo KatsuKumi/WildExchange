@@ -51,6 +51,12 @@ class DefaultController extends Controller
         return $this->render('WCSWildExchangeBundle:Default:ajout.html.twig');
     }
 
+    public function dashboardAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig');
+    }
+
+
     /**
      * @Route("/logout", name="logout")
      */
