@@ -330,7 +330,7 @@ body {
 }
 
 #tabs li.active {
-    box-shadow:inset 0 -5px 0 #ef8700;
+    box-shadow:inset 0 -5px 0 darkslateblue;
     color:#2f3e4d;
 }
 
