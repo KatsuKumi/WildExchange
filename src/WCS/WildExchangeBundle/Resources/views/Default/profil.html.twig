@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <style>
+        .image{
+            background: url('{{ asset('accueil1.jpg') }}') no-repeat center fixed;
+            background-size: cover;
+            background-position: 0 100%;
+            min-height: 400px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+    <div class="container-fluid image">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card hovercard">
+                <div class="cardheader">
+                <div class="avatar">
+                    <img alt="" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg">
+                </div>
+                    <div class="info">
+                        <div class="title">
+                            <a target="_blank">Prénom Nom</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
+{% endblock %}
