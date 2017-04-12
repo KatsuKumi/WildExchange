@@ -63,7 +63,6 @@ class QuestionController extends Controller
             return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
         }
         var_dump($_POST['question_id']);
-        // 1) build the form
 
         $usr= $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -73,10 +72,6 @@ class QuestionController extends Controller
         $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
             ->findBy (['votant'=>$usr, 'question'=> $question], ['votant'=>'DESC'], 5, 0);
         if (!empty($existingvote)){
-            $this->addFlash(
-                'ajoutsuccess',
-                "Déja voté !"
-            );
             return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
         }
         $vote = new Vote();
@@ -85,19 +80,11 @@ class QuestionController extends Controller
         $vote->setValue($_POST['vote'] == 'plus' ? true : false);
 
         if (empty($question)){
-            $this->addFlash(
-                'ajoutsuccess',
-                "La question n'existe pas !"
-            );
             return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
         }
         $vote->setQuestion($question);
         $em->persist($vote);
         $em->flush();
-        $this->addFlash(
-            'ajoutsuccess',
-            'Votre vote à bien était pris en compte !'
-        );
         return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
     }
 }
