@@ -44,7 +44,7 @@
                                                     <ul>
                                                         <li>
                                                         <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                                                                <button type="button" class="btn btn-danger btn-number" data-target="{{ question.id }}" data-type="minus" data-field="quant[2]">
                                                                      <span class="glyphicon glyphicon-minus"></span>
                                                                 </button>
                                                         </span>
@@ -54,7 +54,7 @@
                                                         </li>
                                                         <li>
                                                         <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                                                            <button type="button" id="btnplus" class="btn btn-success btn-number" data-target="{{ question.id }}" data-type="plus" data-field="quant[2]">
                                                                 <span class="glyphicon glyphicon-plus"></span>
                                                             </button>
                                                         </span>
@@ -121,5 +121,23 @@
         else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
             $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
         }
+    </script>
+    <script>
+        $('#btnplus').click(function()
+        {
+            $.ajax({
+                url: 'http://localhost/WildExchange/web/app_dev.php/vote',
+                type:'POST',
+                data:
+                    {
+                        question_id: $('#btnplus').data("target"),
+                        vote: 'plus'
+                    },
+                success: function(msg)
+                {
+
+                }
+            });
+        });
     </script>
 {% endblock %}

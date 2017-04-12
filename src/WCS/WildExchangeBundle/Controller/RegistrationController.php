@@ -24,7 +24,7 @@ class RegistrationController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->IsStrenghtEnought($user->getMotDePasse())){
-                $passerror = $this->GetPasswordError($user->getMotDePasse());
+                $passerror = "Le mot de passe doit contenir au moins six caractères, un chiffre et une lettre minuscule!";
 
                 return $this->render(
                     'WCSWildExchangeBundle:Default:inscription.html.twig',
@@ -74,19 +74,5 @@ class RegistrationController extends Controller
         } else {
             return true;
         }
-    }
-    public static function GetPasswordError($password){
-        $passwordErr = "";
-        if(strlen($password) < 6){
-            $passwordErr = "Le mot de passe doit contenir au moins 6 caractères!";
-        }
-        elseif(!preg_match("#[0-9]+#",$password)) {
-            $passwordErr = "Le mot de passe doit contenir au moins 1 nombre !";
-        }
-        elseif(!preg_match("#[a-z]+#",$password)) {
-            $passwordErr = "Le mot de passe doit contenir au moins 1 lettre minuscule !";
-        }
-        return $passwordErr;
-
     }
 }

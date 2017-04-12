@@ -54,36 +54,50 @@ class QuestionController extends Controller
         );
     }
 
-    public function voteAction(Request $request, $id)
+    public function VoteAction(Request $request)
     {
         $referer = $request->headers->get('referer');
 
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Vous devez être connecté pour voter !");
-            return $this->redirectToRoute('connectionpage');
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
         }
+        var_dump($_POST['question_id']);
         // 1) build the form
+
         $usr= $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $question = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->find($_POST['question_id']);
+        $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
+            ->findBy (['votant'=>$usr, 'question'=> $question], ['votant'=>'DESC'], 5, 0);
+        if (!empty($existingvote)){
+            $this->addFlash(
+                'ajoutsuccess',
+                "Déja voté !"
+            );
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
+        }
         $vote = new Vote();
         $vote->setDate(new \DateTime());
         $vote->setVotant($usr);
-        $em = $this->getDoctrine()->getManager();
-        $question = $em
-            ->getRepository('WCSWildExchangeBundle:Tags')
-            ->find($id);
+        $vote->setValue($_POST['vote'] == 'plus' ? true : false);
+
         if (empty($question)){
             $this->addFlash(
                 'ajoutsuccess',
                 "La question n'existe pas !"
             );
-            return $this->redirect($referer);
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
         }
         $vote->setQuestion($question);
+        $em->persist($vote);
+        $em->flush();
         $this->addFlash(
             'ajoutsuccess',
             'Votre vote à bien était pris en compte !'
         );
-        return $this->redirect($referer);
+        return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
     }
 }

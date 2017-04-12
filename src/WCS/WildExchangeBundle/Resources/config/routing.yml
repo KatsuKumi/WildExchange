@@ -33,6 +33,10 @@ reponsepage:
 dashboardpage:
         path:     /dashboard
         defaults: {  _controller: WCSWildExchangeBundle:Default:dashboard }
+votepage:
+    path: /vote
+    defaults: {  _controller: WCSWildExchangeBundle:Question:Vote }
+
 
 profilpage:
         path:     /profil
