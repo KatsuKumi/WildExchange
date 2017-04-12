@@ -10,4 +10,59 @@
             <h3> DASHBOARD </h3>
         </div>
     </div>
+
+    <div id="menu-overlay"></div>
+    <div id="menu-toggle" class="closed" data-title="Menu">
+        <i class="fa fa-bars"></i>
+        <i class="fa fa-times"></i>
+    </div>
+    <section id="content">
+        <header id="content-header">
+            Barre bleue + Image de profil à gauche ICI + Pseudonyme au milieu .
+        </header>
+        <nav id="tabs">
+            <ul>
+                <li class="active" data-target="Détails">Détails</li>
+                <li data-target="Historique">Historique</li>
+                <li data-target="Autre">Autre</li>
+            </ul>
+        </nav>
+        <div class="tab-target targeted" id="Détails">
+            <p>Contenu (Détails) ICI ...</p>
+            </div>
+        <div class="tab-target" id="Historique">
+            <p>Contenu (Historique) ICI ...</p>
+        </div>
+        <div class="tab-target" id="Autre">
+            <p>Contenu (Autre) ICI ...</p>
+        </div>
+    </section>
+{% endblock %}
+{% block js %}
+    <script>
+
+        $('#menu-toggle,#menu-overlay').click(function(){
+            $('body').toggleClass('open-menu');
+        });
+
+        $('#main-nav li a').click(function(){
+            $('#main-nav li').removeClass('active');
+            $(this).parent().addClass('active')
+        });
+
+        $('#tabs li').click(function(){
+            var clickTarget = $(this).attr('data-target');
+            $('.tab-target').removeClass('targeted');
+            $('#'+clickTarget).addClass("targeted");
+            $('#tabs li').removeClass('active');
+            $(this).addClass('active')
+        });
+
+        $('#admin-search input').on('focus',function(){
+            $('#header_logo').addClass('hidden');
+        });
+        $('#admin-search input').on('blur',function(){
+            $('#header_logo').removeClass('hidden');
+        });
+    </script>
 {% endblock %}
