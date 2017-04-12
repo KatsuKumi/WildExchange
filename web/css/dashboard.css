@@ -307,7 +307,6 @@ body {
 #tabs ul {
     list-style-type:none;
     height:65px;
-    background:white;
     padding:0;
     margin:0 0 50px -50px;
 }
@@ -424,6 +423,7 @@ body {
         background:white;
         padding:30px;
     }
+
     #tabs ul {
         width:calc(100% + 60px);
         margin:0 0 30px -30px;
@@ -444,4 +444,8 @@ body {
     #header_logo.hidden {
         opacity:0;
     }
+}
+.blue{
+    background-color: #80CBC4;
+    height: 200px;
 }
