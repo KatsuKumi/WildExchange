@@ -25,198 +25,64 @@
                         <div class="panel-body">
                             <div class="pull-right">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-filter" data-target="all">Ajouter
+                                    <a href="{{ path('ajoutpage', {'tag': tag}) }}">
+                                        <button type="button" class="btn btn-default btn-filter" data-target="all">Ajouter
                                         une question
                                     </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="table-container">
                                 <table class="table table-filter">
                                     <tbody>
-                                    <tr data-status="Resolu">
-                                        <td>
+                                    {% for question in questions %}
 
-                                            <div class="ckbox ">
-                                                <ul>
-                                                    <li>
+                                        <tr data-status="Resolu">
+                                            <td>
+
+                                                <div class="ckbox">
+                                                    <ul>
+                                                        <li>
                                                         <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                                                             <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                    </span>
-                                                    </li>
-                                                    <li>
-                                                        <span>132</span>
-                                                    </li>
-                                                    <li>
+                                                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                                                                     <span class="glyphicon glyphicon-minus"></span>
+                                                                </button>
+                                                        </span>
+                                                        </li>
+                                                        <li>
+                                                            <span>132</span>
+                                                        </li>
+                                                        <li>
                                                         <span class="input-group-btn">
                                                             <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
                                                                 <span class="glyphicon glyphicon-plus"></span>
                                                             </button>
                                                         </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <a href="#" class="pull-left">
-                                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                                         class="media-photo">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="media-meta pull-right">13 février 2017</span>
-                                                    <h4 class="title">
-                                                        Formulaire de connexion Symfony
-                                                        <span class="pull-right resolu">(Résolu)</span>
-                                                    </h4>
-                                                    <p class="summary">Comment faire fonctionner un formulaire de
-                                                        connexion avec symfony?...</p>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr data-status="Resolu">
-                                        <td>
+                                            </td>
 
-                                            <div class="ckbox ">
-                                                <ul>
-                                                    <li>
-                                                        <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                                                             <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                    </span>
-                                                    </li>
-                                                    <li>
-                                                        <span>132</span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                                                                <span class="glyphicon glyphicon-plus"></span>
-                                                            </button>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <a href="#" class="pull-left">
-                                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                                         class="media-photo">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="media-meta pull-right">13 février 2017</span>
-                                                    <h4 class="title">
-                                                        Formulaire de connexion Symfony
-                                                        <span class="pull-right resolu">(Résolu)</span>
-                                                    </h4>
-                                                    <p class="summary">Comment faire fonctionner un formulaire de
-                                                        connexion avec symfony?...</p>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <div class="media">
+                                                    <a href="#" class="pull-left">
+                                                        <img src="{{ asset(question.createur.avatarurl) }}"
+                                                             class="avatar-32x">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span class="media-meta pull-right">{{ question.date|date(' d-m-Y') }}</span>
+                                                        <h4 class="title">
+                                                            {{ question.titre }}
+                                                            <span class="pull-right resolu">(Résolu)</span>
+                                                        </h4>
+                                                        <p class="summary">{{ question.contenu }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr data-status="Resolu">
-                                        <td>
-
-                                            <div class="ckbox ">
-                                                <ul>
-                                                    <li>
-                                                        <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                                                             <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                    </span>
-                                                    </li>
-                                                    <li>
-                                                        <span>132</span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                                                                <span class="glyphicon glyphicon-plus"></span>
-                                                            </button>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <a href="#" class="pull-left">
-                                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                                         class="media-photo">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="media-meta pull-right">13 février 2017</span>
-                                                    <h4 class="title">
-                                                        Formulaire de connexion Symfony
-                                                        <span class="pull-right resolu">(Résolu)</span>
-                                                    </h4>
-                                                    <p class="summary">Comment faire fonctionner un formulaire de
-                                                        connexion avec symfony?...</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr data-status="Resolu">
-                                        <td>
-
-                                            <div class="ckbox ">
-                                                <ul>
-                                                    <li>
-                                                        <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                                                             <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                    </span>
-                                                    </li>
-                                                    <li>
-                                                        <span>132</span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                                                                <span class="glyphicon glyphicon-plus"></span>
-                                                            </button>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <div class="media">
-                                                <a href="#" class="pull-left">
-                                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                                         class="media-photo">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="media-meta pull-right">13 février 2017</span>
-                                                    <h4 class="title">
-                                                        Formulaire de connexion Symfony
-                                                        <span class="pull-right resolu">(Résolu)</span>
-                                                    </h4>
-                                                    <p class="summary">Comment faire fonctionner un formulaire de
-                                                        connexion avec symfony?...</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
