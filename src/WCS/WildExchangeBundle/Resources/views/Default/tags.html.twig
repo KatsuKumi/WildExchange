@@ -11,6 +11,7 @@
     <div class="container-fluid">
         <div class="row">
             {% for value in attributes %}
+                <a href="{{ path('questionpage', { 'tag': value.nom }) }}">
 
                 <div class="col-md-6 col-sm-6 col-xs-12 ">
                     <div class="img-responsive" style="background-image: url({{ asset(value.imageurl) |replace({"\n":'', "\r":'', ' ':''})}});">
@@ -19,6 +20,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
 
             {% endfor %}
         </div>

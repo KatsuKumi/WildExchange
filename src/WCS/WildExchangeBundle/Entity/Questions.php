@@ -44,6 +44,10 @@ class Questions
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="questions")
+     */
+    private $tags;
+    /**
      * Get id
      *
      * @return integer 
@@ -120,5 +124,45 @@ class Questions
     public function getDate()
     {
         return $this->date;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Tags $tags
+     * @return Questions
+     */
+    public function addTag(\WCS\WildExchangeBundle\Entity\Tags $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Tags $tags
+     */
+    public function removeTag(\WCS\WildExchangeBundle\Entity\Tags $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

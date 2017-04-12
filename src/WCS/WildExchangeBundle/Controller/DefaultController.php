@@ -42,7 +42,7 @@ class DefaultController extends Controller
     {
 
     }
-    public function questionsAction()
+    public function questionsAction($tag)
     {
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig');
     }

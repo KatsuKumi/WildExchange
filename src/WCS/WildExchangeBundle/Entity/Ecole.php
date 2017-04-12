@@ -36,6 +36,12 @@ class Ecole
     private $ville;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="ecole")
+     */
+    private $utilisateurs;
+
+
 
     /**
      * Get id
@@ -91,5 +97,78 @@ class Ecole
     public function getVille()
     {
         return $this->ville;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->eleves = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add eleves
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Utilisateur $eleves
+     * @return Ecole
+     */
+    public function addElefe(\WCS\WildExchangeBundle\Entity\Utilisateur $eleves)
+    {
+        $this->eleves[] = $eleves;
+
+        return $this;
+    }
+
+    /**
+     * Remove eleves
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Utilisateur $eleves
+     */
+    public function removeElefe(\WCS\WildExchangeBundle\Entity\Utilisateur $eleves)
+    {
+        $this->eleves->removeElement($eleves);
+    }
+
+    /**
+     * Get eleves
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEleves()
+    {
+        return $this->eleves;
+    }
+
+    /**
+     * Add utilisateurs
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Utilisateur $utilisateurs
+     * @return Ecole
+     */
+    public function addUtilisateur(\WCS\WildExchangeBundle\Entity\Utilisateur $utilisateurs)
+    {
+        $this->utilisateurs[] = $utilisateurs;
+
+        return $this;
+    }
+
+    /**
+     * Remove utilisateurs
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Utilisateur $utilisateurs
+     */
+    public function removeUtilisateur(\WCS\WildExchangeBundle\Entity\Utilisateur $utilisateurs)
+    {
+        $this->utilisateurs->removeElement($utilisateurs);
+    }
+
+    /**
+     * Get utilisateurs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUtilisateurs()
+    {
+        return $this->utilisateurs;
     }
 }

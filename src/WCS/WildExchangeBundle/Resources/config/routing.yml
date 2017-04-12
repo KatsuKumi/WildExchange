@@ -12,15 +12,15 @@ login:
 
 inscriptionpage:
     path:     /inscription
-    defaults: {  _controller: WCSWildExchangeBundle:Registration:register }
+    defaults: {  _contr<oller: WCSWildExchangeBundle:Registration:register }
 
 tagspage:
     path:     /tags
     defaults: {  _controller: WCSWildExchangeBundle:Default:tags }
 
 questionpage:
-        path:     /questions
-        defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
+    path:     /questions/{tag}
+    defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
 
 ajoutpage:
         path:     /ajout

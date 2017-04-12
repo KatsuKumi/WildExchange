@@ -31,11 +31,10 @@ class UtilisateurType extends AbstractType
             ->add('nom', TextType::class,array('attr' => array('placeholder' => 'Nom')))
             ->add('prenom', TextType::class,array('attr' => array('placeholder' => 'Prénom')))
             ->add('interet', TextType::class,array('attr' => array('placeholder' => 'Centre d\'intéret', "data-role" => "tagsinput", "value" => "Programmation, Chaussettes")))
-            ->add('IDEcole', EntityType::class, array(
+            ->add('ecole', EntityType::class, array(
                 'class' => 'WCSWildExchangeBundle:Ecole',
                 'empty_value' => "Choisissez une école",
                 'choice_label' => 'Ville',
-                'choice_value' => 'ID',
                 'expanded' => false,
                 'multiple' => false
             ));

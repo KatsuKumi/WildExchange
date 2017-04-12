@@ -37,6 +37,12 @@ class Tags
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="Questions", mappedBy="tags")
+     */
+    private $questions;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -90,5 +96,45 @@ class Tags
     public function getImageurl()
     {
         return $this->imageurl;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add questions
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Questions $questions
+     * @return Tags
+     */
+    public function addQuestion(\WCS\WildExchangeBundle\Entity\Questions $questions)
+    {
+        $this->questions[] = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Remove questions
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Questions $questions
+     */
+    public function removeQuestion(\WCS\WildExchangeBundle\Entity\Questions $questions)
+    {
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

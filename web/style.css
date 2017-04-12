@@ -6,7 +6,9 @@ body {
 }
 
 /*///// ACCUEIL /////*/
-
+.dialog{
+    z-index: 1000;
+}
 .largetitle {
     font-size: 46px;
     font-weight: bold;
@@ -74,8 +76,11 @@ nav li{
     box-shadow: 0 0 0 #888888 !important;
     background-color: rgba(0,0,0,0) !important;
 }
-.x-navbar-fixed-top a{
+.x-navbar-fixed-top a:not(.dropdown){
     color: white !important;
+}
+.x-navbar-fixed-top .dropdown a{
+    color: black !important;
 }
 .x-navbar-fixed-top a:hover{
     color: #000 ;
@@ -545,4 +550,6 @@ button.btn {
 :-ms-input-placeholder {
     color: grey;
 }
-
+textarea {
+    resize: none;
+}

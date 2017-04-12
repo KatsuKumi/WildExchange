@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Utilisateur
@@ -126,11 +127,9 @@ class Utilisateur implements UserInterface
     private $idrang;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="IDEcole", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Ecole", inversedBy="utilisateurs")
      */
-    private $idecole;
+    private $ecole;
 
     public function getRoles() { return array('ROLE_USER'); }
     public function getPassword()
@@ -507,5 +506,28 @@ class Utilisateur implements UserInterface
     public function getIdecole()
     {
         return $this->idecole;
+    }
+
+    /**
+     * Set ecole
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Ecole $ecole
+     * @return Utilisateur
+     */
+    public function setEcole(\WCS\WildExchangeBundle\Entity\Ecole $ecole = null)
+    {
+        $this->ecole = $ecole;
+
+        return $this;
+    }
+
+    /**
+     * Get ecole
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Ecole 
+     */
+    public function getEcole()
+    {
+        return $this->ecole;
     }
 }
