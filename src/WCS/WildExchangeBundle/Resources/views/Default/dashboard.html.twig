@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block style %}
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
 {% endblock %}
 {% block body %}
     <div class="container paddingtop">
@@ -9,25 +11,63 @@
         </div>
     </div>
 
+    <div id="menu-overlay"></div>
+    <div id="menu-toggle" class="closed" data-title="Menu">
+        <i class="fa fa-bars"></i>
+        <i class="fa fa-times"></i>
+    </div>
+    <section id="content">
+        <header id="content-header">
+            Barre bleue + Image de profil à gauche ICI + Pseudonyme au milieu .
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 blue"></div>
+            </div>
+        </div>
+        <nav id="tabs">
+            <ul>
+                <li class="active" data-target="Détails">Détails</li>
+                <li data-target="Historique">Historique</li>
+                <li data-target="Autre">Autre</li>
+            </ul>
+        </nav>
+        <div class="tab-target targeted" id="Détails">
+            <p>Contenu (Détails) ICI ...</p>
+            </div>
+        <div class="tab-target" id="Historique">
+            <p>Contenu (Historique) ICI ...</p>
+        </div>
+        <div class="tab-target" id="Autre">
+            <p>Contenu (Autre) ICI ...</p>
+        </div>
+    </section>
 {% endblock %}
 {% block js %}
     <script>
-        $(window).scroll(function(){
 
-            if( $(this).scrollTop() == 0 ) {
-                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
-            }
-            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
-                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
-            }
-
+        $('#menu-toggle,#menu-overlay').click(function(){
+            $('body').toggleClass('open-menu');
         });
 
-        if( $(this).scrollTop() == 0 ) {
-            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
-        }
-        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
-            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
-        }
+        $('#main-nav li a').click(function(){
+            $('#main-nav li').removeClass('active');
+            $(this).parent().addClass('active')
+        });
+
+        $('#tabs li').click(function(){
+            var clickTarget = $(this).attr('data-target');
+            $('.tab-target').removeClass('targeted');
+            $('#'+clickTarget).addClass("targeted");
+            $('#tabs li').removeClass('active');
+            $(this).addClass('active')
+        });
+
+        $('#admin-search input').on('focus',function(){
+            $('#header_logo').addClass('hidden');
+        });
+        $('#admin-search input').on('blur',function(){
+            $('#header_logo').removeClass('hidden');
+        });
     </script>
 {% endblock %}
