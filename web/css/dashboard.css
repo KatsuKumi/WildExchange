@@ -395,11 +395,18 @@ body {
     padding-bottom: 230px;
 }
 
-.verticalLine {
+.verticalTXT {
     display:inline-block;
     width: 711px;
     height: 11px;
     fill: black;
     transform: rotate(90deg);
     margin-left: 400px;
+}
+
+.badges {
+    color: #7B7B7B;
+    float: right;
+    padding-right: 50px;
+    font-size: 27px;
 }
