@@ -17,6 +17,11 @@ class QuestionController extends Controller
      */
     public function ajoutAction(Request $request, $tag)
     {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $this->addFlash('connexion', "Vous devez être connecté pour ajouter une question !");
+            return $this->redirectToRoute('connectionpage');
+        }
         // 1) build the form
         $question = new Questions();
         $form = $this->createForm(QuestionsType::class, $question);

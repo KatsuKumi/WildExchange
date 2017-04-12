@@ -51,7 +51,7 @@ class Questions
     /**
      * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="questions")
-     * @ORM\JoinTable(name="users_groups")
+     * @ORM\JoinTable(name="questions_tags")
      */
     private $tags;
     /**

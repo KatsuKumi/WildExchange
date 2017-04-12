@@ -11,7 +11,7 @@ html,body {
 }
 
 body {
-    background:#d9e4ee;
+    background:#fbfbfb;
 }
 
 #main-header {
@@ -377,7 +377,7 @@ body {
     cursor: pointer
 }
 
-.avatar {
+.inline {
     display: inline-flex;
     color: #7B7B7B;
     font-size: 20px;
@@ -389,4 +389,8 @@ body {
     padding-right: 200px;
     font-size: 22px;
 }
-/*---- TEST ----*/
+
+.smallpaddingtop {
+    padding-top: 110px;
+    padding-bottom: 230px;
+}
