@@ -49,7 +49,10 @@ class DefaultController extends Controller
         $tagobj = $em
             ->getRepository('WCSWildExchangeBundle:Tags')
             ->findByNom($tag);
-
+        if (empty($tagobj)){
+            $this->addFlash('connexion', "Ce tag n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
         $listquestion = $tagobj[0]->getQuestions();
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion));
     }
