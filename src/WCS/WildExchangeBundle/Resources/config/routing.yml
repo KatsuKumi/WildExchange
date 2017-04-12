@@ -12,7 +12,7 @@ login:
 
 inscriptionpage:
     path:     /inscription
-    defaults: {  _contr<oller: WCSWildExchangeBundle:Registration:register }
+    defaults: {  _controller: WCSWildExchangeBundle:Registration:register }
 
 tagspage:
     path:     /tags
