@@ -73,10 +73,12 @@
                                                     </a>
                                                     <div class="media-body">
                                                         <span class="media-meta pull-right">{{ question.date|date(' d-m-Y') }}</span>
+                                                        <a href="{{ path('reponsepage')}}">
                                                         <h4 class="title">
                                                             {{ question.titre }}
                                                             <span class="pull-right resolu">(Résolu)</span>
                                                         </h4>
+                                                        </a>
                                                         <p class="summary">{{ question.contenu }}</p>
                                                     </div>
                                                 </div>
