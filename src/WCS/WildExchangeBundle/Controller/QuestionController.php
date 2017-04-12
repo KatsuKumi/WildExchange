@@ -5,6 +5,7 @@ namespace WCS\WildExchangeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use WCS\WildExchangeBundle\Entity\Questions;
+use WCS\WildExchangeBundle\Entity\Vote;
 use WCS\WildExchangeBundle\Form\QuestionsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,5 +52,38 @@ class QuestionController extends Controller
             'WCSWildExchangeBundle:Default:ajout.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+    public function voteAction(Request $request, $id)
+    {
+        $referer = $request->headers->get('referer');
+
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $this->addFlash('connexion', "Vous devez être connecté pour voter !");
+            return $this->redirectToRoute('connectionpage');
+        }
+        // 1) build the form
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $vote = new Vote();
+        $vote->setDate(new \DateTime());
+        $vote->setVotant($usr);
+        $em = $this->getDoctrine()->getManager();
+        $question = $em
+            ->getRepository('WCSWildExchangeBundle:Tags')
+            ->find($id);
+        if (empty($question)){
+            $this->addFlash(
+                'ajoutsuccess',
+                "La question n'existe pas !"
+            );
+            return $this->redirect($referer);
+        }
+        $vote->setQuestion($question);
+        $this->addFlash(
+            'ajoutsuccess',
+            'Votre vote à bien était pris en compte !'
+        );
+        return $this->redirect($referer);
     }
 }

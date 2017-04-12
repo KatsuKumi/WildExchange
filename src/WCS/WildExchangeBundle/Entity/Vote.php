@@ -37,6 +37,17 @@ class Vote
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="votes")
+     */
+    private $votant;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Questions", inversedBy="votes")
+     */
+    private $question;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -90,5 +101,51 @@ class Vote
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set votant
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Utilisateur $votant
+     * @return Vote
+     */
+    public function setVotant(\WCS\WildExchangeBundle\Entity\Utilisateur $votant = null)
+    {
+        $this->votant = $votant;
+
+        return $this;
+    }
+
+    /**
+     * Get votant
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Utilisateur 
+     */
+    public function getVotant()
+    {
+        return $this->votant;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Questions $question
+     * @return Vote
+     */
+    public function setQuestion(\WCS\WildExchangeBundle\Entity\Questions $question = null)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Questions 
+     */
+    public function getQuestion()
+    {
+        return $this->question;
     }
 }

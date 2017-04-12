@@ -136,6 +136,12 @@ class Utilisateur implements UserInterface
      */
     private $questions;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="votant")
+     */
+    private $votes;
+
     public function getRoles() { return array('ROLE_USER'); }
     public function getPassword()
     {
@@ -574,5 +580,38 @@ class Utilisateur implements UserInterface
     public function getQuestions()
     {
         return $this->questions;
+    }
+
+    /**
+     * Add votes
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Vote $votes
+     * @return Utilisateur
+     */
+    public function addVote(\WCS\WildExchangeBundle\Entity\Vote $votes)
+    {
+        $this->votes[] = $votes;
+
+        return $this;
+    }
+
+    /**
+     * Remove votes
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Vote $votes
+     */
+    public function removeVote(\WCS\WildExchangeBundle\Entity\Vote $votes)
+    {
+        $this->votes->removeElement($votes);
+    }
+
+    /**
+     * Get votes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVotes()
+    {
+        return $this->votes;
     }
 }

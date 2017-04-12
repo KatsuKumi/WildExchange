@@ -620,6 +620,9 @@ h1 {
     padding-bottom: 5px;
     border-bottom: 1px dotted #B3A9A9;
 }
+input{
+    text-align: center;
+}
 .left {
     text-align: left;
     width: 50%;
