@@ -25,7 +25,7 @@ class LogoutRedirection implements LogoutSuccessHandlerInterface
     {
         $this->session->getFlashBag()->add('notice', 'Vous êtes bien déconnecté !');
 
-        $response = new RedirectResponse($this->router->generate('wcs_wild_exchange_homepage'));
+        $response = new RedirectResponse($this->router->generate('homepage'));
 
         return $response;
     }

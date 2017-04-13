@@ -359,8 +359,8 @@ input{
     height: 37px;
     width: 250px;
     list-style-type: none;
-    -webkit-border-radius:;
-    -moz-border-radius:;
+    -webkit-border-radius: 15px;
+    -moz-border-radius:15px;
     border-radius:15px;
 }
 i{

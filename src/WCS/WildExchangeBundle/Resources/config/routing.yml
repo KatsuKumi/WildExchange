@@ -1,4 +1,4 @@
-wcs_wild_exchange_homepage:
+homepage:
     path:     /
     defaults: { _controller: WCSWildExchangeBundle:Default:index }
 
@@ -13,6 +13,10 @@ login:
 inscriptionpage:
     path:     /inscription
     defaults: {  _controller: WCSWildExchangeBundle:Registration:register }
+
+forgetpage:
+    path:    /forget
+    defaults: {  _controller: WCSWildExchangeBundle:Registration:forget}
 
 tagspage:
     path:     /tags

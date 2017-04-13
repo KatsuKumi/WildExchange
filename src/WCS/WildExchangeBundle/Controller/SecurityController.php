@@ -15,7 +15,7 @@ class SecurityController extends Controller
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $usr= $this->get('security.context')->getToken()->getUser();
             $this->addFlash('connexion', "Bonjour, ".$usr->getPseudo()." ! 😉 ");
-            return $this->redirectToRoute('wcs_wild_exchange_homepage');
+            return $this->redirectToRoute('homepage');
         }
         $authenticationUtils = $this->get('security.authentication_utils');
 
@@ -32,14 +32,13 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
         $usr= $this->get('security.context')->getToken()->getUser();
-        return $this->redirectToRoute('wcs_wild_exchange_homepage');
+        return $this->redirectToRoute('homepage');
 
     }
 
-
     public function logout(Request $request)
     {
-        return $this->redirectToRoute('wcs_wild_exchange_homepage');
+        return $this->redirectToRoute('homepage');
 
     }
 

@@ -46,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="" href="{{ path('wcs_wild_exchange_homepage') }}">
+            <a class="" href="{{ path('homepage') }}">
                 <img src= "{{ asset('logoBlue.png') }}" ><div class="navbar-titre">Wild exchange</div>
             </a>
 
@@ -54,7 +54,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="accueil active" href="{{ path('wcs_wild_exchange_homepage') }}">Accueil</a></li>
+                <li><a class="accueil active" href="{{ path('homepage') }}">Accueil</a></li>
                 <li><a class="accueil" href="{{ path('tagspage') }}">Explorer</a></li>
                 {% if app.user %}
                     <li class="dropdown">
@@ -191,7 +191,7 @@
             <div class="col-md-2 col-sm-6 paddingtop-bottom">
                 <h6 class="heading7"><u>Plan du site</u></h6>
                 <ul class="footer-ul">
-                    <li><a href="{{ path('wcs_wild_exchange_homepage') }}"> Accueil</a></li>
+                    <li><a href="{{ path('homepage') }}"> Accueil</a></li>
                     <li><a href="{{ path('dashboardpage') }}"> Dashboard</a></li>
                     <li><a href="{{ path('inscriptionpage') }}"> Inscription</a></li>
                     <li><a href="{{ path('profilpage') }}"> Profil</a></li>

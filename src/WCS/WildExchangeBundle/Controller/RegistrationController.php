@@ -50,7 +50,7 @@ class RegistrationController extends Controller
                     'inscriptionsuccess',
                     'Vous êtes bien inscrit !'
                 );
-                return $this->redirectToRoute('wcs_wild_exchange_homepage');
+                return $this->redirectToRoute('homepage');
             }
         }
 
@@ -61,6 +61,10 @@ class RegistrationController extends Controller
         );
     }
 
+    public function forgetAction()
+    {
+        return $this->render('WCSWildExchangeBundle:Default:forget.html.twig');
+    }
 
     public static function IsStrenghtEnought($password){
         if(strlen($password) < 6){
