@@ -332,7 +332,6 @@ body {
     width:100%;
     left:0;
     opacity:0;
-    overflow:hidden;
 }
 
 .tab-target.targeted {
