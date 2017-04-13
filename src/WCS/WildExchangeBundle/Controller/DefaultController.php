@@ -66,6 +66,11 @@ class DefaultController extends Controller
     }
     public function dashboardAction()
     {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $this->addFlash('connexion', "Vous devez être connecté pour accéder au dashboard !");
+            return $this->redirectToRoute('connectionpage');
+        }
         return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig');
     }
     public function profilAction()
