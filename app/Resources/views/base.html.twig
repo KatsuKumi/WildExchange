@@ -62,7 +62,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Bonjour, {{ app.user.username }} !</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ path('wcs_wild_exchange_homepage') }}">Mon profil</a></li>
+                            <li><a href="{{ path('profilpage') }}">Mon profil</a></li>
                             <li><a href="{{ path('dashboardpage') }}">Dashboard</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
@@ -194,15 +194,9 @@
                     <li><a href="{{ path('wcs_wild_exchange_homepage') }}"> Accueil</a></li>
                     <li><a href="{{ path('dashboardpage') }}"> Dashboard</a></li>
                     <li><a href="{{ path('inscriptionpage') }}"> Inscription</a></li>
+                    <li><a href="{{ path('profilpage') }}"> Profil</a></li>
                     <li><a href="{{ path('connectionpage') }}"> Se connecter</a></li>
                     <li><a href="{{ path('tagspage') }}"> Tags</a></li>
-
-                    <li> Non Actifs ⇩</li>
-                    <li><a href="{{ path('wcs_wild_exchange_homepage') }}"> Profil</a></li>
-
-
-
-
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 paddingtop-bottom">

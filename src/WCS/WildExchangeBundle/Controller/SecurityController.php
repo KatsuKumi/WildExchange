@@ -21,7 +21,7 @@ class SecurityController extends Controller
 
         $error = $authenticationUtils->getLastAuthenticationError();
         if ($error){
-            $this->addFlash('connexion', str_replace("Invalid credentials.", "Pseudo ou mot de passe invalide.", $error->getMessageKey()));
+            $this->addFlash('connexion', str_replace("Invalid credentials.", "Pseudo ou mot de passe invalides.", $error->getMessageKey()));
         }
         return $this->render('WCSWildExchangeBundle:Default:connexion.html.twig', array(
             'last_username' => $authenticationUtils->getLastUsername(),
