@@ -15,3 +15,9 @@ services:
   redirect.after.logout:
     class: WCS\WildExchangeBundle\Redirection\LogoutRedirection
     arguments: [@security.context, @router, @session]
+
+  salavert.twig.time_ago:
+    class: Salavert\Twig\Extension\TimeAgoExtension
+    arguments: ["@translator"]
+    tags:
+        - { name: twig.extension }

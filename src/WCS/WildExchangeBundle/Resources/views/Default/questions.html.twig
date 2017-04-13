@@ -81,7 +81,7 @@
                                                     </a>
                                                     <div class="media-body">
                                                         <span class="media-meta pull-right">{{ question.date|date(' d-m-Y') }}</span>
-                                                        <a href="{{ path('reponsepage')}}">
+                                                        <a href="{{ path('reponsepage', {'id':question.id} )}}">
                                                         <h4 class="title">
                                                             {{ question.titre }}
                                                             <span class="pull-right resolu">(Résolu)</span>

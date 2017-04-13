@@ -7,3 +7,15 @@ Prénom: Prénom
 Centre d'intéret: Centre d'intéret
 Choisissez une école: Choisissez une école
 Titre: Titre
+
+less than %seconds seconds ago: Il y a moins de  %seconds secondes
+half a minute ago: Il y a 30 secondes
+less than a minute ago: Il y a moins d'une minute
+1 minute ago: Il y a 1 minute
+%minutes minutes ago: Il y a %minutes minutes
+about 1 hour ago: Il y a 1 heure
+about %hours hours ago: Il y a %hours heures
+1 day ago: Il y a 1 jour
+%days days ago: Il y a %days jours
+"{1} 1 month ago |]1,Inf[ %months months ago": "{1} Il y a 1 mois |]1,Inf[ il y a %months mois"
+"{1} 1 year ago |]1,Inf[ %years years ago":  "Il y a 1 an |]1,Inf[ Il y a %years ans"

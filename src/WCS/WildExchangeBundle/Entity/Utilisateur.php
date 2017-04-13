@@ -142,6 +142,11 @@ class Utilisateur implements UserInterface
      */
     private $votes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Reponses", mappedBy="createur")
+     */
+    private $reponses;
+
     public function getRoles() { return array('ROLE_USER'); }
     public function getPassword()
     {
@@ -613,5 +618,38 @@ class Utilisateur implements UserInterface
     public function getVotes()
     {
         return $this->votes;
+    }
+
+    /**
+     * Add reponses
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Reponses $reponses
+     * @return Utilisateur
+     */
+    public function addReponse(\WCS\WildExchangeBundle\Entity\Reponses $reponses)
+    {
+        $this->reponses[] = $reponses;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponses
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Reponses $reponses
+     */
+    public function removeReponse(\WCS\WildExchangeBundle\Entity\Reponses $reponses)
+    {
+        $this->reponses->removeElement($reponses);
+    }
+
+    /**
+     * Get reponses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponses()
+    {
+        return $this->reponses;
     }
 }

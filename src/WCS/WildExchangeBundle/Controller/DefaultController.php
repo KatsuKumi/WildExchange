@@ -8,7 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Security\Core\SecurityContext;
-use WCS\WildExchangeBundle\Entity\Task;
+use WCS\WildExchangeBundle\Entity\Reponses;
+use WCS\WildExchangeBundle\Form\ReponsesType;
 
 
 class DefaultController extends Controller
@@ -56,13 +57,41 @@ class DefaultController extends Controller
         $listquestion = $tagobj[0]->getQuestions();
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion));
     }
-    public function ajoutAction()
+    public function reponsesAction(Request $request, $id)
     {
-        return $this->render('WCSWildExchangeBundle:Default:ajout.html.twig');
-    }
-    public function reponsesAction()
-    {
-        return $this->render('WCSWildExchangeBundle:Default:reponses.html.twig');
+        // 1) build the form
+        $reponse = new Reponses();
+        $form = $this->createForm(ReponsesType::class, $reponse);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reponse->setDate(new \DateTime());
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $reponse->setCreateur($usr);
+            $em = $this->getDoctrine()->getManager();
+            $questionobj = $em
+                ->getRepository('WCSWildExchangeBundle:Questions')
+                ->find($id);
+            $reponse->setQuestion($questionobj);
+            $em->persist($reponse);
+            $em->flush();
+            $this->addFlash(
+                'ajoutsuccess',
+                'Votre réponse a bien été ajoutée !'
+            );
+
+            return $this->redirectToRoute('reponsepage', array('id'=>$id));
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $questionobj = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->find($id);
+        $listereponse = $questionobj->getReponses();
+
+        return $this->render('WCSWildExchangeBundle:Default:reponses.html.twig', array('form'=>$form->createView(),
+            'question'=>$questionobj, 'listereponse'=>$listereponse));
     }
     public function dashboardAction()
     {
