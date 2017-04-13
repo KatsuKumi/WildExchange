@@ -14,7 +14,7 @@ class SecurityController extends Controller
         // Si le visiteur est déjà identifié, on le redirige vers l'accueil
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Bonjour ,".$usr->getPseudo()."!");
+            $this->addFlash('connexion', "Bonjour, ".$usr->getPseudo()." ! 😉 ");
             return $this->redirectToRoute('wcs_wild_exchange_homepage');
         }
         $authenticationUtils = $this->get('security.authentication_utils');

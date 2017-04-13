@@ -19,7 +19,7 @@ class DefaultController extends Controller
         $refer = $this->getRequest()->headers->get('referer');
         if (strpos($refer, 'connexion') !== false && $this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Bonjour , ".$usr->getPseudo()."!");
+            $this->addFlash('connexion', "Bonjour, ".$usr->getPseudo()." ! 😉 ");
         }
 
 
