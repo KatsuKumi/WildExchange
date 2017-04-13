@@ -44,13 +44,21 @@
                                                     <ul>
                                                         <li>
                                                         <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-danger btn-number" data-target="{{ question.id }}" data-type="minus" data-field="quant[2]">
+                                                                <button type="button" class="btn btn-danger btn-number" data-target="{{ question.id }}" data-type="minus" id="btnmoinsse" data-target="{{ question.id }}" data-field="quant[2]">
                                                                      <span class="glyphicon glyphicon-minus"></span>
                                                                 </button>
                                                         </span>
                                                         </li>
                                                         <li>
-                                                            <span>{{ question.votes|length }}</span>
+                                                            {% set votenb = 0 %}
+                                                            {% for vote in question.votes %}
+                                                                {% if vote.value == true %}
+                                                                    {% set votenb = votenb + 1 %}
+                                                                {% else %}
+                                                                    {% set votenb = votenb - 1 %}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            <span>{{ votenb }}</span>
                                                         </li>
                                                         <li>
                                                         <span class="input-group-btn">
@@ -132,6 +140,22 @@
                     {
                         question_id: $('#btnplus').data("target"),
                         vote: 'plus'
+                    },
+                success: function(msg)
+                {
+
+                }
+            });
+        });
+        $('#btnmoinsse').click(function()
+        {
+            $.ajax({
+                url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
+                type:'POST',
+                data:
+                    {
+                        question_id: $('#btnplus').data("target"),
+                        vote: 'moins'
                     },
                 success: function(msg)
                 {
