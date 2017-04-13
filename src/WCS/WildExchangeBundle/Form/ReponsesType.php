@@ -16,7 +16,7 @@ class ReponsesType extends AbstractType
     {
         $builder->add('contenu', TextareaType::class,array(
             'attr' => array(
-                'placeholder' => 'Reponse'
+                'placeholder' => 'Réponse'
             )));
     }
     

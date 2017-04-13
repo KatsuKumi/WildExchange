@@ -73,7 +73,7 @@ class QuestionController extends Controller
 
         var_dump($existingvote);
         if (!empty($existingvote)){
-            if(($existingvote[1]->getValue() == $votebool)){
+            if(($existingvote[0]->getValue() == $votebool)){
                 return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
             }
             else{
