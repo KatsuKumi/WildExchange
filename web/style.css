@@ -654,6 +654,29 @@ input{
     background: #1fa597;
     margin-bottom: 10px;
 }
+.inputrep {
+    margin: auto;
+    width: 100%;
+    height: 200px;
+}
+.textareainput{
+    margin: auto;
+    display:block;
+}
+.no-deco{
+    list-style-type: none;
+}
+.connexionform {
+    max-width: 200px;
+    padding: 1em 2em;
+    outline: none;
+    font-weight: 600;
+    color: #fff;
+    background: #1fa597;
+    text-align: center;
+    margin:auto;
+    margin-bottom: 10px;
+}
 
 /*//// PROFIL ////*/
 
