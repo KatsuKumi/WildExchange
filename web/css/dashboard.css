@@ -347,13 +347,25 @@ body {
 
 /*// BOUTON UPLOAD ////*/
 
+input{
+    margin:0;
+}
+.soc{
+    position: relative;
+    list-style-type: none;
+}
 .file {
     position: relative;
     height: 37px;
-    width: 200px;
+    width: 250px;
     list-style-type: none;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    border-radius:15px;
 }
-
+i{
+    display: inline-block;
+}
 .file > input[type="file"] {
     position: absolute;
     opacity: 0;
