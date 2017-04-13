@@ -351,6 +351,7 @@ body {
     position: relative;
     height: 37px;
     width: 200px;
+    list-style-type: none;
 }
 
 .file > input[type="file"] {
@@ -359,7 +360,13 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0
+    bottom: 0;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    height: 37px;
+    width: 200px;
+
 }
 
 .file > label {
@@ -373,7 +380,7 @@ body {
     border-radius: 5px;
     line-height: 30px;
     text-align: center;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .inline {
@@ -425,4 +432,8 @@ body {
     color: #7b7b7b;
     font-style: italic;
     text-decoration: none solid rgb(123, 123, 123);
+}
+
+.dashboard-things{
+    /* HI */
 }
