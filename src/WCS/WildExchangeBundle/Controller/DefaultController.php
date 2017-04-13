@@ -68,13 +68,18 @@ class DefaultController extends Controller
     {
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Vous devez être connecté pour accéder au dashboard !");
+            $this->addFlash('connexion', "Vous devez être connecté pour accéder au Dashboard !");
             return $this->redirectToRoute('connectionpage');
         }
         return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig');
     }
     public function profilAction()
     {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $this->addFlash('connexion', "Vous devez être connecté pour accéder à votre Profil !");
+            return $this->redirectToRoute('connectionpage');
+        }
         return $this->render('WCSWildExchangeBundle:Default:profil.html.twig');
     }
 
