@@ -314,6 +314,10 @@ button {
 }
 
 @media (max-width: 950px) {
+    .dialog h2{
+        font-size: 20px !important;
+
+    }
     .avatar-160x{
         height: auto;
         max-width: 200px;

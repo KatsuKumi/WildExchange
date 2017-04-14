@@ -11,7 +11,6 @@
 {% endblock %}
 
 {% block body %}
-
     <div class="container">
         <div class="row">
 
@@ -21,55 +20,46 @@
 
                     <div class="panel panel-default panelbg">
                         <h1>Réponses</h1>
-                            <ul class="chat">
-                                <li class="left"><span class="chat-img pull-left">
+                        <ul class="chat">
+                            <li class="left"><span class="chat-img pull-left">
                                                  <img src="{{ asset(question.createur.avatarurl) }}"
-                                                             class="avatar-32x">
+                                                      class="avatar-32x">
                                             </span>
-                                                        <div class="chat-body clearfix">
-                                                            <div class="header">
-                                                                <strong class="primary-font"> {{ question.createur.nom }} {{ question.createur.prenom }}</strong> <small class="pull-right text-muted">
-                                                                    <span class="glyphicon glyphicon-time"></span>{{ question.date|time_ago_in_words }}</small>
-                                                            </div>
-                                                            <p>
-                                                                {{ question.contenu }}
-                                                            </p>
-                                                        </div>
-                                </li>
-                                {% for reponse in listereponse %}
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font"> {{ question.createur.nom }} {{ question.createur.prenom }}</strong> <small class="pull-right text-muted">
+                                            <span class="glyphicon glyphicon-time"></span>{{ question.date|time_ago_in_words }}</small>
+                                    </div>
+                                    <p>
+                                        {{ question.contenu }}
+                                    </p>
+                                </div>
+                            </li>
+                            {% for reponse in listereponse %}
                                 <li class="right clearfix"><span class="chat-img pull-right">
                                                         <img src="{{ asset(reponse.createur.avatarurl) }}"
                                                              class="avatar-32x">
                                                     </span>
-                                                                <div class="chat-body clearfix">
-                                                                    <div class="header">
-                                                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ reponse.date|time_ago_in_words }}</small>
-                                                                        <strong class="pull-right primary-font">{{ reponse.createur.nom }} {{ reponse.createur.prenom }}</strong>
-                                                                    </div>
-                                                                    <p>
-                                                                        {{ reponse.contenu }}
-                                                                    </p>
-                                                                </div>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <small class="text-muted"><span class="glyphicon glyphicon-time"></span>{{ reponse.date|time_ago_in_words }}</small>
+                                            <strong class="pull-right primary-font">{{ reponse.createur.nom }} {{ reponse.createur.prenom }}</strong>
+                                        </div>
+                                        <p>
+                                            {{ reponse.contenu }}
+                                        </p>
+                                    </div>
                                 </li>
-                                {% endfor %}
-                           </ul>
+                            {% endfor %}
+                        </ul>
 
-                        {% if app.user %}
-                            {{ form_start(form, { 'attr' : { 'class': 'inputrep' } }) }}
-
-                            {{ form_errors(form.contenu) }}
-                            {{ form_widget(form.contenu, { 'attr' : { 'class': 'textareainput' } }) }}
+                        {% if app.user %} {{ form_start(form, { 'attr' : { 'class': 'inputrep' } }) }} {{ form_errors(form.contenu) }} {{ form_widget(form.contenu, { 'attr' : { 'class': 'textareainput' } }) }}
                             <button class="btn btn-info btn-lg" type="submit">Ajouter</button>
-                            {{ form_end(form) }}
-                        {% else %}
-                        <div class="row">
-                        <a class="connexionform center-block" href="{{ path('connectionpage') }}">Se connecter</a>
-                        <a class="connexionform center-block" href="{{ path('inscriptionpage') }}">S'inscrire</a>
-                        </div>
-
-
-
-
+                            {{ form_end(form) }} {% else %}
+                            <div class="row">
+                                <a class="connexionform center-block" href="{{ path('connectionpage') }}">Se connecter</a>
+                                <a class="connexionform center-block" href="{{ path('inscriptionpage') }}">S'inscrire</a>
+                            </div>
 
                         {% endif %}
 
@@ -77,7 +67,9 @@
 
                     </div>
                 </div>
-
+            </section>
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
