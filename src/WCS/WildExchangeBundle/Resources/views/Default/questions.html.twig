@@ -44,7 +44,7 @@
                                                     <ul>
                                                         <li>
                                                         <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-danger btn-number" data-target="{{ question.id }}" data-type="minus" id="btnmoinsse" data-target="{{ question.id }}" data-field="quant[2]">
+                                                                <button type="button" class="btn btn-danger btn-number btnmoinsse" data-target="{{ question.id }}" data-type="minus" data-target="{{ question.id }}" data-field="quant[2]">
                                                                      <span class="glyphicon glyphicon-minus"></span>
                                                                 </button>
                                                         </span>
@@ -58,11 +58,11 @@
                                                                     {% set votenb = votenb - 1 %}
                                                                 {% endif %}
                                                             {% endfor %}
-                                                            <span>{{ votenb }}</span>
+                                                            <span id="vote{{  question.id }}">{{ votenb }}</span>
                                                         </li>
                                                         <li>
                                                         <span class="input-group-btn">
-                                                            <button type="button" id="btnplus" class="btn btn-success btn-number" data-target="{{ question.id }}" data-type="plus" data-field="quant[2]">
+                                                            <button type="button" class="btn btn-success btn-number btnplus" data-target="{{ question.id }}" data-type="plus" data-field="quant[2]">
                                                                 <span class="glyphicon glyphicon-plus"></span>
                                                             </button>
                                                         </span>
@@ -131,37 +131,32 @@
         }
     </script>
     <script>
-        $('#btnplus').click(function()
-        {
+        function callvote(something, id){
             $.ajax({
                 url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
                 type:'POST',
                 data:
                     {
-                        question_id: $('#btnplus').data("target"),
-                        vote: 'plus'
+                        question_id: id,
+                        vote: something
                     },
-                success: function(msg)
+                complete: function(msg)
                 {
+                    console.log(msg.responseText);
+                    document.getElementById('vote' + id).innerHTML= msg.responseText;
 
                 }
             });
+        }
+        $('.btnplus').click(function()
+        {
+            var id = $(this).data("target");
+            callvote('plus', id);
         });
-        $('#btnmoinsse').click(function()
+        $('.btnmoinsse').click(function()
         {
-            $.ajax({
-                url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
-                type:'POST',
-                data:
-                    {
-                        question_id: $('#btnplus').data("target"),
-                        vote: 'moins'
-                    },
-                success: function(msg)
-                {
-
-                }
-            });
+            var id = $(this).data("target");
+            callvote('moinsse', id);
         });
     </script>
 {% endblock %}

@@ -58,7 +58,7 @@ class QuestionController extends Controller
     {
         $usr= $this->get('security.context')->getToken()->getUser();
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> null));
         }
         $em = $this->getDoctrine()->getManager();
 
@@ -66,15 +66,19 @@ class QuestionController extends Controller
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($_POST['question_id']);
 
+
+        if (empty($question)){
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
+        }
+
         $votebool = $_POST['vote'] == 'plus' ? true : false;
 
         $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
             ->findBy (['votant'=>$usr, 'question'=> $question], ['votant'=>'DESC'], 5, 0);
 
-        var_dump($existingvote);
         if (!empty($existingvote)){
             if(($existingvote[0]->getValue() == $votebool)){
-                return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
+                return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
             }
             else{
 
@@ -89,14 +93,10 @@ class QuestionController extends Controller
             $vote->setDate(new \DateTime());
             $vote->setVotant($usr);
             $vote->setValue($votebool);
-
-            if (empty($question)){
-                return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
-            }
             $vote->setQuestion($question);
             $em->persist($vote);
             $em->flush();
         }
-        return $this->render('WCSWildExchangeBundle:Default:vote.html.twig');
+        return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
     }
 }

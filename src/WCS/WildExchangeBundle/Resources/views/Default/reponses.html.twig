@@ -54,7 +54,7 @@
                         </ul>
 
                         {% if app.user %} {{ form_start(form, { 'attr' : { 'class': 'inputrep' } }) }} {{ form_errors(form.contenu) }} {{ form_widget(form.contenu, { 'attr' : { 'class': 'textareainput' } }) }}
-                            <button class="btn btn-info btn-lg" type="submit">Ajouter</button>
+                            <button class="btn btn-info btn-lg verysmallmargin" type="submit">Ajouter</button>
                             {{ form_end(form) }} {% else %}
                             <div class="row">
                                 <a class="connexionform center-block" href="{{ path('connectionpage') }}">Se connecter</a>

@@ -6,6 +6,9 @@ body {
 }
 
 /*///// ACCUEIL /////*/
+.dropdown-toggle{
+    margin: auto;
+}
 .dialog{
     z-index: 1000;
 }
@@ -604,7 +607,10 @@ textarea {
 }
 
 /*//// REPONSES ////*/
-
+.verysmallmargin{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
 .smallpaddingtop{
     padding-top: 110px;
     padding-bottom: 30px;
