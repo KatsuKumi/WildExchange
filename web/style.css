@@ -134,6 +134,9 @@ td:first-child{
 }
 
 .navbar-avatar:focus, .navbar-avatar:hover{
+    -moz-background-color: transparent !important;
+    -webkit-background-color: transparent !important;
+    -ms-background-color: transparent !important;
     background-color: transparent !important;
 }
 
