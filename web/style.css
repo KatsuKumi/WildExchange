@@ -133,6 +133,9 @@ td:first-child{
     padding: 0 !important;
 }
 
+.navbar-avatar:focus, .navbar-avatar:hover{
+    background-color: transparent !important;
+}
 
 /*///// FOOTER /////*/
 
@@ -314,6 +317,10 @@ button {
 }
 
 @media (max-width: 950px) {
+    .dialog h2{
+        font-size: 20px !important;
+
+    }
     .avatar-160x{
         height: auto;
         max-width: 200px;
