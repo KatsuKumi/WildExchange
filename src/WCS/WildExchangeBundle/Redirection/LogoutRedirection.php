@@ -23,7 +23,8 @@ class LogoutRedirection implements LogoutSuccessHandlerInterface
     }
     public function onLogoutSuccess(Request $request)
     {
-        $this->session->getFlashBag()->add('notice', 'Vous êtes bien déconnecté !');
+        $usr= $this->security->getToken()->getUser();
+        $this->session->getFlashBag()->add('notice', 'Au revoir '.$usr->getPseudo()." ! 😉");
 
         $response = new RedirectResponse($this->router->generate('homepage'));
 

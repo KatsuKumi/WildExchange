@@ -66,7 +66,7 @@ class RegistrationController extends Controller
         return $this->render('WCSWildExchangeBundle:Default:forget.html.twig');
     }
 
-    public static function IsStrenghtEnought($password){
+   public static function IsStrenghtEnought($password){
         if(strlen($password) < 6){
             return false;
         }
@@ -79,4 +79,5 @@ class RegistrationController extends Controller
             return true;
         }
     }
+
 }
