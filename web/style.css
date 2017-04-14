@@ -137,6 +137,9 @@ td:first-child{
 }
 
 .navbar-avatar:focus, .navbar-avatar:hover{
+    -moz-background-color: transparent !important;
+    -webkit-background-color: transparent !important;
+    -ms-background-color: transparent !important;
     background-color: transparent !important;
 }
 
@@ -469,19 +472,10 @@ button {
     color: #fff;
     background: #1fa597;
 }
-
-.table-filter .media .title span.resolu {
-    color: #5cb85c;
+.utilisateur {
+    color: grey;
+    opacity: 0.6;
 }
-
-.table-filter .media .title span.encours {
-    color: #f0ad4e;
-}
-
-.table-filter .media .title span.annule {
-    color: #d9534f;
-}
-
 .content {
     width: 100%;
 }
@@ -570,13 +564,14 @@ input {
 textarea {
     width: 70%;
     height: 120px;
+    resize: none;
 }
 
 .btn-lg {
     display: flex;
     margin: auto;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 1em 2em;
     outline: none;
     font-weight: 600;
@@ -602,9 +597,7 @@ textarea {
 :-ms-input-placeholder {
     color: grey;
 }
-textarea {
-    resize: none;
-}
+
 
 /*//// REPONSES ////*/
 .verysmallmargin{

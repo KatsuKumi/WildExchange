@@ -37,7 +37,7 @@
                                     <tbody>
                                     {% for question in questions %}
 
-                                        <tr data-status="Resolu">
+                                        <tr data-status="">
                                             <td>
 
                                                 <div class="ckbox">
@@ -84,7 +84,7 @@
                                                         <a href="{{ path('reponsepage', {'id':question.id} )}}">
                                                         <h4 class="title">
                                                             {{ question.titre }}
-                                                            <span class="pull-right resolu">(Résolu)</span>
+                                                            <span class="pull-right utilisateur">{{ question.createur.nom }} {{ question.createur.prenom }}</span>
                                                         </h4>
                                                         </a>
                                                         <p class="summary">{{ question.contenu }}</p>
