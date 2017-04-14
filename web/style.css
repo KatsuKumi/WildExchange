@@ -133,6 +133,9 @@ td:first-child{
     padding: 0 !important;
 }
 
+.navbar-avatar:focus, .navbar-avatar:hover{
+    background-color: transparent !important;
+}
 
 /*///// FOOTER /////*/
 
