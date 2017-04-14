@@ -466,19 +466,10 @@ button {
     color: #fff;
     background: #1fa597;
 }
-
-.table-filter .media .title span.resolu {
-    color: #5cb85c;
+.utilisateur {
+    color: grey;
+    opacity: 0.6;
 }
-
-.table-filter .media .title span.encours {
-    color: #f0ad4e;
-}
-
-.table-filter .media .title span.annule {
-    color: #d9534f;
-}
-
 .content {
     width: 100%;
 }
