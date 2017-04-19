@@ -32,7 +32,9 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
         $usr= $this->get('security.context')->getToken()->getUser();
-        return $this->redirectToRoute('homepage');
+
+
+        return $this->redirectToRoute('connexion');
 
     }
 

@@ -4,6 +4,7 @@ namespace WCS\WildExchangeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use FOS\UserBundle\Entity\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -35,6 +36,16 @@ class Utilisateur implements UserInterface
      */
     private $pseudo;
 
+
+    /**
+     * @var string
+     */
+    protected $usernameCanonical;
+
+    /**
+     * @var string
+     */
+    private $plainPassword;
     /**
      * @var string
      *
@@ -651,5 +662,9 @@ class Utilisateur implements UserInterface
     public function getReponses()
     {
         return $this->reponses;
+    }
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
     }
 }

@@ -45,3 +45,6 @@ votepage:
 profilpage:
         path:     /profil
         defaults: {  _controller: WCSWildExchangeBundle:Default:profil}
+testpage:
+        path:     /test
+        defaults: {  _controller: WCSWildExchangeBundle:Default:test}

@@ -41,6 +41,7 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 login_path: connectionpage
                 check_path: login
+                success_handler: redirect.after.login
                 remember_me: true
             logout:
                 path:   /logout

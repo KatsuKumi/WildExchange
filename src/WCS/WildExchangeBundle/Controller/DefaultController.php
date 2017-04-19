@@ -16,12 +16,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $refer = $this->getRequest()->headers->get('referer');
-        if (strpos($refer, 'connexion') !== false && $this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Bonjour, ".$usr->getPseudo()." ! 😉 ");
-        }
-
 
         return $this->render('WCSWildExchangeBundle:Default:index.html.twig');
     }
@@ -120,5 +114,11 @@ class DefaultController extends Controller
         // The security layer will intercept this request, else redirect to login page
         $this->addFlash('warning', $this->get('translator')->trans('login_expired'));
         return $this->redirect($this->generateUrl('login'));
+    }
+
+    public function testAction()
+    {
+
+
     }
 }

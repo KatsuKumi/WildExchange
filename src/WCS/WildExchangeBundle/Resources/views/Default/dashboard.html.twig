@@ -17,6 +17,8 @@
             font-family: "Open Sans", sans-serif;
         }
     </style>
+    <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+
 {% endblock %}
 {% block body %}
     <div class="container-fluid smallpaddingtop">
@@ -25,9 +27,9 @@
         <i class="fa fa-bars"></i>
         <i class="fa fa-times"></i>
     </div>
-    <div id="content">
+    <div id="content container">
 
-            <div class="container ">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12 blue">
                         <img src="{{ asset('avatar/avatar.png') }}" class="avatar-160x">
@@ -45,54 +47,75 @@
                     </ul>
                 </nav>
                 <div class="tab-target targeted date" id="Détails">
-                    Dernière connexion le Vendredi 14 Avril 2017
+                    Dernière connexion le {{ app.user.dateConnexion|date(' d-m-Y') }}
                 </div>
 
         <!---- DETAILS ----->
         <div class="tab-target targeted" id="Détails">
-            <div class="inline badges">
-                <label class="control-label badges"> BADGES </label>
-            </div>
-            <div class="inline">
-            <label class="control-label">Avatar</label>
+            <div class="col-xs-12 col-md-9 container">
 
-              <div class="file">
-                <label for="file-input">Changer d'Avatar</label>
-                <input type="file" id="file-input">
-              </div>
+                <div class="inline row">
+                    <div class="col-xs-5">
+                        <label class="control-label">Avatar</label>
+                    </div>
+                    <div class="col-xs-5">
+
+                        <div class="file">
+                            <label for="file-input">Changer d'Avatar</label>
+                            <input type="file" id="file-input">
+                        </div>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-5">
+                        <label class="control-label">E-mail</label>
+                    </div>
+                    <div class="col-xs-5">
+                        <input class ="file dashboard-things" type="email" name="email" placeholder=" {{ app.user.email }}" value="{{ app.user.email }}" style="margin-top: 0px; height: 35px;">
+                    </div>
+
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-5">
+                        <label class="control-label">Mot de Passe</label>
+                    </div>
+                    <div class="col-xs-5">
+                        <input class ="file" type="password" name="password" placeholder="******" style="margin-top: 0px; height: 35px;">
+                    </div>
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-4">
+                        <label class="control-label">Social</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <ul>
+                            <li class="soc"> <i class="fa fa-github fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="GitHub" placeholder="@GitHub"style="font-size: small;margin-left: 10px; border-radius: 15px;">  </li>
+                            <li class="soc"> <i class="fa fa-twitter-square fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="Twitter" placeholder="@Twitter"style="font-size: small;margin-left: 10px; border-radius: 15px;"> </li>
+                            <li class="soc"> <i class="fa fa-facebook-official fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="Facebook" placeholder="@Facebook"style="font-size: small;margin-left: 10px; border-radius: 15px;"></li>
+                            <li class="soc"> <i class="fa fa-linkedin-square fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="LinkedLn" placeholder="@LinkedLn"style="font-size: small;margin-left: 10px; border-radius: 15px;"> </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-5">
+                    <label class="control-label">Centre d'Interêts</label>
+                    </div>
+                    <div class="col-xs-5">
+                    <input type="text" class="file" data-role="tagsinput" value="Programmation, Chaussettes">
+                    </div>
+                </div>
             </div>
-            <br/>
-            <div class="inline">
-                <label class="control-label" style ="padding-right: 210px;">E-mail</label>
-                <input class ="file dashboard-things" type="email" name="email" placeholder=" {{ app.user.email }}" style="margin-top: 0px; height: 35px;">
-            </div>
-            <br/>
-            <div class="inline">
-                <label class="control-label" style ="padding-right: 133px;">Mot de Passe</label>
-                <input class ="file" type="password" name="password" placeholder="******" style="margin-top: 0px; height: 35px;">
+            <div class="col-xs-12 col-md-3 container">
 
             </div>
-            <br/>
-            <div class="inline">
-                <label class="control-label" style ="padding-right: 118px;">Social</label>
-                <ul>
-                    <li class="soc"> <i class="fa fa-github fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="GitHub" placeholder="@GitHub"style="font-size: small;margin-left: 10px; border-radius: 15px;">  </li>
-                    <li class="soc"> <i class="fa fa-twitter-square fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="Twitter" placeholder="@Twitter"style="font-size: small;margin-left: 10px; border-radius: 15px;"> </li>
-                    <li class="soc"> <i class="fa fa-facebook-official fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="Facebook" placeholder="@Facebook"style="font-size: small;margin-left: 10px; border-radius: 15px;"></li>
-                    <li class="soc"> <i class="fa fa-linkedin-square fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="LinkedLn" placeholder="@LinkedLn"style="font-size: small;margin-left: 10px; border-radius: 15px;"> </li>
 
-                </ul>
-
-            </div>
-            <br/>
-            <div class="inline">
-                <label class="control-label">Centre d'Interêts</label>
-            </div>
-
-            <div class="verticalTXT">
-                Ceci est la ligne du futur wow . Les badges sont à gauche de ce texte.
-
-            </div>
 
         </div>
         <!---- HISTORIQUE ----->
@@ -137,4 +160,6 @@
             $('#header_logo').removeClass('hidden');
         });
     </script>
+    <script src="{{ asset('bootstrap-tagsinput.min.js') }}"></script>
+
 {% endblock %}

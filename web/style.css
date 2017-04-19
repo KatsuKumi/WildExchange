@@ -169,7 +169,7 @@ footer { background-color:#1fa597; min-height:350px; text-align: center;}
     border-bottom:1px solid white;
 }
 
-i{
+p i{
     margin-right: 25px;
 }
 /*///// MODAL //////*/
@@ -197,7 +197,6 @@ button {
 
 .publication-blog-home {
     padding-bottom: 50px;
-    background: url("qsd.jpg") no-repeat fixed center center;
     background-size: 100% auto;
     background-color: #f1f1f1;
 }
@@ -462,7 +461,25 @@ button {
 
 
 /*//// QUESTIONS ////*/
-
+.plus{
+    color: #5cb85c;
+}
+.vote{
+    font-size: 25px;
+    line-height: 50px;
+    margin-left: 10px;
+    font-weight: bold;
+    -webkit-transition: color .6s ease;
+    -moz-transition: color .6s ease;
+    -o-transition: color .6s ease;
+    transition: color .6s ease;
+}
+.btn{
+    border-radius: 4px !important;
+}
+.inline li{
+    display: block;
+}
 .btn-filter {
     margin-bottom: 20px;
     padding: 1em 2em;
@@ -510,7 +527,7 @@ h1 {
     height: 35px;
 }
 .ckbox{
-    display: inline-block;
+    display: inline-flex;
 }
 .ckbox ul{
     list-style-type: none;
@@ -524,80 +541,6 @@ h1 {
 }
 
 /*//// AJOUT ////*/
-
-select.frecuency {
-    border: none;
-    font-style: italic;
-    background-color: transparent;
-    cursor: pointer;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transition: -webkit-transform 3s ease-in;
-    transition: -webkit-transform 3s ease-in;
-    border-bottom: none;
-}
-select.frecuency:focus {
-    outline: none;
-    border-bottom: 5px solid #39b3d7;
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px);
-    -webkit-transition: -webkit-transform 3s ease-in;
-    transition: -webkit-transform 3s ease-in;
-}
-.free {
-    text-transform: uppercase;
-    color: #1FA597;
-}
-.input-group {
-    margin: auto;
-    width: 100%;
-    height: 200px;
-    background-color: rgba(255,255,255,0.8) !important;
-}
-input {
-    margin-bottom: 20px;
-    margin-top: 20px;
-    width: 70%;
-    height: 60px;
-    text-align: center;
-}
-textarea {
-    width: 70%;
-    height: 120px;
-    resize: none;
-}
-
-.btn-lg {
-    display: flex;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 1em 2em;
-    outline: none;
-    font-weight: 600;
-    border: none;
-    color: #fff;
-    background: #1fa597;
-}
-::-webkit-input-placeholder {
-    color: grey;
-    opacity: 0.9 !important; /* for older chrome versions. may no longer apply. */
-}
-
-::-moz-placeholder { /* Firefox 18- */
-    color: grey;
-    opacity: 0.9 !important;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-    color: grey;
-    opacity: 0.9 !important;
-}
-
-:-ms-input-placeholder {
-    color: grey;
-}
-
 
 /*//// REPONSES ////*/
 .verysmallmargin{
@@ -712,4 +655,10 @@ input{
     line-height: 1;
     color: #262626;
     vertical-align: middle;
+}
+.searchbar{
+    background-color: transparent;
+    margin: 0;
+    box-shadow: none;
+    border: none;
 }

@@ -394,20 +394,26 @@ i{
     text-align: center;
     cursor: pointer;
 }
-
+.bootstrap-tagsinput .tag{
+    color: #7B7B7B !important;
+}
+.bootstrap-tagsinput{
+    top:20px;
+    left:20px;
+    border-radius: 30px !important;
+    overflow:hidden;
+    border-style: inset;
+    border-color : rgba(123,123,123,0.4);
+    border-width : 3px 0 0 3px;
+    background-color: white !important;
+}
+.tag{
+    border: solid rgba(123,123,123,1) 1px;
+}
 .inline {
-    display: inline-flex;
     color: #7B7B7B;
     font-size: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
-
-.control-label {
-    padding-right: 200px;
-    font-size: 22px;
-}
-
 .smallpaddingtop {
     padding-top: 110px;
     padding-bottom: 230px;

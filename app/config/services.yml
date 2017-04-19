@@ -8,9 +8,10 @@ services:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
   # [...] Vos autres services
+
   redirect.after.login:
-    class: Webaki\UserBundle\Redirection\AfterLoginRedirection
-    arguments: [@router]
+    class: WCS\WildExchangeBundle\Redirection\LoginRedirection
+    arguments: [@security.context, @router, @session]
 
   redirect.after.logout:
     class: WCS\WildExchangeBundle\Redirection\LogoutRedirection

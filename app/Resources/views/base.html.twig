@@ -54,7 +54,6 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="accueil active" href="{{ path('homepage') }}">Accueil</a></li>
                 <li><a class="accueil" href="{{ path('tagspage') }}">Explorer</a></li>
                 {% if app.user %}
                     <li class="dropdown">
@@ -72,6 +71,7 @@
                     <li><a class="accueil" href="{{ path('connectionpage') }}">Se connecter</a></li>
                     <li><a class="accueil" href="{{ path('inscriptionpage') }}">S'inscrire</a></li>
                 {% endif %}
+                </li>
 
             </ul>
         </div>

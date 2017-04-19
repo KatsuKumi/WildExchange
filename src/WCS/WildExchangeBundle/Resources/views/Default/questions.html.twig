@@ -41,33 +41,19 @@
                                             <td>
 
                                                 <div class="ckbox">
-                                                    <ul>
-                                                        <li>
-                                                        <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-danger btn-number btnmoinsse" data-target="{{ question.id }}" data-type="minus" data-target="{{ question.id }}" data-field="quant[2]">
-                                                                     <span class="glyphicon glyphicon-minus"></span>
-                                                                </button>
-                                                        </span>
-                                                        </li>
-                                                        <li>
-                                                            {% set votenb = 0 %}
-                                                            {% for vote in question.votes %}
-                                                                {% if vote.value == true %}
-                                                                    {% set votenb = votenb + 1 %}
-                                                                {% else %}
-                                                                    {% set votenb = votenb - 1 %}
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                            <span id="vote{{  question.id }}">{{ votenb }}</span>
-                                                        </li>
-                                                        <li>
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-success btn-number btnplus" data-target="{{ question.id }}" data-type="plus" data-field="quant[2]">
-                                                                <span class="glyphicon glyphicon-plus"></span>
-                                                            </button>
-                                                        </span>
-                                                        </li>
-                                                    </ul>
+                                                    {% set votenb = 0 %}
+                                                    {% for vote in question.votes %}
+                                                        {% if vote.value == true %}
+                                                            {% set votenb = votenb + 1 %}
+                                                        {% else %}
+                                                            {% set votenb = votenb - 1 %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    <button type="button" class="btn btnplus" data-target="{{ question.id }}" data-type="plus">
+                                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                                    </button>
+                                                    <div class="vote" id="vote{{  question.id }}">{{ votenb }}</div>
+
                                                 </div>
                                             </td>
 
@@ -144,6 +130,9 @@
                 {
                     console.log(msg.responseText);
                     document.getElementById('vote' + id).innerHTML= msg.responseText;
+                    $('#vote' + id).removeClass();
+                    $('#vote' + id).addClass('vote');
+                    $('#vote' + id).addClass(something);
 
                 }
             });
@@ -152,11 +141,6 @@
         {
             var id = $(this).data("target");
             callvote('plus', id);
-        });
-        $('.btnmoinsse').click(function()
-        {
-            var id = $(this).data("target");
-            callvote('moinsse', id);
         });
     </script>
 {% endblock %}
