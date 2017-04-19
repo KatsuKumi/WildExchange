@@ -2,7 +2,7 @@
 
 {% block style %}
     <style>
-        .image{
+        .image {
             background: url('{{ asset('accueil1.jpg') }}') no-repeat center fixed;
             background-size: cover;
             background-position: 0 100%;
@@ -12,51 +12,72 @@
 {% endblock %}
 {% block body %}
 
-    <div class="container-fluid image">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-lg-12">
+
                 <div class="card hovercard">
-                <div class="cardheader">
-                <div class="avatar">
-                    <img alt="" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg">
-                </div>
+                    <div class="cardheader">
+
+                    </div>
+                    <div class="avatar">
+                        <img src="{{ asset(app.user.avatarurl) }}">
+                    </div>
                     <div class="info">
                         <div class="title">
-                            Bienvenue sur le Profil de :
-                            <a target="_blank"> <span class="username">
-                       {{ app.user.username }}
-                        </span></a>
+                            {{ app.user.prenom }} {{ app.user.nom }}</a>
                         </div>
+
                     </div>
+                    <div class="btn-toolbar card-body-social" role="toolbar">
+                        <div class="btn-group fa fa-github-alt git"></div>
+                        <div class="btn-group linkedin fa fa-linkedin-square"></div>
+                        <div class="btn-group twitter fa fa-twitter"></div>
+                        <div class="btn-group facebook fa fa-facebook"></div>
+                        <div class="btn-group google-plus fa fa-google-plus"></div>
+                    </div>
+                </div>
+                <div class="boite">
+                    <h1>Journal des actions</h1>
+                    <p> blabla</p>
+                </div>
+                <div class="boite">
+                    <h1>Statistiques de contribution</h1>
+                    <p>nombre de questions postés:
+                        Nombre de réponses postés
+                        Nombre de votes envoyés
+                        Nombre de commentaires postés
+                        Nombre de votes reçus
+                    </p>
+                </div>
+                <div class="boitevote">
+                    <h1>Top vote</h1>
+                    <p></p>
+                </div>
             </div>
+
         </div>
     </div>
-    </div>
-    </div>
-    <div> →→→→</div>
-    <div> →→→</div>
-    <div> →→</div>
-    <div> →</div>
 
 {% endblock %}
 
 {% block js %}
     <script>
-        $(window).scroll(function(){
+        $(window).scroll(function () {
 
-            if( $(this).scrollTop() == 0 ) {
+            if ($(this).scrollTop() == 0) {
                 $('.navbar-defaultt').addClass('x-navbar-fixed-top');
             }
-            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
                 $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
             }
 
         });
 
-        if( $(this).scrollTop() == 0 ) {
+        if ($(this).scrollTop() == 0) {
             $('.navbar-defaultt').addClass('x-navbar-fixed-top');
         }
-        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
             $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
         }
     </script>
