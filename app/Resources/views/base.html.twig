@@ -61,7 +61,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Bonjour, {{ app.user.username }} !</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ path('profilpage') }}">Mon profil</a></li>
+                            <li><a href="{{ path('profilpage', {'id':app.user.id} )}}">Mon profil</a></li>
                             <li><a href="{{ path('dashboardpage') }}">Dashboard</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
@@ -194,7 +194,6 @@
                     <li><a href="{{ path('homepage') }}"> Accueil</a></li>
                     <li><a href="{{ path('dashboardpage') }}"> Dashboard</a></li>
                     <li><a href="{{ path('inscriptionpage') }}"> Inscription</a></li>
-                    <li><a href="{{ path('profilpage') }}"> Profil</a></li>
                     <li><a href="{{ path('connectionpage') }}"> Se connecter</a></li>
                     <li><a href="{{ path('tagspage') }}"> Tags</a></li>
                     <li><a href="{{ path('forgetpage') }}"> Mot de Passe oublié</a> </li>

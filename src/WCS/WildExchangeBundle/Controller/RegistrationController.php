@@ -164,6 +164,10 @@ class RegistrationController extends Controller
        $linkedin = str_replace('http:', '', str_replace('/', '', str_replace('https://', '' ,str_replace('www.linkedin.com/in/','',$_POST['LinkedLn']))));
        $user->setLinkedin($linkedin);
        $em->flush();
+       $this->addFlash(
+           'ajoutsuccess',
+           'Vos modifications ont bien été prises en compte !'
+       );
        return $this->redirectToRoute('dashboardpage');
 
 

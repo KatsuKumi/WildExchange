@@ -96,14 +96,14 @@ class DefaultController extends Controller
         }
         return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig');
     }
-    public function profilAction()
+    public function profilAction($id)
     {
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Vous devez être connecté pour accéder à votre Profil !");
-            return $this->redirectToRoute('connectionpage');
-        }
-        return $this->render('WCSWildExchangeBundle:Default:profil.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $user = $em
+            ->getRepository('WCSWildExchangeBundle:Utilisateur')
+            ->find($id);
+
+        return $this->render('WCSWildExchangeBundle:Default:profil.html.twig', array('user' => $user));
     }
 
     /**
