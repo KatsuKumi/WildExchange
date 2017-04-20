@@ -4,8 +4,49 @@
 body {
     font-family: "inherit";
 }
+/*///// RECHERCHE ///// */
+
+#custom-search-form {
+    text-align: center;
+    margin-top: 50px;
+    padding: 0;
+    width: 100%;
+
+}
+
+#custom-search-form .search-query {
+    margin-bottom: 0;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    width: 60%;
+    height: 40px;
+}
+.searchdiv{
+
+    margin:auto;
+    display: block;
+}
+
+#custom-search-form button {
+    border: 0;
+    background: none;
+    color: #000;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
 
 /*///// ACCUEIL /////*/
+
 .dropdown-toggle{
     margin: auto;
 }

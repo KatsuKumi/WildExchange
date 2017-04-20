@@ -43,7 +43,7 @@ votepage:
     defaults: {  _controller: WCSWildExchangeBundle:Question:Vote }
 
 profilpage:
-        path:     /profil
+        path:     /profil/{id}
         defaults: {  _controller: WCSWildExchangeBundle:Default:profil }
 
 dashboardformpage:
