@@ -125,7 +125,7 @@ td:first-child{
 }
 .avatar-160x{
     height: auto;
-    max-width: 250px;
+    width: 250px;
     overflow: hidden;
     border-radius: 100px;
 }

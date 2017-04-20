@@ -141,11 +141,23 @@ class RegistrationController extends Controller
             return true;
         }
     }
-    public function editprofilAction(){
+   public function editprofilAction(){
        $postparams = $_POST;
        if (empty($postparams)){
            return $this->redirectToRoute('dashboardpage');
        }
+       $em = $this->getDoctrine()->getManager();
+       $user = $this->get('security.context')->getToken()->getUser();
+        if (!empty($_FILES)){
+           $infosfiles = pathinfo($_FILES['avatar']['name']);
+           $uploadDir = $this->container->getParameter('avatar_dir');
+           $nom = "{$infosfiles['filename']}{$this->generateRandomString()}.{$infosfiles['extension']}";
+           $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],"{$uploadDir}/$nom");
+           $user->setAvatarurl("avatar/{$nom}");
+       }
+
+        $em->flush();
+       return $this->redirectToRoute('dashboardpage');
 
 
     }

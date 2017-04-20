@@ -32,7 +32,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 blue">
-                        <img src="{{ asset('avatar/avatar.png') }}" class="avatar-160x">
+                        <img src="{{ asset(( app.user.avatarurl)) }}" class="avatar-160x">
                         <span class="username">
                        {{ app.user.username }}
                         </span>
@@ -47,7 +47,7 @@
                     </ul>
                 </nav>
                 <div class="tab-target targeted date" id="Détails">
-                    Dernière connexion le {{ app.user.dateConnexion|date(' d-m-Y') }}
+                    Dernière connexion le {{ app.user.dateConnexion|date(' d/m/Y') }}
                 </div>
             </div>
         <!---- DETAILS ----->
@@ -73,7 +73,7 @@
                                         <label for="upload" id="browsebtn">
                                         <span class="glyphicon glyphicon-folder-open"></span>
                                         <span class="image-preview-input-title">Browse</span>
-                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" id="upload" style="display: none;"/> <!-- rename it -->
+                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="avatar" id="upload" style="display: none;"/> <!-- rename it -->
                                         </label>
                                     </div>
                                 </span>

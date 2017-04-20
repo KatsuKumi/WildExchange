@@ -11,3 +11,4 @@ parameters:
     mailer_password: 6k5Sc8JAzR
     secret: 23539efb031e123e1e24de20b107346aaa65d346
     locale: fr
+    avatar_dir: %kernel.root_dir%/../web/avatar
