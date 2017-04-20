@@ -308,14 +308,14 @@ body {
 #tabs li {
     float:left;
     line-height:65px;
-    margin:0 30px 0 0;
+    margin:0 100px 0 0;
     cursor:pointer;
     text-transform:uppercase;
     color:#748495;
 }
 
 #tabs li:first-of-type {
-    margin:0 30px 0 50px;
+    margin:0 100px 0 50px;
 }
 
 #tabs li:hover {
@@ -352,6 +352,7 @@ input{
 .soc{
     position: relative;
     list-style-type: none;
+    text-align: center;
 }
 .socinput{
     font-size: small;
@@ -403,7 +404,8 @@ i{
 .bootstrap-tagsinput .tag{
     border: solid rgba(123,123,123,1) 1px;
     color: #7B7B7B !important;
-    margin: 5px;
+    text-align: center;
+    margin: auto !important;
 }
 .label {
     display: inline-block;
@@ -460,6 +462,32 @@ i{
 .dashboard-things{
     /* HI */
 }
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}a
+ .image-preview-input input[type=file] {
+     position: absolute;
+     top: 0;
+     right: 0;
+     margin: 0;
+     padding: 0;
+     font-size: 20px;
+     cursor: pointer;
+     opacity: 0;
+     filter: alpha(opacity=0);
+ }
+ #browsebtn{
+     margin-bottom: 0 !important;
+     font-weight: normal !important;
+ }
+.image-preview-input-title {
+    margin-left:2px;
+}
 @media (max-width: 950px) {
     .inline{
         font-size: 18px;
@@ -484,6 +512,10 @@ i{
     }
     #tabs ul li{
         font-size: 15px !important;
+        margin:0 20px 0 0;
+    }
+    #tabs li:first-of-type {
+        margin:0 20px 0 50px;
     }
     .date {
         font-size: 20px;
@@ -496,6 +528,6 @@ i{
     }
     .blue{
         height: 100px;
-        margin-top: 100px;
+        margin-top: 150px;
     }
 }

@@ -141,5 +141,12 @@ class RegistrationController extends Controller
             return true;
         }
     }
+    public function editprofilAction(){
+       $postparams = $_POST;
+       if (empty($postparams)){
+           return $this->redirectToRoute('dashboardpage');
+       }
 
+
+    }
 }

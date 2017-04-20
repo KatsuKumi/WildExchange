@@ -474,7 +474,7 @@ button {
     transition: color .6s ease;
 }
 .btn{
-    border-radius: 4px !important;
+    border-radius: 4px;
 }
 .inline li{
     display: block;

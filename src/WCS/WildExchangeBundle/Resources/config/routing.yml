@@ -45,3 +45,8 @@ votepage:
 profilpage:
         path:     /profil
         defaults: {  _controller: WCSWildExchangeBundle:Default:profil}
+
+dashboardformpage:
+        path:     /dashboardform
+        defaults: {  _controller: WCSWildExchangeBundle:Registration:editprofil}
+

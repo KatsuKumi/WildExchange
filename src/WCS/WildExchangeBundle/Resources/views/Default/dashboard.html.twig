@@ -53,7 +53,7 @@
         <!---- DETAILS ----->
         <div class="tab-target targeted" id="Détails">
             <div class="col-xs-12 col-md-9 container-fluid">
-
+                <form method="post" action="{{ path('dashboardformpage') }}" enctype="multipart/form-data">
                 <div class="inline row">
                     <div class="col-xs-12 col-md-5">
                         <label class="control-label">Avatar</label>
@@ -61,8 +61,23 @@
                     <div class="col-xs-12 col-md-5">
 
                         <div class="file">
-                            <label for="file-input">Changer d'Avatar</label>
-                            <input type="file" id="file-input">
+                            <div class="input-group image-preview">
+                                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                <span class="input-group-btn">
+                                    <!-- image-preview-clear button -->
+                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                    </button>
+                                                    <!-- image-preview-input -->
+                                    <div class="btn btn-default image-preview-input">
+                                        <label for="upload" id="browsebtn">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="image-preview-input-title">Browse</span>
+                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" id="upload" style="display: none;"/> <!-- rename it -->
+                                        </label>
+                                    </div>
+                                </span>
+                            </div><!-- /input-group image-preview [TO HERE]-->
                         </div>
                     </div>
 
@@ -88,10 +103,10 @@
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 col-md-5">
                         <label class="control-label">Social</label>
                     </div>
-                    <div class="col-xs-12 col-md-7">
+                    <div class="col-xs-12 col-md-5">
                         <ul class="soclist">
                             <li class="soc">
                                 <div>
@@ -138,6 +153,8 @@
                     <input type="text" class="file" data-role="tagsinput" value="{{ app.user.interet }}">
                     </div>
                 </div>
+                    <input type="submit" name="submit" value="Envoyer" />
+                </form>
             </div>
             <div class="col-xs-12 col-md-3 container">
 
@@ -160,7 +177,6 @@
 {% endblock %}
 {% block js %}
     <script>
-
         $('#menu-toggle,#menu-overlay').click(function(){
             $('body').toggleClass('open-menu');
         });
@@ -183,6 +199,66 @@
         });
         $('#admin-search input').on('blur',function(){
             $('#header_logo').removeClass('hidden');
+        });
+    </script>
+    <script>
+        $(document).on('click', '#close-preview', function(){
+            $('.image-preview').popover('hide');
+            // Hover befor close the preview
+            $('.image-preview').hover(
+                function () {
+                    $('.image-preview').popover('show');
+                },
+                function () {
+                    $('.image-preview').popover('hide');
+                }
+            );
+        });
+
+        $(function() {
+            // Create the close button
+            var closebtn = $('<button/>', {
+                type:"button",
+                text: 'x',
+                id: 'close-preview',
+                style: 'font-size: initial;',
+            });
+            closebtn.attr("class","close pull-right");
+            // Set the popover default content
+            $('.image-preview').popover({
+                trigger:'manual',
+                html:true,
+                title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+                content: "There's no image",
+                placement:'bottom'
+            });
+            // Clear event
+            $('.image-preview-clear').click(function(){
+                $('.image-preview').attr("data-content","").popover('hide');
+                $('.image-preview-filename').val("");
+                $('.image-preview-clear').hide();
+                $('.image-preview-input input:file').val("");
+                $(".image-preview-input-title").text("Browse");
+            });
+            // Create the preview image
+            $(".image-preview-input input:file").change(function (){
+                var img = $('<img/>', {
+                    id: 'dynamic',
+                    width:250,
+                    height:200
+                });
+                var file = this.files[0];
+                var reader = new FileReader();
+                // Set preview image into the popover data-content
+                reader.onload = function (e) {
+                    $(".image-preview-input-title").text("Change");
+                    $(".image-preview-clear").show();
+                    $(".image-preview-filename").val(file.name);
+                    img.attr('src', e.target.result);
+                    $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+                }
+                reader.readAsDataURL(file);
+            });
         });
     </script>
     <script src="{{ asset('bootstrap-tagsinput.min.js') }}"></script>
