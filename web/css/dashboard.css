@@ -124,7 +124,6 @@ body {
 
 #profile-picture {
     height:60px;
-    width:60px;
     background-color:white;
     display:block;
     position:absolute;
@@ -354,15 +353,22 @@ input{
     position: relative;
     list-style-type: none;
 }
+.socinput{
+    font-size: small;
+}
+.soclist{
+    padding: 0;
+}
 .file {
     position: relative;
     height: 37px;
-    width: 250px;
+    width: 100%;
     list-style-type: none;
     -webkit-border-radius: 15px;
     -moz-border-radius:15px;
     border-radius:15px;
 }
+
 i{
     display: inline-block;
 }
@@ -407,7 +413,7 @@ i{
     border: solid white 1px;
 }
 .bootstrap-tagsinput{
-    min-height: 150px;
+    min-width: 150px;
     top:20px;
     left:20px;
     border-radius: 30px !important;
@@ -426,14 +432,6 @@ i{
     padding-bottom: 230px;
 }
 
-.verticalTXT {
-    display:inline-block;
-    width: 711px;
-    height: 11px;
-    fill: black;
-    transform: rotate(90deg);
-    margin-left: 400px;
-}
 
 .badges {
     color: #7B7B7B;
@@ -464,6 +462,40 @@ i{
 }
 @media (max-width: 950px) {
     .inline{
-        font-size: 15px;
+        font-size: 18px;
+    }
+    .container-fluid{
+        padding: 0 !important;
+    }
+    .smallpaddingtop {
+        padding: 0;
+        padding-top: 110px;
+        padding-bottom: 230px;
+    }
+    .control-label{
+        text-align: center;
+        width: 100%;
+    }
+    .soc{
+        text-align: center;
+    }
+    .username{
+        font-size: 20px;
+    }
+    #tabs ul li{
+        font-size: 15px !important;
+    }
+    .date {
+        font-size: 20px;
+        padding-bottom: 30px;
+        padding-left: 0;
+        text-align: center;
+    }
+    .avatar-160x{
+        width: 100px;
+    }
+    .blue{
+        height: 100px;
+        margin-top: 100px;
     }
 }

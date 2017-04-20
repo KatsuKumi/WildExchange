@@ -49,16 +49,16 @@
                 <div class="tab-target targeted date" id="Détails">
                     Dernière connexion le {{ app.user.dateConnexion|date(' d-m-Y') }}
                 </div>
-
+            </div>
         <!---- DETAILS ----->
         <div class="tab-target targeted" id="Détails">
-            <div class="col-xs-11 col-md-9 container">
+            <div class="col-xs-12 col-md-9 container-fluid">
 
                 <div class="inline row">
-                    <div class="col-xs-5">
+                    <div class="col-xs-12 col-md-5">
                         <label class="control-label">Avatar</label>
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-12 col-md-5">
 
                         <div class="file">
                             <label for="file-input">Changer d'Avatar</label>
@@ -69,45 +69,72 @@
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-5">
+                    <div class="col-xs-12 col-md-5">
                         <label class="control-label">E-mail</label>
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-12 col-md-5">
                         <input class ="file dashboard-things" type="email" name="email" placeholder=" {{ app.user.email }}" value="{{ app.user.email }}" style="margin-top: 0px; height: 35px;">
                     </div>
 
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-5">
+                    <div class="col-xs-12 col-md-5">
                         <label class="control-label">Mot de Passe</label>
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-12 col-md-5">
                         <input class ="file" type="password" name="password" placeholder="******" style="margin-top: 0px; height: 35px;">
                     </div>
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-4">
+                    <div class="col-xs-12 col-md-4">
                         <label class="control-label">Social</label>
                     </div>
-                    <div class="col-xs-7">
-                        <ul>
-                            <li class="soc"> <i class="fa fa-github fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="GitHub" placeholder="@GitHub"style="font-size: small;margin-left: 10px; border-radius: 15px;">  </li>
-                            <li class="soc"> <i class="fa fa-twitter-square fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="Twitter" placeholder="@Twitter"style="font-size: small;margin-left: 10px; border-radius: 15px;"> </li>
-                            <li class="soc"> <i class="fa fa-facebook-official fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="Facebook" placeholder="@Facebook"style="font-size: small;margin-left: 10px; border-radius: 15px;"></li>
-                            <li class="soc"> <i class="fa fa-linkedin-square fa" aria-hidden="true"></i><input class="file dashboard-things" type="text" name="LinkedLn" placeholder="@LinkedLn"style="font-size: small;margin-left: 10px; border-radius: 15px;"> </li>
-
+                    <div class="col-xs-12 col-md-7">
+                        <ul class="soclist">
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-github fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="GitHub" placeholder="@GitHub">
+                                </div>
+                            </li>
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-twitter-square fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="Twitter" placeholder="@Twitter">
+                                </div>
+                            </li>
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-facebook-official fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="Facebook" placeholder="@Facebook">
+                                </div>
+                            </li>
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-linkedin-square fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="LinkedLn" placeholder="@LinkedLn">
+                                </div>
+                            </li>
                         </ul>
                     </div>
 
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-5">
+                    <div class="col-xs-12 col-md-5">
                     <label class="control-label">Centre d'Interêts</label>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-12 col-md-5">
                     <input type="text" class="file" data-role="tagsinput" value="{{ app.user.interet }}">
                     </div>
                 </div>
@@ -121,12 +148,10 @@
         <!---- HISTORIQUE ----->
 
         <div class="tab-target" id="Historique">
-            <p>Contenu (Historique) ICI ...</p>
         </div>
 
         <!---- AUTRE ----->
         <div class="tab-target" id="Autre">
-            <p>Contenu (Autre) ICI ...</p>
         </div>
 
             </div>
