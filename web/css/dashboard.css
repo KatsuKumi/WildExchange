@@ -395,9 +395,19 @@ i{
     cursor: pointer;
 }
 .bootstrap-tagsinput .tag{
+    border: solid rgba(123,123,123,1) 1px;
     color: #7B7B7B !important;
+    margin: 5px;
+}
+.label {
+    display: inline-block;
+    margin-top: 5px;
+}
+.tag {
+    border: solid white 1px;
 }
 .bootstrap-tagsinput{
+    min-height: 150px;
     top:20px;
     left:20px;
     border-radius: 30px !important;
@@ -406,9 +416,6 @@ i{
     border-color : rgba(123,123,123,0.4);
     border-width : 3px 0 0 3px;
     background-color: white !important;
-}
-.tag{
-    border: solid rgba(123,123,123,1) 1px;
 }
 .inline {
     color: #7B7B7B;
@@ -454,4 +461,9 @@ i{
 
 .dashboard-things{
     /* HI */
+}
+@media (max-width: 950px) {
+    .inline{
+        font-size: 15px;
+    }
 }

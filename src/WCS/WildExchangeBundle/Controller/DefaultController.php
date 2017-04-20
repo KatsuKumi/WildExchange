@@ -115,10 +115,4 @@ class DefaultController extends Controller
         $this->addFlash('warning', $this->get('translator')->trans('login_expired'));
         return $this->redirect($this->generateUrl('login'));
     }
-
-    public function testAction()
-    {
-
-
-    }
 }

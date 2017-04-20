@@ -27,9 +27,9 @@
         <i class="fa fa-bars"></i>
         <i class="fa fa-times"></i>
     </div>
-    <div id="content container">
+    <div id="content container-fluid">
 
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 blue">
                         <img src="{{ asset('avatar/avatar.png') }}" class="avatar-160x">
@@ -52,7 +52,7 @@
 
         <!---- DETAILS ----->
         <div class="tab-target targeted" id="Détails">
-            <div class="col-xs-12 col-md-9 container">
+            <div class="col-xs-11 col-md-9 container">
 
                 <div class="inline row">
                     <div class="col-xs-5">
@@ -107,8 +107,8 @@
                     <div class="col-xs-5">
                     <label class="control-label">Centre d'Interêts</label>
                     </div>
-                    <div class="col-xs-5">
-                    <input type="text" class="file" data-role="tagsinput" value="Programmation, Chaussettes">
+                    <div class="col-xs-6">
+                    <input type="text" class="file" data-role="tagsinput" value="{{ app.user.interet }}">
                     </div>
                 </div>
             </div>
