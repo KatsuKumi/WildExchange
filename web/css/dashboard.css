@@ -501,11 +501,11 @@ i{
     min-width: 150px;
     top:20px;
     left:20px;
-    border-radius: 30px !important;
+    border-radius: 10px !important;
     overflow:hidden;
     border-style: inset;
-    border-color : rgba(123,123,123,0.4);
-    border-width : 3px 0 0 3px;
+    border-color : rgba(123,123,123, 1);
+    border-width : 1px;
     background-color: white !important;
 }
 .inline {
@@ -571,6 +571,16 @@ i{
 .image-preview-input-title {
     margin-left:2px;
 }
+.badgeblock{
+    border: solid #7B7B7B 0;
+    border-left-width: 2px;
+}
+.btnsubmit{
+    display: block;
+    width : 45%;
+    margin: auto;
+    margin-top: 20px;
+}
 @media (max-width: 950px) {
     .inline{
         font-size: 18px;
@@ -612,5 +622,8 @@ i{
     .blue{
         height: 100px;
         margin-top: 150px;
+    }
+    .badgeblock{
+        border-left-width: 0 !important;
     }
 }

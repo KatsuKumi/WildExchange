@@ -52,13 +52,13 @@
             </div>
         <!---- DETAILS ----->
         <div class="tab-target targeted" id="Détails">
-            <div class="col-xs-12 col-md-9 container-fluid">
+            <div class="col-xs-12 col-md-7 container-fluid">
                 <form method="post" action="{{ path('dashboardformpage') }}" enctype="multipart/form-data">
                 <div class="inline row">
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
                         <label class="control-label">Avatar</label>
                     </div>
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
 
                         <div class="file">
                             <div class="input-group image-preview">
@@ -66,13 +66,13 @@
                                 <span class="input-group-btn">
                                     <!-- image-preview-clear button -->
                                     <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                        <span class="glyphicon glyphicon-remove"></span> Effacer
                                     </button>
                                                     <!-- image-preview-input -->
                                     <div class="btn btn-default image-preview-input">
                                         <label for="upload" id="browsebtn">
                                         <span class="glyphicon glyphicon-folder-open"></span>
-                                        <span class="image-preview-input-title">Browse</span>
+                                        <span class="image-preview-input-title">Parcourir</span>
                                         <input type="file" accept="image/png, image/jpeg, image/gif" name="avatar" id="upload" style="display: none;"/> <!-- rename it -->
                                         </label>
                                     </div>
@@ -84,36 +84,36 @@
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
                         <label class="control-label">E-mail</label>
                     </div>
-                    <div class="col-xs-12 col-md-5">
-                        <input class ="file dashboard-things" type="email" name="email" placeholder=" {{ app.user.email }}" value="{{ app.user.email }}" style="margin-top: 0px; height: 35px;">
+                    <div class="col-xs-12 col-md-6">
+                        <input class ="file dashboard-things" type="email" name="email" placeholder="Email" value="{{ app.user.email }}" style="margin-top: 0px; height: 35px;">
                     </div>
 
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
                         <label class="control-label">Mot de Passe</label>
                     </div>
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
                         <input class ="file" type="password" name="password" placeholder="******" style="margin-top: 0px; height: 35px;">
                     </div>
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
                         <label class="control-label">Social</label>
                     </div>
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
                         <ul class="soclist">
                             <li class="soc">
                                 <div>
                                     <i class="fa fa-github fa" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <input class="file dashboard-things socinput" type="text" name="GitHub" placeholder="@GitHub">
+                                    <input class="file dashboard-things socinput" type="text" name="GitHub" value="{{ app.user.github }}" placeholder="@GitHub">
                                 </div>
                             </li>
                             <li class="soc">
@@ -121,7 +121,7 @@
                                     <i class="fa fa-twitter-square fa" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <input class="file dashboard-things socinput" type="text" name="Twitter" placeholder="@Twitter">
+                                    <input class="file dashboard-things socinput" type="text" name="Twitter" value="{{ app.user.twitter }}" placeholder="@Twitter">
                                 </div>
                             </li>
                             <li class="soc">
@@ -129,7 +129,7 @@
                                     <i class="fa fa-facebook-official fa" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <input class="file dashboard-things socinput" type="text" name="Facebook" placeholder="@Facebook">
+                                    <input class="file dashboard-things socinput" type="text" name="Facebook" value="{{ app.user.facebook }}" placeholder="@Facebook">
                                 </div>
                             </li>
                             <li class="soc">
@@ -137,7 +137,7 @@
                                     <i class="fa fa-linkedin-square fa" aria-hidden="true"></i>
                                 </div>
                                 <div>
-                                    <input class="file dashboard-things socinput" type="text" name="LinkedLn" placeholder="@LinkedLn">
+                                    <input class="file dashboard-things socinput" type="text" name="LinkedLn" value="{{ app.user.linkedin }}" placeholder="@LinkedLn">
                                 </div>
                             </li>
                         </ul>
@@ -146,18 +146,23 @@
                 </div>
                 <br/>
                 <div class="inline row">
-                    <div class="col-xs-12 col-md-5">
+                    <div class="col-xs-12 col-md-6">
                     <label class="control-label">Centre d'Interêts</label>
                     </div>
-                    <div class="col-xs-12 col-md-5">
-                    <input type="text" class="file" data-role="tagsinput" value="{{ app.user.interet }}">
+                    <div class="col-xs-12 col-md-6">
+                    <input type="text" class="file" data-role="tagsinput" value="{{ app.user.interet }}" name="interet">
                     </div>
                 </div>
-                    <input type="submit" name="submit" value="Envoyer" />
+                    <div class="row">
+                        <input class="btnsubmit btn btn-default" type="submit" name="submit" value="Envoyer" />
+                    </div>
                 </form>
             </div>
-            <div class="col-xs-12 col-md-3 container">
-
+            <div class="col-xs-12 col-md-4 col-md-offset-1 container badgeblock">
+                <h2 class="text-center">Badges</h2>
+                <br>
+                <br>
+                <br>
             </div>
 
 

@@ -143,20 +143,27 @@ class RegistrationController extends Controller
     }
    public function editprofilAction(){
        $postparams = $_POST;
-       if (empty($postparams)){
-           return $this->redirectToRoute('dashboardpage');
-       }
        $em = $this->getDoctrine()->getManager();
        $user = $this->get('security.context')->getToken()->getUser();
-        if (!empty($_FILES)){
-           $infosfiles = pathinfo($_FILES['avatar']['name']);
-           $uploadDir = $this->container->getParameter('avatar_dir');
-           $nom = "{$infosfiles['filename']}{$this->generateRandomString()}.{$infosfiles['extension']}";
-           $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],"{$uploadDir}/$nom");
-           $user->setAvatarurl("avatar/{$nom}");
+       if (!empty($_FILES['avatar']['name'])){
+        $infosfiles = pathinfo($_FILES['avatar']['name']);
+        $uploadDir = $this->container->getParameter('avatar_dir');
+        $nom = "{$infosfiles['filename']}{$this->generateRandomString()}.{$infosfiles['extension']}";
+        $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'],"{$uploadDir}/$nom");
+        $user->setAvatarurl("avatar/{$nom}");
        }
-
-        $em->flush();
+       $user->setEmail($_POST['email']);
+       if (!empty($_POST['password'])){
+           $encoder = $this->container->get('security.password_encoder');
+           $encoded = $encoder->encodePassword($user, $_POST['password']);
+           $user->setMotdePasse($encoded);
+       }
+       $user->setGithub($_POST['GitHub']);
+       $user->setTwitter($_POST['Twitter']);
+       $user->setFacebook($_POST['Facebook']);
+       $linkedin = str_replace('http:', '', str_replace('/', '', str_replace('https://', '' ,str_replace('www.linkedin.com/in/','',$_POST['LinkedLn']))));
+       $user->setLinkedin($linkedin);
+       $em->flush();
        return $this->redirectToRoute('dashboardpage');
 
 
