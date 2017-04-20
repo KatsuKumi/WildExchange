@@ -9,6 +9,7 @@ body {
 #custom-search-form {
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 50px;
     padding: 0;
     width: 100%;
 
@@ -862,18 +863,10 @@ input{
 
 .card.hovercard .info .title {
     margin-bottom: 4px;
-    font-size: 24px;
+    font-size: 40px;
     line-height: 1;
     color: #262626;
     vertical-align: middle;
-}
-
-.card.hovercard .info .desc {
-    overflow: hidden;
-    font-size: 12px;
-    line-height: 20px;
-    color: black;
-    text-overflow: ellipsis;
 }
 
 .card.hovercard .bottom {
@@ -916,7 +909,6 @@ input{
     border: 2px solid #1fa597;
     background-color: #1fa597;
     border-radius: 5px;
-    display: inline-flex;
     justify-content: space-between;
     height: 300px;
     margin-bottom:  20px;
@@ -927,12 +919,18 @@ input{
     border-radius: 5px;
     height: 300px;
     margin-top: 20px;
+    margin-bottom:  50px;
 }
-h1 {
+.boite h1 {
     color: white;
     text-align: center;
 }
 .boite p {
     color: white;
     text-align: left;
+    font-size: 18px;
+}
+.boitevote h1 {
+    color: white;
+    text-align: center;
 }
