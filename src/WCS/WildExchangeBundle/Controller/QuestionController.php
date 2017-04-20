@@ -99,4 +99,26 @@ class QuestionController extends Controller
         }
         return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
     }
+    public function rechercheAction(){
+
+
+        $querryarray = explode(' ', $_POST['q']);
+
+        $em = $this->getDoctrine()->getManager();
+        $querryquestion = array();
+        $questions = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->findAll();
+        foreach ($questions as $question){
+            foreach ($querryarray as $querry){
+                if (strpos($question->getTitre(), $querry) !== false || strpos($question->getContenu(), $querry) !== false){
+                    if(!in_array($question, $querryquestion)){
+                        array_push($querryquestion, $question);
+                    }
+                }
+            }
+        }
+
+        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => null, 'questions'=> $querryquestion));
+    }
 }

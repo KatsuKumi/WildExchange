@@ -50,3 +50,6 @@ dashboardformpage:
         path:     /dashboardform
         defaults: {  _controller: WCSWildExchangeBundle:Registration:editprofil}
 
+recherchepage:
+        path: /recherche
+        defaults: {  _controller: WCSWildExchangeBundle:Question:recherche}
