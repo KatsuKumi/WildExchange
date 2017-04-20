@@ -16,7 +16,7 @@ inscriptionpage:
 
 forgetpage:
     path:    /forget
-    defaults: {  _controller: WCSWildExchangeBundle:Registration:forget}
+    defaults: {  _controller: WCSWildExchangeBundle:Registration:forget }
 
 tagspage:
     path:     /tags
@@ -39,12 +39,12 @@ dashboardpage:
         defaults: {  _controller: WCSWildExchangeBundle:Default:dashboard }
 
 votepage:
-    path: /vote
+    path:    /vote
     defaults: {  _controller: WCSWildExchangeBundle:Question:Vote }
 
 profilpage:
         path:     /profil
-        defaults: {  _controller: WCSWildExchangeBundle:Default:profil}
+        defaults: {  _controller: WCSWildExchangeBundle:Default:profil }
 
 dashboardformpage:
         path:     /dashboardform
