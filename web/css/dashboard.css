@@ -1,6 +1,7 @@
 * {
     box-sizing:border-box;
     -webkit-transition:.4s ease-in-out;
+    -moz-transition:.4s ease-in-out;
     font-family:Alwyn Regular,Helvetica Neue, Helvetica,Arial,Verdana,sans-serif;
     margin:0;
 }
@@ -331,10 +332,12 @@ body {
     width:100%;
     left:0;
     opacity:0;
+    display: none;
 }
 
 .tab-target.targeted {
     opacity:1;
+    display: block;
 }
 
 .blue{
@@ -343,6 +346,32 @@ body {
     margin-top: 20px;
     border-radius:10px;
 }
+
+
+.boiteD {
+    border: 2px solid #1fa597;
+    background-color: #1fa597;
+    border-radius: 5px;
+    display: inline-flex;
+    justify-content: space-between;
+    height: 300px;
+    margin-bottom:  20px;
+}
+.boiteDvote {
+    border: 2px solid #1fa597;
+    background-color: #1fa597;
+    border-radius: 5px;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.boiteD p {
+    color: white;
+    text-align: left;
+}
+
+
+
 
 /*// BOUTON UPLOAD ////*/
 
