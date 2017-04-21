@@ -111,7 +111,7 @@ class RegistrationController extends Controller
 
                 $this->addFlash(
                     'ajoutsuccess',
-                    'Votre nouveau mot de passe à était envoyé par mail !'
+                    'Votre nouveau mot de passe à été envoyé par mail !'
                 );
                 return $this->redirectToRoute('homepage');
 

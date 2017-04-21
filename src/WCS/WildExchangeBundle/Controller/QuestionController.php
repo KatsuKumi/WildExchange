@@ -99,8 +99,8 @@ class QuestionController extends Controller
         }
         return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
     }
-    public function rechercheAction(){
 
+    public function rechercheAction(){
 
         $querryarray = explode(' ', $_POST['q']);
 
@@ -118,7 +118,7 @@ class QuestionController extends Controller
                 }
             }
         }
-
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => null, 'questions'=> $querryquestion));
+
     }
 }
