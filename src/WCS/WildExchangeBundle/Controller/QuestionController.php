@@ -109,10 +109,11 @@ class QuestionController extends Controller
         $questions = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->findAll();
-        foreach ($questions as $question){
-            foreach ($querryarray as $querry){
-                if (strpos($question->getTitre(), $querry) !== false || strpos($question->getContenu(), $querry) !== false){
-                    if(!in_array($question, $querryquestion)){
+
+        foreach ($questions as $question) {
+            foreach ($querryarray as $querry) {
+                if (strpos($question->getTitre(), $querry) !== false || strpos($question->getContenu(), $querry) !== false) {
+                    if (!in_array($question, $querryquestion)) {
                         array_push($querryquestion, $question);
                     }
                 }
