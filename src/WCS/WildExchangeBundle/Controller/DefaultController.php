@@ -37,19 +37,22 @@ class DefaultController extends Controller
     {
 
     }
-    public function questionsAction($tag)
+    public function questionsAction($tag, $page)
     {
         $em = $this->getDoctrine()->getManager();
 
         $tagobj = $em
             ->getRepository('WCSWildExchangeBundle:Tags')
-            ->findByNom($tag);
+            ->findOneByNom($tag);
         if (empty($tagobj)){
             $this->addFlash('connexion', "Ce tag n'existe pas !");
             return $this->redirectToRoute('tagspage');
         }
-        $listquestion = $tagobj[0]->getQuestions();
-        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion));
+        $pagequerry = $page*5-5;
+        $allquestion = $tagobj->getQuestions()->getValues();
+        $listquestion = array_slice($allquestion, $pagequerry, 5);
+        $maxpage = round(count($allquestion)/5, 0, PHP_ROUND_HALF_UP);
+        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> null ));
     }
     public function reponsesAction(Request $request, $id)
     {

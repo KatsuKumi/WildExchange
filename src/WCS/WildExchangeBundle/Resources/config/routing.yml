@@ -23,7 +23,7 @@ tagspage:
     defaults: {  _controller: WCSWildExchangeBundle:Default:tags }
 
 questionpage:
-    path:     /questions/{tag}
+    path:     /questions/{tag}/{page}
     defaults: {  _controller: WCSWildExchangeBundle:Default:questions }
 
 ajoutpage:
@@ -51,5 +51,5 @@ dashboardformpage:
         defaults: {  _controller: WCSWildExchangeBundle:Registration:editprofil}
 
 recherchepage:
-        path: /recherche
+        path: /recherche/{page}
         defaults: {  _controller: WCSWildExchangeBundle:Question:recherche}

@@ -45,7 +45,7 @@ class QuestionController extends Controller
                 'Votre question a bien été ajoutée !'
             );
 
-            return $this->redirectToRoute('questionpage', array('tag'=>$tag));
+            return $this->redirectToRoute('questionpage', array('tag'=>$tag, 'page'=>    1));
         }
 
         return $this->render(
@@ -100,10 +100,12 @@ class QuestionController extends Controller
         return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
     }
 
-    public function rechercheAction(){
+    public function rechercheAction($page){
 
-        $querryarray = explode(' ', $_POST['q']);
-
+        if (empty($_GET['q'])){
+            return $this->redirectToRoute('homepage');
+        }
+        $querryarray = explode(' ', $_GET['q']);
         $em = $this->getDoctrine()->getManager();
         $querryquestion = array();
         $questions = $em
@@ -119,7 +121,13 @@ class QuestionController extends Controller
                 }
             }
         }
-        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => null, 'questions'=> $querryquestion));
+
+        $pagequerry = $page*5-5;
+        $allquestion = $querryquestion;
+        $listquestion = array_slice($allquestion, $pagequerry, 5);
+        $maxpage = round(count($allquestion)/5, 0, PHP_ROUND_HALF_UP);
+
+        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => '', 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> str_replace(" ", "+", $_GET['q'])));
 
     }
 }

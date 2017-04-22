@@ -33,12 +33,14 @@
                         </div>
                         <ul class="chat">
                             <li class="left"><span class="chat-img pull-left">
+                                    <a class="primary-font" href="{{ path('profilpage', {'id':question.createur.id} )}}">
                                                  <img src="{{ asset(question.createur.avatarurl) }}"
                                                       class="avatar-32x">
+                                    </a>
                                             </span>
                                 <div class="chat-body clearfix">
                                     <div class="header">
-                                        <strong class="primary-font"> {{ question.createur.nom }} {{ question.createur.prenom }}</strong> <small class="pull-right text-muted">
+                                        <strong class="primary-font"> <a class="primary-font" href="{{ path('profilpage', {'id':question.createur.id} )}}">{{ question.createur.nom }} {{ question.createur.prenom }} </a></strong> <small class="pull-right text-muted">
                                             <span class="glyphicon glyphicon-time"></span>{{ question.date|time_ago_in_words }}</small>
                                     </div>
                                     <p>
@@ -48,13 +50,15 @@
                             </li>
                             {% for reponse in listereponse %}
                                 <li class="right clearfix"><span class="chat-img pull-right">
+                                        <a href="{{ path('profilpage', {'id':reponse.createur.id} )}}">
                                                         <img src="{{ asset(reponse.createur.avatarurl) }}"
                                                              class="avatar-32x">
+                                        </a>
                                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class="text-muted"><span class="glyphicon glyphicon-time"></span>{{ reponse.date|time_ago_in_words }}</small>
-                                            <strong class="pull-right primary-font">{{ reponse.createur.nom }} {{ reponse.createur.prenom }}</strong>
+                                            <strong class="pull-right primary-font"><a class="primary-font" href="{{ path('profilpage', {'id':reponse.createur.id} )}}">{{ reponse.createur.nom }} {{ reponse.createur.prenom }} </a></strong>
                                         </div>
                                         <p>
                                             {{ reponse.contenu }}

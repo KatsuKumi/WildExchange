@@ -23,7 +23,7 @@
                     <div class="panel panel-default panelbg">
                         <h1>Questions</h1>
                         <div class="span12">
-                            <form id="custom-search-form" class="form-search form-horizontal pull-right" action="{{ path('recherchepage') }}" method="post">
+                            <form id="custom-search-form" class="form-search form-horizontal pull-right" action="{{ path('recherchepage' , {'page':1}) }}" method="get">
                                 <div class="input-append span12">
                                     <div class="searchdiv">
                                         <input type="text" class="search-query" name="q" placeholder="Rechercher">
@@ -73,7 +73,7 @@
                                             </td>
                                             <td>
                                                 <div class="media">
-                                                    <a href="#" class="pull-left">
+                                                    <a href="{{ path('profilpage', {'id':question.createur.id} )}}" class="pull-left">
                                                         <img src="{{ asset(question.createur.avatarurl) }}"
                                                              class="avatar-32x">
                                                     </a>
@@ -95,11 +95,34 @@
                                 </table>
                             </div>
                         </div>
+
+                        <ul class="pagination">
+                            {% if q %}
+                                <li><a href="{{ path('recherchepage', { page: 1 }) }}?q={{ q }}">«</a></li>
+                                {% for i in 1..maxpage %}
+                                    {% if i == actual %}
+                                        <li class="active"><a href="{{ path('recherchepage', { page: i }) }}?q={{ q }}">{{ i }}<span class="sr-only">(current)</span></a></li>
+                                    {% else %}
+                                        <li><a href="{{ path('recherchepage', {page: i }) }}?q={{ q }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                <li><a href="{{ path('recherchepage', {page: maxpage+1 }) }}?q={{ q }}">»</a></li>
+
+                            {% else %}
+                            <li><a href="{{ path('questionpage', { 'tag': tag, page: 1 }) }}">«</a></li>
+                            {% for i in 1..maxpage+1 %}
+                                {% if i == actual %}
+                                    <li class="active"><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}">{{ i }}<span class="sr-only">(current)</span></a></li>
+                                {% else %}
+                                    <li><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li><a href="{{ path('questionpage', { 'tag': tag, page: maxpage+1 }) }}">»</a></li>
+                            {% endif %}
+                        </ul>
                     </div>
                     <div class="content-footer">
-                        <p>
-                            En voir plus
-                        </p>
+                    </div>
                     </div>
                 </div>
             </section>

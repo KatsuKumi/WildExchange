@@ -17,7 +17,7 @@
                 <p class=largetitle> WILD EXCHANGE</p>
                 <p class="slogan"> Echangez sans chaussures</p>
                <div class="span12">
-                <form id="custom-search-form" class="form-search form-horizontal pull-right" action="{{ path('recherchepage') }}" method="post">
+                <form id="custom-search-form" class="form-search form-horizontal pull-right" action="{{ path('recherchepage' , {'page':1}) }}" method="get">
                     <div class="input-append span12">
                         <div class="searchdiv">
                                 <input type="text" class="search-query" name="q" placeholder="Rechercher">
