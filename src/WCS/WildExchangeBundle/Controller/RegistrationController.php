@@ -38,10 +38,13 @@ class RegistrationController extends Controller
                     ->encodePassword($user, $user->getMotDePasse());
                 $user->setMotDePasse($password);
                 $user->setDateInscription(new \DateTime());
-                $user->setIDRang(1);
+                $em = $this->getDoctrine()->getManager();
+                $rang = $em
+                    ->getRepository('WCSWildExchangeBundle:Rang')
+                    ->find(1);
+                $user->setIDRang($rang);
                 // 4) save the User!
                 $user->setAvatarURL("avatar/avatar.png");
-                $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
 

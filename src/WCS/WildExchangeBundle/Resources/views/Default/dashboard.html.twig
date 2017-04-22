@@ -176,28 +176,26 @@
                         <i class="glyphicon glyphicon-picture"></i>
                         <h3>Questions posées</h3>
                         <div class="title_border"></div>
-                        <p>Comment faire un Dashboard ?</p>
-                        <p>Diffférence entre HTML3 et HTML 5 ?</p>
-                        <p>Comment génerer une BDD grâce à Angular ?</p>
-                        <p>En quoi le SCRUM est innovant ? </p>
-                        <p>A quoi sert cette boite ?</p>
+                        {% for question in app.user.questions|slice(0, 5) %}
+                            <p>{{ question.titre }}</p>
+                        {% endfor %}
 
                     </div>
                     <div class="col-md-4 feature">
                         <i class="glyphicon glyphicon-globe"></i>
                         <h3>Statistiques Globales</h3>
                         <div class="title_border"></div>
-                        <p>Tag question le plus utilisé : HTML</p>
-                        <p>Commentaires écrits : 604</p>
-                        <p>Total Like reçus : +430</p>
-                        <p>Questions posées : 17</p>
+                        <p>Tag question le plus utilisé : {{ mostusedtag }}</p>
+                        <p>Réponses écrites : {{ app.user.reponses|length }}</p>
+                        <p>Total Like reçus : +{{ voteusr|length }}</p>
+                        <p>Questions posées : {{ app.user.questions|length }}</p>
 
                     </div>
                     <div class="col-md-4 feature">
                         <i class="glyphicon glyphicon-briefcase"></i>
                         <h3>Utilisateur</h3>
                         <div class="title_border"></div>
-                        <p> Rang actuel : Membre Wild Code School </p>
+                        <p> Rang actuel : {{ app.user.rang.nom }} </p>
                         <p> Badges obtenus : 12 badges </p>
                         <p> Questions résolues : 5 </p>
 

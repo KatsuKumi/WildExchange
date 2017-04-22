@@ -130,12 +130,11 @@ class Utilisateur implements UserInterface
      */
     private $dateConnexion;
 
+
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="IDRang", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Rang",  inversedBy="utilisateurs")
      */
-    private $idrang;
+    private $rang;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ecole", inversedBy="utilisateurs")
@@ -666,5 +665,51 @@ class Utilisateur implements UserInterface
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+    /**
+     * Add rang
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Rang $rang
+     * @return Utilisateur
+     */
+    public function addRang(\WCS\WildExchangeBundle\Entity\Rang $rang)
+    {
+        $this->rang[] = $rang;
+
+        return $this;
+    }
+
+    /**
+     * Remove rang
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Rang $rang
+     */
+    public function removeRang(\WCS\WildExchangeBundle\Entity\Rang $rang)
+    {
+        $this->rang->removeElement($rang);
+    }
+
+    /**
+     * Get rang
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRang()
+    {
+        return $this->rang;
+    }
+
+    /**
+     * Set rang
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Rang $rang
+     * @return Utilisateur
+     */
+    public function setRang(\WCS\WildExchangeBundle\Entity\Rang $rang = null)
+    {
+        $this->rang = $rang;
+
+        return $this;
     }
 }

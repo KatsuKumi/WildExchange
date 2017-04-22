@@ -118,12 +118,31 @@ class DefaultController extends Controller
     }
     public function dashboardAction()
     {
+        $usr= $this->get('security.context')->getToken()->getUser();
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usr= $this->get('security.context')->getToken()->getUser();
             $this->addFlash('connexion', "Vous devez être connecté pour accéder au Dashboard !");
             return $this->redirectToRoute('connectionpage');
         }
-        return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $votes = $em
+            ->getRepository('WCSWildExchangeBundle:Vote')
+            ->findAll();
+        $votetothisuser = array();
+        foreach ($votes as $vote){
+            if ($vote->getQuestion()->getCreateur() == $usr){
+                array_push($votetothisuser, $vote);
+            }
+        }
+        $questionofthisuser = $usr->getQuestions();
+        $allusedtag = array();
+        foreach ($questionofthisuser as $question){
+            array_push($allusedtag, $question->getTags()[0]->getNom());
+        }
+        $c = array_count_values($allusedtag);
+        $mostusedtag = array_search(max($c), $c);
+
+
+        return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig', array('voteusr' => $votetothisuser, 'mostusedtag' => $mostusedtag));
     }
     public function profilAction($id)
     {
