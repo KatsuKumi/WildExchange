@@ -121,6 +121,16 @@ class QuestionController extends Controller
                 }
             }
         }
+        if (empty($querryquestion)){
+            $this->addFlash(
+                'erreurrecherche',
+                "Aucun résultat pour la recherche : '{$_GET['q']}' !"
+            );
+
+            $referer = $this->getRequest()->headers->get('referer');
+
+            return $this->redirect($referer);
+        }
 
         $pagequerry = $page*5-5;
         $allquestion = $querryquestion;
