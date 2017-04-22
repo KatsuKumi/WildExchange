@@ -137,6 +137,10 @@ class Utilisateur implements UserInterface
     private $rang;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Badge",  mappedBy="utilisateurs")
+     */
+    private $badges;
+    /**
      * @ORM\ManyToOne(targetEntity="Ecole", inversedBy="utilisateurs")
      */
     private $ecole;
@@ -711,5 +715,38 @@ class Utilisateur implements UserInterface
         $this->rang = $rang;
 
         return $this;
+    }
+
+    /**
+     * Add badges
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Badge $badges
+     * @return Utilisateur
+     */
+    public function addBadge(\WCS\WildExchangeBundle\Entity\Badge $badges)
+    {
+        $this->badges[] = $badges;
+
+        return $this;
+    }
+
+    /**
+     * Remove badges
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Badge $badges
+     */
+    public function removeBadge(\WCS\WildExchangeBundle\Entity\Badge $badges)
+    {
+        $this->badges->removeElement($badges);
+    }
+
+    /**
+     * Get badges
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBadges()
+    {
+        return $this->badges;
     }
 }

@@ -41,6 +41,7 @@ class Vote
      */
     private $votant;
 
+
     /**
      * @ORM\ManyToOne(targetEntity="Questions", inversedBy="votes")
      */

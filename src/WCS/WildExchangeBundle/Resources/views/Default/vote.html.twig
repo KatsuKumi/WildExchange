@@ -1,13 +1,13 @@
 {% set votenb = 0 %}
 {% if question %}
-{% for vote in question.votes %}
-{% if vote.value == true %}
-{% set votenb = votenb + 1 %}
-{% else %}
-{% set votenb = votenb - 1 %}
-{% endif %}
-{% endfor %}
+    {% for vote in question.votes %}
+        {% if vote.value == true %}
+            {% set votenb = votenb + 1 %}
+        {% else %}
+            {% set votenb = votenb - 1 %}
+        {% endif %}
+    {% endfor %}
+    {{ votenb }}
 {% else %}
 0
 {% endif %}
-{{ votenb }}

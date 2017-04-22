@@ -160,9 +160,13 @@
             </div>
             <div class="col-xs-12 col-md-4 col-md-offset-1 container badgeblock">
                 <h2 class="text-center">Badges</h2>
-                <br>
-                <br>
-                <br>
+                {% if app.user.badges|length == 0 %}
+                    Aucun badge !
+                    {% else %}
+                    {% for badge in app.user.badges  %}
+                        <img class="badgeimg" src="{{ asset(badge.imgurl) }}"><span class="badgename">{{ badge.nom }}</span>
+                    {% endfor %}
+                {% endif %}
             </div>
 
 
@@ -196,7 +200,7 @@
                         <h3>Utilisateur</h3>
                         <div class="title_border"></div>
                         <p> Rang actuel : {{ app.user.rang.nom }} </p>
-                        <p> Badges obtenus : 12 badges </p>
+                        <p> Badges obtenus : {{ app.user.badges|length }} badge(s) </p>
                         <p> Questions résolues : 5 </p>
 
                     </div>

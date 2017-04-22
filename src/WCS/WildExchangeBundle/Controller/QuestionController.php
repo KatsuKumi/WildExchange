@@ -44,6 +44,7 @@ class QuestionController extends Controller
                 'ajoutsuccess',
                 'Votre question a bien été ajoutée !'
             );
+            $this->checkBadges();
 
             return $this->redirectToRoute('questionpage', array('tag'=>$tag, 'page'=>    1));
         }
@@ -56,32 +57,29 @@ class QuestionController extends Controller
 
     public function VoteAction(Request $request)
     {
+
         $usr= $this->get('security.context')->getToken()->getUser();
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> null));
-        }
         $em = $this->getDoctrine()->getManager();
 
+        $this->checkBadges();
         $question = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($_POST['question_id']);
 
-
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
+        }
         if (empty($question)){
             return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
         }
-
         $votebool = $_POST['vote'] == 'plus' ? true : false;
-
         $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
             ->findBy (['votant'=>$usr, 'question'=> $question], ['votant'=>'DESC'], 5, 0);
-
         if (!empty($existingvote)){
             if(($existingvote[0]->getValue() == $votebool)){
                 return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
             }
             else{
-
                 $vote = $em->getRepository('WCSWildExchangeBundle:Vote')
                     ->find($existingvote[0]->getId());
                 $vote->setValue($votebool);
@@ -148,6 +146,7 @@ class QuestionController extends Controller
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => '', 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> str_replace(" ", "+", $_GET['q']), 'sort' => $sort));
 
     }
+
     public function sortbyVote($list){
 
         usort($list, function($a, $b) {
@@ -157,5 +156,53 @@ class QuestionController extends Controller
         return $list;
 
 
+    }
+
+    public function checkBadges(){
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $allbadge = $em
+            ->getRepository('WCSWildExchangeBundle:Badge')
+            ->findAll();
+        foreach ($allbadge as $badge){
+
+            if($badge->getMinquestion()){
+                if (count($usr->getQuestions()) >= $badge->getMinquestion() )
+                {
+                    if (!in_array($badge, $usr->getBadges()->getValues())) {
+                        $badge->addUtilisateur($usr);
+                        $usr->addBadge($badge);
+                        $em->persist($badge);
+                        $em->persist($usr);
+                    }
+                }
+            }
+            else if ($badge->getMinreponse()){
+                if (count($usr->getReponses()) >= $badge->getMinreponse() )
+                {
+                    if (!in_array($badge, $usr->getBadges()->getValues())) {
+                        $badge->addUtilisateur($usr);
+                        $usr->addBadge($badge);
+                        $em->persist($badge);
+                        $em->persist($usr);
+                    }
+                }
+            }
+            else if ($badge->getMinvote()){
+                if (count($usr->getVotes()) >= $badge->getMinvote() )
+                {
+                    if (!in_array($badge, $usr->getBadges()->getValues())) {
+                        $badge->addUtilisateur($usr);
+                        $usr->addBadge($badge);
+                        $em->persist($badge);
+                        $em->persist($usr);
+                    }
+
+                }
+            }
+        }
+
+        $em->flush();
     }
 }
