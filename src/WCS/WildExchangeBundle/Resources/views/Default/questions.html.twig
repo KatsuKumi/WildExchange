@@ -53,7 +53,7 @@
                                                 {% else %}
                                                     {% if sorttype != sort %}
                                                         {% if sort %}
-                                                            <li><a href="{{ path('recherchepage', {page: 1}) }}?q={{ q }}&sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                            <li><a href="{{ path('questionpage', { 'tag': tag, page: 1}) }}?sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
                                                         {% else %}
                                                                 {% if sorttype != 'date' %}
                                                                     <li><a href="{{ path('questionpage', { 'tag': tag, page: 1}) }}?sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
