@@ -30,11 +30,10 @@
 
                     </div>
                     <div class="btn-toolbar card-body-social" role="toolbar">
-                        <div class="btn-group fa fa-github-alt git"></div>
-                        <div class="btn-group linkedin fa fa-linkedin-square"></div>
-                        <div class="btn-group twitter fa fa-twitter"></div>
-                        <div class="btn-group facebook fa fa-facebook"></div>
-                        <div class="btn-group google-plus fa fa-google-plus"></div>
+                        <a href="https://github.com/{{ user.github|replace({'@': ''}) }}"><div class="btn-group fa fa-github-alt git"></div></a>
+                        <a href="https://www.linkedin.com/in/{{ user.linkedin|replace({'@': ''}) }}"><div class="btn-group linkedin fa fa-linkedin-square"></div></a>
+                        <a href="https://twitter.com/{{ user.twitter|replace({'@': ''}) }}"><div class="btn-group twitter fa fa-twitter"></div></a>
+                        <a href="https://www.facebook.com/{{ user.facebook|replace({'@': ''}) }}"><div class="btn-group facebook fa fa-facebook"></div></a>
                     </div>
                 </div>
             </div>

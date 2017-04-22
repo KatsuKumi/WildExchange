@@ -363,6 +363,9 @@ button {
 }
 
 @media (max-width: 950px) {
+    .x-smalltext {
+        display: none;
+    }
     .dialog h2{
         font-size: 20px !important;
 
@@ -1041,3 +1044,7 @@ input{
     display: block;
 }
 /*#############################*/
+.x-smalltext{
+    font-size: 20px;
+    font-weight: bold;
+}
