@@ -13,7 +13,7 @@
             {% for value in attributes %}
             {% endfor %}
             {% for value in attributes %}
-                <a href="{{ path('questionpage', { 'tag': value.nom, page: 1 }) }}">
+                <a href="{{ path('questionpage', { 'tag': value.nom, page:  }) }}">
 
                 <div class="col-md-6 col-sm-6 col-xs-12 ">
                     <div class="img-responsive" style="background-image: url({{ asset(value.imageurl) |replace({"\n":'', "\r":'', ' ':''})}});">

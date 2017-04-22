@@ -236,6 +236,7 @@ class Questions
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
+
     public function getVotes()
     {
         return $this->votes;

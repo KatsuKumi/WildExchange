@@ -17,7 +17,14 @@ class DefaultController extends Controller
     public function indexAction()
     {
 
-        return $this->render('WCSWildExchangeBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $questions = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->findAll();
+        $questions = $this->sortbyVote($questions);
+        $bestquestion = $questions[0];
+        $questions = array_slice($questions, 1, 5);
+        return $this->render('WCSWildExchangeBundle:Default:index.html.twig', array('questions'=>$questions, 'bestquestion' => $bestquestion));
     }
 
     public function inscriptionAction()
