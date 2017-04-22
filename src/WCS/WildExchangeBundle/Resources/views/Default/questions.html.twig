@@ -14,6 +14,7 @@
 
 {% block body %}
 
+    {% set SORTLIST = ['date', 'vote'] %}
     <div class="container text-center">
         <div class="row">
 
@@ -32,7 +33,40 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="panel-body">
+                        <div class="pull-left">
+                            <div class="btn-group">
+                                <div class="wrap-select">
+                                    <div id="dd" class="wrapper-dropdown-3">
+                                        <span>Trier par {% if sort %}{{ sort }}{% else %}date{% endif %}</span>
+                                        <ul class="dropdown">
+                                            {% for sorttype in SORTLIST %}
+                                                {% if q %}
+                                                    {% if sorttype != sort %}
+                                                        {% if sort %}
+                                                            <li><a href="{{ path('recherchepage', {page: 1}) }}?q={{ q }}&sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                             {% else %}
+                                                                {% if sorttype != 'date' %}
+                                                                    <li><a href="{{ path('recherchepage', {page: 1}) }}?q={{ q }}&sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                                {% endif %}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if sorttype != sort %}
+                                                        {% if sort %}
+                                                            <li><a href="{{ path('recherchepage', {page: 1}) }}?q={{ q }}&sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                        {% else %}
+                                                                {% if sorttype != 'date' %}
+                                                                    <li><a href="{{ path('questionpage', { 'tag': tag, page: 1}) }}?sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                                {% endif %}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <div class="pull-right">
                                 <div class="btn-group">
                                     {% if tag %}
@@ -98,26 +132,26 @@
 
                         <ul class="pagination">
                             {% if q %}
-                                <li><a href="{{ path('recherchepage', { page: 1 }) }}?q={{ q }}">«</a></li>
+                                <li><a href="{{ path('recherchepage', { page: 1 }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">«</a></li>
                                 {% for i in 1..maxpage %}
                                     {% if i == actual %}
-                                        <li class="active"><a href="{{ path('recherchepage', { page: i }) }}?q={{ q }}">{{ i }}<span class="sr-only">(current)</span></a></li>
+                                        <li class="active"><a href="{{ path('recherchepage', { page: i }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">{{ i }}<span class="sr-only">(current)</span></a></li>
                                     {% else %}
-                                        <li><a href="{{ path('recherchepage', {page: i }) }}?q={{ q }}">{{ i }}</a></li>
+                                        <li><a href="{{ path('recherchepage', {page: i }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">{{ i }}</a></li>
                                     {% endif %}
                                 {% endfor %}
-                                <li><a href="{{ path('recherchepage', {page: maxpage+1 }) }}?q={{ q }}">»</a></li>
+                                <li><a href="{{ path('recherchepage', {page: maxpage+1 }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">»</a></li>
 
                             {% else %}
-                            <li><a href="{{ path('questionpage', { 'tag': tag, page: 1 }) }}">«</a></li>
-                            {% for i in 1..maxpage+1 %}
+                            <li><a href="{{ path('questionpage', { 'tag': tag, page: 1 }) }}{% if sort %}?sort={{ sort }}{% endif %}">«</a></li>
+                            {% for i in 1..maxpage %}
                                 {% if i == actual %}
-                                    <li class="active"><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}">{{ i }}<span class="sr-only">(current)</span></a></li>
+                                    <li class="active"><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}{% if sort %}?sort={{ sort }}{% endif %}">{{ i }}<span class="sr-only">(current)</span></a></li>
                                 {% else %}
-                                    <li><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}">{{ i }}</a></li>
+                                    <li><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}{% if sort %}?sort={{ sort }}{% endif %}">{{ i }}</a></li>
                                 {% endif %}
                             {% endfor %}
-                            <li><a href="{{ path('questionpage', { 'tag': tag, page: maxpage+1 }) }}">»</a></li>
+                            <li><a href="{{ path('questionpage', { 'tag': tag, page: maxpage+1 }) }}{% if sort %}?sort={{ sort }}{% endif %}">»</a></li>
                             {% endif %}
                         </ul>
                     </div>
@@ -150,6 +184,37 @@
         else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
             $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
         }
+
+
+        function DropDown(el) {
+            this.dd = el;
+            this.placeholder = this.dd.children('span');
+            this.opts = this.dd.find('.dropdown a');
+            this.initEvents();
+        }
+        DropDown.prototype = {
+            initEvents : function() {
+                var obj = this;
+
+                obj.dd.on('click', function(event){
+                    $(this).toggleClass('active');
+                });
+
+                obj.opts.on('click',function(){
+                    var opt = $(this);
+                    obj.val = opt.text();
+                    obj.index = opt.index();
+                    obj.placeholder.text(obj.val);
+                });
+            },
+            getValue : function() {
+                return this.val;
+            },
+            getIndex : function() {
+                return this.index;
+            }
+        }
+        var dd = new DropDown( $('#dd') );
     </script>
     <script>
         function callvote(something, id){

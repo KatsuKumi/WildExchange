@@ -50,9 +50,28 @@ class DefaultController extends Controller
         }
         $pagequerry = $page*5-5;
         $allquestion = $tagobj->getQuestions()->getValues();
+
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : null;
+        switch ($sort) {
+            case 'vote':
+                $allquestion = $this->sortbyVote($allquestion);
+                break;
+            default:
+                break;
+        }
         $listquestion = array_slice($allquestion, $pagequerry, 5);
         $maxpage = round(count($allquestion)/5, 0, PHP_ROUND_HALF_UP);
-        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> null ));
+        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> null, 'sort' => $sort ));
+    }
+    public function sortbyVote($list){
+
+        usort($list, function($a, $b) {
+            return count($a->getVotes()->getValues()) - count($b->getVotes()->getValues());
+        });
+        $list = array_reverse($list);
+        return $list;
+
+
     }
     public function reponsesAction(Request $request, $id)
     {
