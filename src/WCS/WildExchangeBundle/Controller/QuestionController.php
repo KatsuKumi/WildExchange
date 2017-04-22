@@ -58,44 +58,62 @@ class QuestionController extends Controller
     public function VoteAction(Request $request)
     {
 
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
+        }
         $usr= $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
         $this->checkBadges();
-        $question = $em
-            ->getRepository('WCSWildExchangeBundle:Questions')
-            ->find($_POST['question_id']);
+        if (isset($_POST['question_id'])){
 
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
-        }
-        if (empty($question)){
-            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
-        }
-        $votebool = $_POST['vote'] == 'plus' ? true : false;
-        $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
-            ->findBy (['votant'=>$usr, 'question'=> $question], ['votant'=>'DESC'], 5, 0);
-        if (!empty($existingvote)){
-            if(($existingvote[0]->getValue() == $votebool)){
+            $question = $em
+                ->getRepository('WCSWildExchangeBundle:Questions')
+                ->find($_POST['question_id']);
+
+            if (empty($question)){
                 return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
             }
-            else{
-                $vote = $em->getRepository('WCSWildExchangeBundle:Vote')
-                    ->find($existingvote[0]->getId());
+            $votebool = $_POST['vote'] == 'plus' ? true : false;
+            $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
+                ->findBy (['votant'=>$usr, 'question'=> $question], ['votant'=>'DESC'], 5, 0);
+            if (empty($existingvote)){
+                $vote = new Vote();
+                $vote->setDate(new \DateTime());
+                $vote->setVotant($usr);
                 $vote->setValue($votebool);
+                $vote->setQuestion($question);
+                $em->persist($vote);
                 $em->flush();
             }
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
         }
-        else{
-            $vote = new Vote();
-            $vote->setDate(new \DateTime());
-            $vote->setVotant($usr);
-            $vote->setValue($votebool);
-            $vote->setQuestion($question);
-            $em->persist($vote);
-            $em->flush();
+        else if(isset($_POST['reponse_id'])){
+            $reponse = $em
+                ->getRepository('WCSWildExchangeBundle:Reponses')
+                ->find($_POST['reponse_id']);
+
+            if (empty($reponse)){
+                return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $reponse));
+            }
+
+            $votebool = $_POST['vote'] == 'plus' ? true : false;
+
+            $existingvote = $em->getRepository('WCSWildExchangeBundle:Vote')
+                ->findBy (['votant'=>$usr, 'reponse'=> $reponse], ['votant'=>'DESC'], 5, 0);
+
+            if (empty($existingvote)){
+                $vote = new Vote();
+                $vote->setDate(new \DateTime());
+                $vote->setVotant($usr);
+                $vote->setValue($votebool);
+                $vote->setReponse($reponse);
+                $em->persist($vote);
+                $em->flush();
+            }
+            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $reponse));
+
         }
-        return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
     }
 
     public function rechercheAction($page){
@@ -204,5 +222,40 @@ class QuestionController extends Controller
         }
 
         $em->flush();
+    }
+    public function deleteAction($id){
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('homepage');
+        }
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $question = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->find($id);
+
+        if($question->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
+            $tag = $question->getTags()[0]->getNom();
+            $em->remove($question);
+            $em->flush();
+            $this->addFlash(
+                'deletesuccess',
+                'La question a bien était supprimer !'
+            );
+            return $this->redirectToRoute('questionpage', array('tag'=>$tag, 'page'=>1));
+        }
+        else{
+            $this->addFlash(
+                'faildelete',
+                'Vous ne pouvez pas supprimer cette question !'
+            );
+            $referer = $this->getRequest()->headers->get('referer');
+
+            return $this->redirect($referer);
+        }
+
+        $referer = $this->getRequest()->headers->get('referer');
+
+        return $this->redirect($referer);
+
     }
 }

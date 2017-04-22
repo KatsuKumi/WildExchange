@@ -32,35 +32,103 @@
                             </form>
                         </div>
                         <ul class="chat">
-                            <li class="left"><span class="chat-img pull-left">
-                                    <a class="primary-font" href="{{ path('profilpage', {'id':question.createur.id} )}}">
+                            <li class="left clearfix"><span class="chat-img pull-left">
                                                  <img src="{{ asset(question.createur.avatarurl) }}"
-                                                      class="avatar-32x">
-                                    </a>
+                                                      class="avatar-32x center-block">
                                             </span>
                                 <div class="chat-body clearfix">
                                     <div class="header">
-                                        <strong class="primary-font"> <a class="primary-font" href="{{ path('profilpage', {'id':question.createur.id} )}}">{{ question.createur.nom }} {{ question.createur.prenom }} </a></strong> <small class="pull-right text-muted">
-                                            <span class="glyphicon glyphicon-time"></span>{{ question.date|time_ago_in_words }}</small>
+                                        <strong class="pull-left primary-font">
+                                            <a class="primary-font" href="{{ path('profilpage', {'id':question.createur.id} )}}">
+                                                {{ question.createur.nom }} {{ question.createur.prenom }}
+                                            </a>
+                                        </strong>
+
+                                        <small class="pull-right text-muted">
+                                            <div class="dropdown">
+                                                <span class="glyphicon glyphicon-time">
+                                                </span>
+                                                {{ question.date|time_ago_in_words }}
+                                                {% if question.createur == app.user %}
+                                                <button class="betterpaddingbtn" type="button" data-toggle="dropdown">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{{ path('deletepage', {'id':question.id} )}}">Supprimer la question</a></li>
+                                                    <li><a href="#">Marquer comme résolu</a></li>
+                                                    <li><a href="#">Editer la question</a></li>
+                                                </ul>
+                                                {% endif %}
+                                            </div>
+                                            <div class="ckbox pull-right">
+                                                {% set votenb = 0 %}
+                                                {% for vote in question.votes %}
+                                                    {% if vote.value == true %}
+                                                        {% set votenb = votenb + 1 %}
+                                                    {% else %}
+                                                        {% set votenb = votenb - 1 %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                <div class="vote" id="vote{{  question.id }}">{{ votenb }}</div>
+                                                <button type="button" class="btn btnplus" data-target="{{ question.id }}" data-type="plus">
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                                </button>
+
+                                            </div>
+                                        </small>
                                     </div>
-                                    <p>
+                                    <p class="verysmallpaddingtop">
                                         {{ question.contenu }}
                                     </p>
                                 </div>
                             </li>
+
                             {% for reponse in listereponse %}
                                 <li class="right clearfix"><span class="chat-img pull-right">
                                         <a href="{{ path('profilpage', {'id':reponse.createur.id} )}}">
                                                         <img src="{{ asset(reponse.createur.avatarurl) }}"
-                                                             class="avatar-32x">
+                                                             class="avatar-32x center-block">
                                         </a>
                                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
-                                            <small class="text-muted"><span class="glyphicon glyphicon-time"></span>{{ reponse.date|time_ago_in_words }}</small>
-                                            <strong class="pull-right primary-font"><a class="primary-font" href="{{ path('profilpage', {'id':reponse.createur.id} )}}">{{ reponse.createur.nom }} {{ reponse.createur.prenom }} </a></strong>
+                                            <small class="pull-left text-muted">
+                                                <div class="dropdown">
+                                                    <button class="betterpaddingbtn" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">Marquer comme solution</a></li>
+                                                        <li><a href="#">Editer la réponse</a></li>
+                                                    </ul>
+                                                    <span class="glyphicon glyphicon-time">
+                                                </span>
+                                                    {{ reponse.date|time_ago_in_words }}
+                                                </div>
+                                                <div class="ckbox">
+                                                    {% set votenb = 0 %}
+                                                    {% for vote in reponse.votes %}
+                                                        {% if vote.value == true %}
+                                                            {% set votenb = votenb + 1 %}
+                                                        {% else %}
+                                                            {% set votenb = votenb - 1 %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    <button type="button" class="btn repbtnplus" data-target="{{ reponse.id }}" data-type="plus">
+                                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                                    </button>
+                                                    <div class="vote" id="vote{{ reponse.id }}">{{ votenb }}</div>
+
+                                                </div>
+                                            </small>
+
+
+
+                                            <strong class="pull-right primary-font">
+                                                <a class="primary-font" href="{{ path('profilpage', {'id':reponse.createur.id} )}}">
+                                                    {{ reponse.createur.nom }} {{ reponse.createur.prenom }}
+                                                </a>
+                                            </strong>
                                         </div>
-                                        <p>
+                                        <p class="verysmallpaddingtop">
                                             {{ reponse.contenu }}
                                         </p>
                                     </div>
@@ -106,5 +174,58 @@
         else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
             $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
         }
+    </script>
+
+    <script>
+        function callvote(something, id){
+            $.ajax({
+                url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
+                type:'POST',
+                data:
+                    {
+                        reponse_id: id,
+                        vote: something
+                    },
+                complete: function(msg)
+                {
+                    console.log(msg.responseText);
+                    document.getElementById('vote' + id).innerHTML= msg.responseText;
+                    $('#vote' + id).removeClass();
+                    $('#vote' + id).addClass('vote');
+                    $('#vote' + id).addClass(something);
+
+                }
+            });
+        }
+        $('.btnplus').click(function()
+        {
+            var id = $(this).data("target");
+            callvote('plus', id);
+        });
+        function repcallvote(something, id){
+            $.ajax({
+                url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
+                type:'POST',
+                data:
+                    {
+                        reponse_id: id,
+                        vote: something
+                    },
+                complete: function(msg)
+                {
+                    console.log(msg.responseText);
+                    document.getElementById('vote' + id).innerHTML= msg.responseText;
+                    $('#vote' + id).removeClass();
+                    $('#vote' + id).addClass('vote');
+                    $('#vote' + id).addClass(something);
+
+                }
+            });
+        }
+        $('.repbtnplus').click(function()
+        {
+            var id = $(this).data("target");
+            callvote('plus', id);
+        });
     </script>
 {% endblock %}

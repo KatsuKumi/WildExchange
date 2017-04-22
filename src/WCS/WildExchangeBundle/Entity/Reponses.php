@@ -37,13 +37,13 @@ class Reponses
 
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="reponse" , cascade={"remove"})
      */
+    private $votes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Questions", inversedBy="reponses")
+     * @ORM\ManyToOne(targetEntity="Questions", inversedBy="reponses", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $question;
 
@@ -52,6 +52,8 @@ class Reponses
      */
     private $createur;
 
+
+    
     public function getId()
     {
         return $this->id;
@@ -147,5 +149,45 @@ class Reponses
     public function getCreateur()
     {
         return $this->createur;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->votes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add votes
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Vote $votes
+     * @return Reponses
+     */
+    public function addVote(\WCS\WildExchangeBundle\Entity\Vote $votes)
+    {
+        $this->votes[] = $votes;
+
+        return $this;
+    }
+
+    /**
+     * Remove votes
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Vote $votes
+     */
+    public function removeVote(\WCS\WildExchangeBundle\Entity\Vote $votes)
+    {
+        $this->votes->removeElement($votes);
+    }
+
+    /**
+     * Get votes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVotes()
+    {
+        return $this->votes;
     }
 }

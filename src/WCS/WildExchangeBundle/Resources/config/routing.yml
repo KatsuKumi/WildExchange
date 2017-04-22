@@ -53,3 +53,7 @@ dashboardformpage:
 recherchepage:
         path: /recherche/{page}
         defaults: {  _controller: WCSWildExchangeBundle:Question:recherche}
+
+deletepage:
+        path: /delete/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:delete}

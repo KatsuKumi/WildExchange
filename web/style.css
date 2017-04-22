@@ -591,6 +591,10 @@ h1 {
     margin-top: 10px;
     margin-bottom: 20px;
 }
+.verysmallpaddingtop{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 .smallpaddingtop{
     padding-top: 110px;
     padding-bottom: 30px;
@@ -619,7 +623,6 @@ input{
 }
 .left {
     text-align: left;
-    width: 50%;
 }
 .primary-font {
     color: #1FA597;
@@ -634,7 +637,22 @@ input{
     text-align: right;
     float: right;
 }
+.ckbox{
+    margin-top: 15px;
+}
 
+
+.left p {
+    width: 50%;
+    text-align: left;
+    float: left;
+}
+.betterpaddingbtn{
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+    padding-left:1em;
+    padding-right:1em;
+}
 .media-photo {
     margin: 10px;
 }
