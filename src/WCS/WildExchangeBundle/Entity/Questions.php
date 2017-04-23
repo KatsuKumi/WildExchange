@@ -73,6 +73,11 @@ class Questions
     private $reponses;
 
     /**
+     * @ORM\OneToOne(targetEntity="Reponses")
+     */
+    private $solution;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -302,5 +307,28 @@ class Questions
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set solution
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Reponses $solution
+     * @return Questions
+     */
+    public function setSolution(\WCS\WildExchangeBundle\Entity\Reponses $solution = null)
+    {
+        $this->solution = $solution;
+
+        return $this;
+    }
+
+    /**
+     * Get solution
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Reponses 
+     */
+    public function getSolution()
+    {
+        return $this->solution;
     }
 }

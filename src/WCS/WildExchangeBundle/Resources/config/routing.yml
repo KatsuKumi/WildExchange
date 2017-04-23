@@ -69,3 +69,7 @@ editstatuspage:
 editpage:
         path: /edit/{id}
         defaults: {  _controller: WCSWildExchangeBundle:Question:edit}
+
+solutionpage:
+        path: /edit/{questionid}/{reponseid}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:setsolution}

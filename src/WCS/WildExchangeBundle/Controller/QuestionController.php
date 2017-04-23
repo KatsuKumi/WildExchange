@@ -268,7 +268,6 @@ class QuestionController extends Controller
 
     }
     public function editstatusAction($id){
-
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('homepage');
         }
@@ -382,6 +381,50 @@ class QuestionController extends Controller
             );
             $referer = $this->getRequest()->headers->get('referer');
 
+            return $this->redirect($referer);
+        }
+
+        $referer = $this->getRequest()->headers->get('referer');
+
+        return $this->redirect($referer);
+    }
+    public function setsolutionAction($questionid, $reponseid){
+
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('homepage');
+        }
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $question = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->find($questionid);
+
+        if (empty($question)){
+            $this->addFlash('notuseroradmin', "La question n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
+        if($question->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
+            $status = $em
+                ->getRepository('WCSWildExchangeBundle:Status')
+                ->find(2);
+            $question->setStatus($status);
+            $reponse = $em
+                ->getRepository('WCSWildExchangeBundle:Reponses')
+                ->find($reponseid);
+            $question->setSolution($reponse);
+            $em->flush();
+            $this->addFlash(
+                'deletesuccess',
+                'Question résolue !'
+            );
+            return $this->redirectToRoute('reponsepage', array('id'=> $question->getId()));
+        }
+        else{
+            $this->addFlash(
+                'faildelete',
+                'Vous ne pouvez pas editer cette question !'
+            );
+            $referer = $this->getRequest()->headers->get('referer');
             return $this->redirect($referer);
         }
 

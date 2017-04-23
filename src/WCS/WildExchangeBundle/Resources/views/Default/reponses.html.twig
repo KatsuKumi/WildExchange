@@ -84,9 +84,65 @@
                                     </p>
                                 </div>
                             </li>
+                            {% if question.solution %}
 
+                                <li class="right clearfix greenbackground"><span class="chat-img pull-right">
+                                        <a href="{{ path('profilpage', {'id':question.solution.createur.id} )}}">
+                                                        <img src="{{ asset(question.solution.createur.avatarurl) }}"
+                                                             class="avatar-32x center-block">
+                                        </a>
+                                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <small class="pull-left text-muted">
+                                                <div class="dropdown">
+                                                    {% if app.user == question.solution.createur or  app.user == question.solution.createur%}
+                                                        <button class="betterpaddingbtn" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+                                                        <ul class="dropdown-menu">
+                                                            {% if app.user == question.solution.createur %}
+                                                                <li><a href="{{ path('deletereppage', {'id':question.solution.id} )}}">Supprimer la réponse</a></li>
+                                                                <li><a href="#">Editer la réponse</a></li>
+                                                            {% endif %}
+                                                        </ul>
+                                                    {% endif %}
+                                                    <span class="glyphicon glyphicon-time">
+                                                </span>
+                                                    {{ question.solution.date|time_ago_in_words }}
+                                                </div>
+                                                <div class="ckbox">
+                                                    {% set votenb = 0 %}
+                                                    {% for vote in question.solution.votes %}
+                                                        {% if vote.value == true %}
+                                                            {% set votenb = votenb + 1 %}
+                                                        {% else %}
+                                                            {% set votenb = votenb - 1 %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    <button type="button" class="btn repbtnplus" data-target="{{ question.solution.id }}" data-type="plus">
+                                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                                    </button>
+                                                    <div class="vote" id="vote{{ question.solution.id }}">{{ votenb }}</div>
+
+                                                </div>
+                                            </small>
+
+
+
+                                            <strong class="pull-right primary-font">
+                                                <a class="primary-font" href="{{ path('profilpage', {'id':question.solution.createur.id} )}}">
+                                                    {{ question.solution.createur.nom }} {{ question.solution.createur.prenom }}
+                                                </a>
+                                            </strong>
+                                        </div>
+                                        <p class="verysmallpaddingtop">
+                                            {{ question.solution.contenu }}
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endif %}
                             {% for reponse in listereponse %}
-                                <li class="right clearfix"><span class="chat-img pull-right">
+                                {% if reponse != question.solution %}
+                                    <li class="right clearfix"><span class="chat-img pull-right">
                                         <a href="{{ path('profilpage', {'id':reponse.createur.id} )}}">
                                                         <img src="{{ asset(reponse.createur.avatarurl) }}"
                                                              class="avatar-32x center-block">
@@ -104,7 +160,7 @@
                                                         <li><a href="#">Editer la réponse</a></li>
                                                         {% endif %}
                                                         {% if app.user == question.createur %}
-                                                        <li><a href="#">Marquer comme solution</a></li>
+                                                        <li><a href="{{ path('solutionpage', {'questionid': question.id, 'reponseid': reponse.id}) }}">Marquer comme solution</a></li>
                                                         {% endif %}
                                                     </ul>
                                                     {% endif %}
@@ -142,6 +198,7 @@
                                         </p>
                                     </div>
                                 </li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
 
