@@ -36,8 +36,12 @@ class QuestionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $tagobj = $em
                 ->getRepository('WCSWildExchangeBundle:Tags')
-                ->findByNom($tag);
-            $question->addTag($tagobj[0]);
+                ->findOneByNom($tag);
+            $question->addTag($tagobj);
+            $status = $em
+                ->getRepository('WCSWildExchangeBundle:Status')
+                ->find(1);
+            $question->setStatus($status);
             $em->persist($question);
             $em->flush();
             $this->addFlash(
@@ -159,7 +163,7 @@ class QuestionController extends Controller
                 break;
         }
         $listquestion = array_slice($allquestion, $pagequerry, 5);
-        $maxpage = round(count($allquestion)/5, 0, PHP_ROUND_HALF_UP);
+        $maxpage = ceil(count($allquestion)/5);
 
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => '', 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> str_replace(" ", "+", $_GET['q']), 'sort' => $sort));
 
@@ -257,5 +261,79 @@ class QuestionController extends Controller
 
         return $this->redirect($referer);
 
+    }
+    public function editstatusAction($id){
+
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('homepage');
+        }
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $question = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->find($id);
+
+        if($question->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
+            $status = $em
+                ->getRepository('WCSWildExchangeBundle:Status')
+                ->find(2);
+            $question->setStatus($status);
+            $em->flush();
+            $this->addFlash(
+                'deletesuccess',
+                'La question est maintenant résolue !'
+            );
+            return $this->redirectToRoute('reponsepage', array('id'=> $question->getId()));
+        }
+        else{
+            $this->addFlash(
+                'faildelete',
+                'Vous ne pouvez pas editer cette question !'
+            );
+            $referer = $this->getRequest()->headers->get('referer');
+            return $this->redirect($referer);
+        }
+
+        $referer = $this->getRequest()->headers->get('referer');
+
+        return $this->redirect($referer);
+
+    }
+    public function editAction($id){
+
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $this->addFlash('connexion', "Vous devez être connecté pour editer une question !");
+            return $this->redirectToRoute('connectionpage');
+        }
+        // 1) build the form
+        $em = $this->getDoctrine()->getManager();
+        $question = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->find($id);
+
+        $usr= $this->get('security.context')->getToken()->getUser();
+        if(!$question->getCreateur() == $usr || !$usr->getRang()->getId() >= 2){
+            $this->addFlash('notuseroradmin', "Vous ne pouvez pas editer cette question !");
+            return $this->redirectToRoute('reponsepage', array('id'=>$question->getId()));
+        }
+
+        if (isset($_POST['titre']) && isset($_POST['contenu'])) {
+            $this->checkBadges();
+            $question->setTitre($_POST['titre']);
+            $question->setContenu($_POST['contenu']);
+            $em->flush();
+            $this->addFlash(
+                'ajoutsuccess',
+                'Votre question a bien été éditer !'
+            );
+
+            return $this->redirectToRoute('reponsepage', array('id'=>$question->getId()));
+        }
+
+        return $this->render(
+            'WCSWildExchangeBundle:Default:editer.html.twig',
+            array('question' => $question)
+        );
     }
 }

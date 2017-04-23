@@ -55,8 +55,10 @@
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="{{ path('deletepage', {'id':question.id} )}}">Supprimer la question</a></li>
-                                                    <li><a href="#">Marquer comme résolu</a></li>
-                                                    <li><a href="#">Editer la question</a></li>
+                                                    {%  if question.status.id == 1 %}
+                                                    <li><a href="{{ path('editstatuspage', {'id':question.id} )}}">Marquer comme résolu</a></li>
+                                                    {% endif %}
+                                                    <li><a href="{{ path('editpage', {'id':question.id} )}}">Editer la question</a></li>
                                                 </ul>
                                                 {% endif %}
                                             </div>
@@ -96,6 +98,7 @@
                                                 <div class="dropdown">
                                                     <button class="betterpaddingbtn" type="button" data-toggle="dropdown"><span class="caret"></span></button>
                                                     <ul class="dropdown-menu">
+                                                        <li><a href="#">Supprimer la réponse</a></li>
                                                         <li><a href="#">Marquer comme solution</a></li>
                                                         <li><a href="#">Editer la réponse</a></li>
                                                     </ul>
@@ -136,9 +139,19 @@
                             {% endfor %}
                         </ul>
 
-                        {% if app.user %} {{ form_start(form, { 'attr' : { 'class': 'inputrep' } }) }} {{ form_errors(form.contenu) }} {{ form_widget(form.contenu, { 'attr' : { 'class': 'textareainput' } }) }}
-                            <button class="btn btn-info btn-lg verysmallmargin" type="submit">Ajouter</button>
-                            {{ form_end(form) }} {% else %}
+                        {% if app.user %}
+                            {%  if question.status.id == 1 %}
+                                {{ form_start(form, { 'attr' : { 'class': 'inputrep' } }) }} {
+
+                                    { form_errors(form.contenu) }}
+
+                                    {{ form_widget(form.contenu, { 'attr' : { 'class': 'textareainput' } }) }}
+
+                                    <button class="btn btn-info btn-lg verysmallmargin" type="submit">Ajouter</button>
+
+                                {{ form_end(form) }}
+                            {% endif %}
+                        {% else %}
                             <div class="row">
                                 <a class="connexionform center-block" href="{{ path('connectionpage') }}">Se connecter</a>
                                 <a class="connexionform center-block" href="{{ path('inscriptionpage') }}">S'inscrire</a>

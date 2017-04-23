@@ -57,3 +57,11 @@ recherchepage:
 deletepage:
         path: /delete/{id}
         defaults: {  _controller: WCSWildExchangeBundle:Question:delete}
+
+editstatuspage:
+        path: /editstatus/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:editstatus}
+
+editpage:
+        path: /edit/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:edit}

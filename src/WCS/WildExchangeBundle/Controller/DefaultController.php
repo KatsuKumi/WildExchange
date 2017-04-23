@@ -67,7 +67,7 @@ class DefaultController extends Controller
                 break;
         }
         $listquestion = array_slice($allquestion, $pagequerry, 5);
-        $maxpage = round(count($allquestion)/5, 0, PHP_ROUND_HALF_UP);
+        $maxpage = ceil(count($allquestion)/5);
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> null, 'sort' => $sort ));
     }
     public function sortbyVote($list){
@@ -112,6 +112,13 @@ class DefaultController extends Controller
         $questionobj = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($id);
+        if (empty($questionobj)){
+            $this->addFlash(
+                'noexistingquestion',
+                "La question n'existe pas !"
+            );
+            return $this->redirectToRoute('tagspage');
+        }
         $listereponse = $questionobj->getReponses();
 
         return $this->render('WCSWildExchangeBundle:Default:reponses.html.twig', array('form'=>$form->createView(),

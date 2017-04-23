@@ -48,6 +48,12 @@ class Questions
      */
     private $createur;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="questions")
+     */
+    private $status;
+
     /**
      * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="questions")
@@ -273,5 +279,28 @@ class Questions
     public function getReponses()
     {
         return $this->reponses;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Status $status
+     * @return Questions
+     */
+    public function setStatus(\WCS\WildExchangeBundle\Entity\Status $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Status 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
