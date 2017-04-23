@@ -178,6 +178,7 @@ class DefaultController extends Controller
         $allbadge = $em
             ->getRepository('WCSWildExchangeBundle:Badge')
             ->findAll();
+
         foreach ($allbadge as $badge){
 
             if($badge->getMinquestion()){

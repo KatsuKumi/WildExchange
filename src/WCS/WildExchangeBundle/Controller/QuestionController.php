@@ -237,6 +237,10 @@ class QuestionController extends Controller
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($id);
 
+        if (empty($question)){
+            $this->addFlash('notuseroradmin', "La question n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
         if($question->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
             $tag = $question->getTags()[0]->getNom();
             $em->remove($question);
@@ -273,6 +277,10 @@ class QuestionController extends Controller
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($id);
 
+        if (empty($question)){
+            $this->addFlash('notuseroradmin', "La question n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
         if($question->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
             $status = $em
                 ->getRepository('WCSWildExchangeBundle:Status')
@@ -311,7 +319,10 @@ class QuestionController extends Controller
         $question = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($id);
-
+        if (empty($question)){
+            $this->addFlash('notuseroradmin', "La question n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
         $usr= $this->get('security.context')->getToken()->getUser();
         if(!$question->getCreateur() == $usr || !$usr->getRang()->getId() >= 2){
             $this->addFlash('notuseroradmin', "Vous ne pouvez pas editer cette question !");
