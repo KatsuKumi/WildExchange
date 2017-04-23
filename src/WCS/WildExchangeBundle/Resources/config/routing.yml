@@ -58,6 +58,10 @@ deletepage:
         path: /delete/{id}
         defaults: {  _controller: WCSWildExchangeBundle:Question:delete}
 
+deletereppage:
+        path: /deletereponse/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:deleterep}
+
 editstatuspage:
         path: /editstatus/{id}
         defaults: {  _controller: WCSWildExchangeBundle:Question:editstatus}

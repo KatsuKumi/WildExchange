@@ -25,7 +25,7 @@
                     </div>
                     <div class="info">
                         <div class="title">
-                            {{ user.prenom }} {{ user.nom }}</a>
+                            {{ user.prenom }} {{ user.nom }}
                         </div>
 
                     </div>
@@ -47,24 +47,57 @@
                         <h1>Journal des actions</h1>
                     </div>
                     <div class="row">
-                        <p> blabla</p>
+                        <p>
+                        {% for action in recentaction %}
+                            {% if action.titre is defined %}
+                             <span>A poser la question : {{ action.titre }} {{ action.date|time_ago_in_words }}</span><br>
+                             {% else %}
+                             {% if action.value is defined %}
+                                 {% if action.question %}
+                                 A voter pour : {{ action.question.titre }} {{ action.date|time_ago_in_words }}<br>
+                                     {% else %}
+                                         A voter pour une réponse à la question : {{ action.reponse.question.titre }} {{ action.date|time_ago_in_words }}<br>
+                                     {% endif %}
+                             {% else %}
+                             A répondu à {{ action.question.titre }} {{ action.date|time_ago_in_words }}<br>
+                             {% endif %}
+                             {% endif %}
+                        {% endfor %}
+
+                        </p>
                     </div>
                 </div>
 
                 <div class="boite col-lg-5 col-lg-offset-2">
                     <h1>Statistiques de contribution</h1>
-                    <p>Nombre de questions postés:<br>
-                        Nombre de réponses postés:<br>
-                        Nombre de votes envoyés:<br>
+                    <p>Nombre de questions postés: {{ user.questions|length }}<br>
+                        Nombre de réponses postés: {{ user.reponses|length }}<br>
+                        Nombre de votes envoyés: {{ user.votes|length }}<br>
                         Nombre de commentaires postés:<br>
-                        Nombre de votes reçus:<br>
+                        Nombre de votes reçus: {{ votetothisuser|length }}<br>
                     </p>
                 </div>
         </div>
         <div class="row">
                 <div class="boitevote">
                     <h1>Top vote</h1>
-                    <p></p>
+                    <div class="center-block whitetext">
+                        {% for top in topquestion|slice(0, 5) %}
+                            {% if top.titre is defined %}
+                                <span class="veryverysmallpaddingtop">
+                                    <div class="col-md-7">Titre : <u><a href="{{ path('reponsepage', {'id':top.id}) }}">{{ top.titre}}</a></u></div>
+                                    <div class="col-md-5">Nombre de votes : {{ top.votes|length }}</div>
+                                </span>
+                                <br>
+                            {% else %}
+                                <span class="veryverysmallpaddingtop">
+                                    <div class="col-md-7">Titre : <u><a href="{{ path('reponsepage', {'id':top.question.id}) }}">{{ top.question.titre }}</a></u></div>
+                                    <div class="col-md-5">Nombre de votes : {{ top.votes|length }}</div>
+                                </span>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
         </div>
     </div>

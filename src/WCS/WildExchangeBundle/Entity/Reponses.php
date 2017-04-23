@@ -42,8 +42,7 @@ class Reponses
     private $votes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Questions", inversedBy="reponses", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="Questions", inversedBy="reponses")
      */
     private $question;
 

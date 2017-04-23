@@ -241,6 +241,7 @@ class QuestionController extends Controller
             $this->addFlash('notuseroradmin', "La question n'existe pas !");
             return $this->redirectToRoute('tagspage');
         }
+
         if($question->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
             $tag = $question->getTags()[0]->getNom();
             $em->remove($question);
@@ -346,5 +347,46 @@ class QuestionController extends Controller
             'WCSWildExchangeBundle:Default:editer.html.twig',
             array('question' => $question)
         );
+    }
+    public function deleterepAction($id){
+
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('homepage');
+        }
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $reponse = $em
+            ->getRepository('WCSWildExchangeBundle:Reponses')
+            ->find($id);
+
+        if (empty($reponse)){
+            $this->addFlash('notuseroradmin', "La réponse n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
+
+        if($reponse->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
+            $id = $reponse->getQuestion()->getId();
+            var_dump($id);
+            $em->remove($reponse);
+            $em->flush();
+            $this->addFlash(
+                'deletesuccess',
+                'La réponse a bien était supprimer !'
+            );
+            return $this->redirectToRoute('reponsepage', array('id'=>$id));
+        }
+        else{
+            $this->addFlash(
+                'faildelete',
+                'Vous ne pouvez pas supprimer cette réponse !'
+            );
+            $referer = $this->getRequest()->headers->get('referer');
+
+            return $this->redirect($referer);
+        }
+
+        $referer = $this->getRequest()->headers->get('referer');
+
+        return $this->redirect($referer);
     }
 }

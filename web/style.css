@@ -595,6 +595,10 @@ h1 {
     padding-top: 30px;
     padding-bottom: 30px;
 }
+.veryverysmallpaddingtop{
+    display: block;
+    padding-top: 10px;
+}
 .smallpaddingtop{
     padding-top: 110px;
     padding-bottom: 30px;
@@ -641,6 +645,10 @@ input{
     margin-top: 15px;
 }
 
+.whitetext{
+    color:white;
+    font-size: 1.5em;
+}
 
 .left p {
     width: 50%;
@@ -931,14 +939,14 @@ input{
     background-color: #1fa597;
     border-radius: 5px;
     justify-content: space-between;
-    height: 300px;
+    min-height: 300px;
     margin-bottom:  20px;
 }
 .boitevote {
     border: 2px solid #1fa597;
     background-color: #1fa597;
     border-radius: 5px;
-    height: 300px;
+    min-height: 300px;
     margin-top: 20px;
     margin-bottom:  50px;
 }

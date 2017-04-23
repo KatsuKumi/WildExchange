@@ -73,7 +73,7 @@ class DefaultController extends Controller
     public function sortbyVote($list){
 
         usort($list, function($a, $b) {
-            return count($a->getVotes()->getValues()) - count($b->getVotes()->getValues());
+            return count($a->getVotes()->getValues()) < count($b->getVotes()->getValues()) ? -1 : 1;
         });
         $list = array_reverse($list);
         return $list;
@@ -158,8 +158,33 @@ class DefaultController extends Controller
         $user = $em
             ->getRepository('WCSWildExchangeBundle:Utilisateur')
             ->find($id);
+        $votes = $em
+            ->getRepository('WCSWildExchangeBundle:Vote')
+            ->findAll();
+        $votetothisuser = array();
+        foreach ($votes as $vote){
+            if ($vote->getQuestion() && $vote->getQuestion()->getCreateur() == $user){
+                array_push($votetothisuser, $vote);
+            }
+            else if (!empty($vote->getReponse()) && $vote->getReponse()->getCreateur() == $user){
+                array_push($votetothisuser, $vote);
+            }
+        }
+        $allaction = array_merge($user->getVotes()->getValues(), array_merge($user->getQuestions()->getValues(), $user->getReponses()->getValues()));
+        usort($allaction, function($a, $b){
+            $ad = $a->getDate();
+            $bd = $b->getDate();
 
-        return $this->render('WCSWildExchangeBundle:Default:profil.html.twig', array('user' => $user));
+            if ($ad == $bd){
+                return 0;
+            }
+            return $ad < $bd ? 1 : -1;
+
+        });
+        $allaction = array_slice($allaction, 0, 5);
+        $topquestions = $this->sortbyVote(array_merge($user->getQuestions()->getValues(), $user->getReponses()->getValues()));
+
+        return $this->render('WCSWildExchangeBundle:Default:profil.html.twig', array('user' => $user, 'votetothisuser' => $votetothisuser, 'topquestion' => $topquestions, 'recentaction' => $allaction));
     }
 
     /**

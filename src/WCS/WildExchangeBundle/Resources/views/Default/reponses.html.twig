@@ -96,12 +96,18 @@
                                         <div class="header">
                                             <small class="pull-left text-muted">
                                                 <div class="dropdown">
+                                                    {% if app.user == reponse.createur or  app.user == question.createur%}
                                                     <button class="betterpaddingbtn" type="button" data-toggle="dropdown"><span class="caret"></span></button>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#">Supprimer la réponse</a></li>
-                                                        <li><a href="#">Marquer comme solution</a></li>
+                                                        {% if app.user == reponse.createur %}
+                                                        <li><a href="{{ path('deletereppage', {'id':reponse.id} )}}">Supprimer la réponse</a></li>
                                                         <li><a href="#">Editer la réponse</a></li>
+                                                        {% endif %}
+                                                        {% if app.user == question.createur %}
+                                                        <li><a href="#">Marquer comme solution</a></li>
+                                                        {% endif %}
                                                     </ul>
+                                                    {% endif %}
                                                     <span class="glyphicon glyphicon-time">
                                                 </span>
                                                     {{ reponse.date|time_ago_in_words }}
@@ -141,9 +147,9 @@
 
                         {% if app.user %}
                             {%  if question.status.id == 1 %}
-                                {{ form_start(form, { 'attr' : { 'class': 'inputrep' } }) }} {
+                                {{ form_start(form, { 'attr' : { 'class': 'inputrep' } }) }}
 
-                                    { form_errors(form.contenu) }}
+                                    {{  form_errors(form.contenu) }}
 
                                     {{ form_widget(form.contenu, { 'attr' : { 'class': 'textareainput' } }) }}
 
