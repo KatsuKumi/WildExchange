@@ -118,7 +118,7 @@
                         Nombre de questions postés : {{ user.questions|length }}<br>
                         Nombre de réponses postés : {{ user.reponses|length }}<br>
                         Nombre de votes envoyés : {{ user.votes|length }}<br>
-                        Nombre de commentaires postés :<br>
+                        Nombre de commentaires postés : {{ user.commentaires|length }}<br>
                         Nombre de votes reçus : {{ votetothisuser|length }}<br>
                     </div>
                 </div>
@@ -130,13 +130,13 @@
                         {% for top in topquestion|slice(0, 5) %}
                             {% if top.titre is defined %}
                                 <span class="veryverysmallpaddingtop">
-                                    <div class="col-md-7">Titre : <u><a href="{{ path('reponsepage', {'id':top.id}) }}">{{ top.titre}}</a></u></div>
+                                    <div class="col-md-7">Question : Titre : <u><a href="{{ path('reponsepage', {'id':top.id}) }}">{{ top.titre}}</a></u></div>
                                     <div class="col-md-5">Nombre de votes : {{ top.votes|length }}</div>
                                 </span>
                                 <br>
                             {% else %}
                                 <span class="veryverysmallpaddingtop">
-                                    <div class="col-md-7">Titre : <u><a href="{{ path('reponsepage', {'id':top.question.id}) }}">{{ top.question.titre }}</a></u></div>
+                                    <div class="col-md-7">Réponse : Titre : <u><a href="{{ path('reponsepage', {'id':top.question.id}) }}">{{ top.question.titre }}</a></u></div>
                                     <div class="col-md-5">Nombre de votes : {{ top.votes|length }}</div>
                                 </span>
                                 <br>
