@@ -1261,3 +1261,42 @@ input{
         right: auto;
     }
 }
+.right .media{
+    width: 60%;
+    float: right;
+}
+.post-comments {
+    padding-bottom: 9px;
+    margin: 5px 0 5px;
+}
+
+.comments-nav {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.post-comments .comment-meta {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.post-comments .media {
+    border: 1px dotted #000;
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+.media-body p{
+    width: 100%;
+}
+
+.post-comments .media-heading {
+    font-size: 12px;
+    color: grey;
+}
+
+.post-comments .comment-meta a {
+    font-size: 12px;
+    color: grey;
+    font-weight: bolder;
+    margin-right: 5px;
+}
