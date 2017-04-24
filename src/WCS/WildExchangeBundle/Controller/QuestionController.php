@@ -248,7 +248,7 @@ class QuestionController extends Controller
             $em->flush();
             $this->addFlash(
                 'deletesuccess',
-                'La question a bien était supprimer !'
+                'La question a bien été supprimée !'
             );
             return $this->redirectToRoute('questionpage', array('tag'=>$tag, 'page'=>1));
         }
@@ -289,7 +289,7 @@ class QuestionController extends Controller
             $em->flush();
             $this->addFlash(
                 'deletesuccess',
-                'La question est maintenant résolue !'
+                'La question est à présent résolue !'
             );
             return $this->redirectToRoute('reponsepage', array('id'=> $question->getId()));
         }
@@ -320,7 +320,7 @@ class QuestionController extends Controller
             ->getRepository('WCSWildExchangeBundle:Questions')
             ->find($id);
         if (empty($question)){
-            $this->addFlash('notuseroradmin', "La question n'existe pas !");
+            $this->addFlash('notuseroradmin', "La question n'existe pas/plus !");
             return $this->redirectToRoute('tagspage');
         }
         $usr= $this->get('security.context')->getToken()->getUser();
@@ -336,7 +336,7 @@ class QuestionController extends Controller
             $em->flush();
             $this->addFlash(
                 'ajoutsuccess',
-                'Votre question a bien été éditer !'
+                'Votre question a bien été éditée !'
             );
 
             return $this->redirectToRoute('reponsepage', array('id'=>$question->getId()));
@@ -359,7 +359,7 @@ class QuestionController extends Controller
             ->find($id);
 
         if (empty($reponse)){
-            $this->addFlash('notuseroradmin', "La réponse n'existe pas !");
+            $this->addFlash('notuseroradmin', "La réponse n'existe pas/plus !");
             return $this->redirectToRoute('tagspage');
         }
 
@@ -370,7 +370,7 @@ class QuestionController extends Controller
             $em->flush();
             $this->addFlash(
                 'deletesuccess',
-                'La réponse a bien était supprimer !'
+                'La réponse a bien été supprimée !'
             );
             return $this->redirectToRoute('reponsepage', array('id'=>$id));
         }
@@ -400,7 +400,7 @@ class QuestionController extends Controller
             ->find($questionid);
 
         if (empty($question)){
-            $this->addFlash('notuseroradmin', "La question n'existe pas !");
+            $this->addFlash('notuseroradmin', "La question n'existe pas/plus !");
             return $this->redirectToRoute('tagspage');
         }
         if($question->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
@@ -447,7 +447,7 @@ class QuestionController extends Controller
             ->find($id);
 
         if (empty($reponse)){
-            $this->addFlash('notuseroradmin', "La réponse n'existe pas !");
+            $this->addFlash('notuseroradmin', "La réponse n'existe pas/plus !");
             return $this->redirectToRoute('tagspage');
         }
 
@@ -464,7 +464,7 @@ class QuestionController extends Controller
             $em->flush();
             $this->addFlash(
                 'ajoutsuccess',
-                'Votre réponse a bien été éditer !'
+                'Votre réponse a bien été éditée !'
             );
 
             return $this->redirectToRoute('reponsepage', array('id'=>$reponse->getQuestion()->getId()));
