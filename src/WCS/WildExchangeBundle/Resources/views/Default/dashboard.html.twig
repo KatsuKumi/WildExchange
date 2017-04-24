@@ -163,7 +163,7 @@
                     <div class="badge"> Aucun badge ! </div>
                     {% else %}
                     {% for badge in app.user.badges  %}
-                        <img class="badgeimg" src="{{ asset(badge.imgurl) }}"><span class="badgename">{{ badge.nom }}</span>
+                        <img class="badgeimg" src="{{ asset(badge.imgurl) }}"><span class="badgename">{{ badge.nom }}</span><br>
                     {% endfor %}
                 {% endif %}
             </div>
@@ -200,7 +200,7 @@
                         <div class="title_border"></div>
                         <p> Rang actuel : {{ app.user.rang.nom }} </p>
                         <p> Badges obtenus : {{ app.user.badges|length }} badge(s) </p>
-                        <p> Questions résolues : 5 </p>
+                        <p> Questions résolues : {{ resolvedquestion|length }}</p>
 
                     </div>
                 </div>

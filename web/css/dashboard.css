@@ -585,7 +585,7 @@ i{
     margin-top: 20px;
 }
 .badgeimg{
-    width: 150px;
+    width: 50px;
     height: auto;
 }
 
@@ -594,10 +594,6 @@ i{
     margin-top: 50px;
 }
 @media (max-width: 950px) {
-    .badgeimg{
-        width: 75px;
-        height: auto;
-    }
     .badgeblock{
         border: solid #7B7B7B 0;
         border-left-width: 0 !important;
