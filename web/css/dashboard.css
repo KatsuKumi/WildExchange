@@ -590,6 +590,10 @@ i{
     height: auto;
 }
 @media (max-width: 950px) {
+    .badgeimg{
+        width: 75px;
+        height: auto;
+    }
     .badgeblock{
         border: solid #7B7B7B 0;
         border-left-width: 0 !important;
