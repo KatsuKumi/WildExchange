@@ -150,7 +150,18 @@ class DefaultController extends Controller
         $mostusedtag = array_search(max($c), $c);
 
 
-        return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig', array('voteusr' => $votetothisuser, 'mostusedtag' => $mostusedtag));
+        $allquestions = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->findAll();
+
+        $resolvedquestion = array();
+        foreach ($allquestions as $question){
+            if ($question->getSolution() && $usr == $question->getSolution()->getCreateur()){
+                array_push($resolvedquestion, $question);
+            }
+        }
+
+        return $this->render('WCSWildExchangeBundle:Default:dashboard.html.twig', array('voteusr' => $votetothisuser, 'mostusedtag' => $mostusedtag, 'resolvedquestion' => $resolvedquestion));
     }
     public function profilAction($id)
     {
