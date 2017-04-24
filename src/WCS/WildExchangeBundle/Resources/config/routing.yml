@@ -70,6 +70,10 @@ editpage:
         path: /edit/{id}
         defaults: {  _controller: WCSWildExchangeBundle:Question:edit}
 
+editreppage:
+        path: /editrep/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:editrep}
+
 solutionpage:
-        path: /edit/{questionid}/{reponseid}
+        path: /solution/{questionid}/{reponseid}
         defaults: {  _controller: WCSWildExchangeBundle:Question:setsolution}

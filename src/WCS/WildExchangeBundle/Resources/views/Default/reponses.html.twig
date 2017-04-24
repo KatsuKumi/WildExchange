@@ -101,7 +101,7 @@
                                                         <ul class="dropdown-menu">
                                                             {% if app.user == question.solution.createur %}
                                                                 <li><a href="{{ path('deletereppage', {'id':question.solution.id} )}}">Supprimer la réponse</a></li>
-                                                                <li><a href="#">Editer la réponse</a></li>
+                                                                <li><a href="{{ path('editreppage', {'id':question.solution.id} )}}">Editer la réponse</a></li>
                                                             {% endif %}
                                                         </ul>
                                                     {% endif %}

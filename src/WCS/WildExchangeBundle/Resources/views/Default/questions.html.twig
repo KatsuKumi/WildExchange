@@ -112,7 +112,7 @@
                                                              class="avatar-32x">
                                                     </a>
                                                     <div class="media-body">
-                                                        <span class="media-meta pull-right">{{ question.date|date(' d-m-Y') }}</span>
+                                                        <span class="media-meta pull-right">{{ question.date|time_ago_in_words }}</span>
                                                         <a href="{{ path('reponsepage', {'id':question.id} )}}">
                                                         <h4 class="title">
                                                             {{ question.titre }}

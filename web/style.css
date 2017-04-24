@@ -618,8 +618,7 @@ h1 {
 }
 .chat li
 {
-    margin-bottom: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     border-bottom: 1px dotted #B3A9A9;
 }
 input{
@@ -651,6 +650,7 @@ input{
 }
 .greenbackground{
     background-color: rgba(0, 255, 0, 0.5);
+    padding-top: 10px !important;
 }
 
 .left p {

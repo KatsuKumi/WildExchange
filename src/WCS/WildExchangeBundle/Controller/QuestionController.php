@@ -432,4 +432,47 @@ class QuestionController extends Controller
 
         return $this->redirect($referer);
     }
+    public function editrepAction($id){
+
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $this->addFlash('connexion', "Vous devez être connecté pour editer une question !");
+            return $this->redirectToRoute('connectionpage');
+        }
+        // 1) build the form
+        $em = $this->getDoctrine()->getManager();
+
+        $reponse = $em
+            ->getRepository('WCSWildExchangeBundle:Reponses')
+            ->find($id);
+
+        if (empty($reponse)){
+            $this->addFlash('notuseroradmin', "La réponse n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
+
+        $usr= $this->get('security.context')->getToken()->getUser();
+
+        if($reponse->getCreateur()->getId() != $usr->getId() || !$usr->getRang()->getId() >= 2){
+            $this->addFlash('notuseroradmin', "Vous ne pouvez pas editer cette réponse !");
+            return $this->redirectToRoute('reponsepage', array('id'=>$reponse->getQuestion()->getId()));
+        }
+
+        if (isset($_POST['contenu'])) {
+            $this->checkBadges();
+            $reponse->setContenu($_POST['contenu']);
+            $em->flush();
+            $this->addFlash(
+                'ajoutsuccess',
+                'Votre réponse a bien été éditer !'
+            );
+
+            return $this->redirectToRoute('reponsepage', array('id'=>$reponse->getQuestion()->getId()));
+        }
+
+        return $this->render(
+            'WCSWildExchangeBundle:Default:editerrep.html.twig',
+            array('reponse' => $reponse)
+        );
+    }
 }

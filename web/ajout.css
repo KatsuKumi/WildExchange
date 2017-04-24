@@ -18,6 +18,9 @@ select.frecuency:focus {
     -webkit-transition: -webkit-transform 3s ease-in;
     transition: -webkit-transform 3s ease-in;
 }
+textarea{
+    margin-top: 20px;
+}
 .free {
     text-transform: uppercase;
     color: #1FA597;
