@@ -1261,13 +1261,22 @@ input{
         right: auto;
     }
 }
+.commentbtn{
+    text-align: right;
+    width: 100%;
+}
+.textaligncenter{
+    text-align: center !important;
+}
 .right .media{
     width: 60%;
     float: right;
+    background-color: rgba(255,255,255, 0.6);
 }
 .post-comments {
     padding-bottom: 9px;
     margin: 5px 0 5px;
+    width: 100%;
 }
 
 .comments-nav {

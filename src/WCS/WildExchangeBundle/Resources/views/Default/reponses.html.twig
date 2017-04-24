@@ -199,24 +199,45 @@
 
                                     </div>
                                         <div class="post-comments pull-right">
-                                            <div class="media">
+                                            <div class="commentbtn pull-right"><a data-toggle="collapse" data-parent="#accordion" class="primary-font" href="#collapse{{ reponse.id }}">Commenter</a></div>
+
+                                            <div id="collapse{{ reponse.id }}" class="panel-collapse collapse media">
+                                                <div class="panel-body">
+                                                    <form name="wcs_wildexchangebundle_commentaire" method="post" class="col-md-12">
+
+
+
+                                                        <textarea id="wcs_wildexchangebundle_commentaire_contenu" name="wcs_wildexchangebundle_commentaire[contenu]" required="required" class="textareainput" placeholder="Commentaire"></textarea>
+
+                                                        <input name="reponseid" value="{{ reponse.id }}" type="hidden">
+                                                        <button class="btn btn-info btn-lg verysmallmargin" type="submit">Ajouter</button>
+
+                                                        <input id="wcs_wildexchangebundle_commentaire__token" name="wcs_wildexchangebundle_commentaire[_token]" value="L7Vy03vMtLXdwRafqEpWHdAFqrzFVnzvFGjjFVbmSEM" type="hidden">
+
+                                                    </form>
+
+
+                                                </div>
+                                            </div>
+                                            {% for commentaire in reponse.commentaires %}
+                                            <div class="media pull-right">
                                                 <!-- first comment -->
 
                                                 <div class="media-heading">
-                                                     <span class="label label-info">Utilisateur</span> Il y a x temps
+                                                     <span class="label label-info">{{ commentaire.createur.prenom }} {{ commentaire.createur.nom }}</span>{{ commentaire.date|time_ago_in_words }}
                                                 </div>
 
-                                                <div class="panel-collapse collapse in" id="collapseThree">
+                                                <div class="panel-collapse collapse in">
 
 
                                                     <div class="media-body">
-                                                        <p>petit lorem pour le comment</p>
+                                                        <p class="textaligncenter">{{ commentaire.contenu }}</p>
 
                                                     </div>
                                                 </div>
-                                                <!-- comments -->
 
                                             </div>
+                                            {% endfor %}
                                         </div>
                                 </li>
                                 {% endif %}
