@@ -68,12 +68,12 @@ class Questions
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reponses",  mappedBy="question", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Reponses",  mappedBy="question", cascade={"all"}, orphanRemoval=true)
      */
     private $reponses;
 
     /**
-     * @ORM\OneToOne(targetEntity="Reponses")
+     * @ORM\OneToOne(targetEntity="Reponses", cascade={"remove"})
      */
     private $solution;
 

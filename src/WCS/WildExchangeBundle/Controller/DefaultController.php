@@ -147,7 +147,11 @@ class DefaultController extends Controller
             array_push($allusedtag, $question->getTags()[0]->getNom());
         }
         $c = array_count_values($allusedtag);
-        $mostusedtag = array_search(max($c), $c);
+        $mostusedtag = "Aucun";
+        if (!empty($c)){
+            $mostusedtag = array_search(max($c), $c);
+        }
+
 
 
         $allquestions = $em

@@ -49,7 +49,7 @@ class Vote
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Reponses", inversedBy="votes")
+     * @ORM\ManyToOne(targetEntity="Reponses", inversedBy="votes", cascade={"remove"})
      */
     private $reponse;
 
