@@ -8,7 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Security\Core\SecurityContext;
+use WCS\WildExchangeBundle\Entity\Commentaire;
 use WCS\WildExchangeBundle\Entity\Reponses;
+use WCS\WildExchangeBundle\Form\CommentaireType;
 use WCS\WildExchangeBundle\Form\ReponsesType;
 
 
@@ -108,6 +110,28 @@ class DefaultController extends Controller
             return $this->redirectToRoute('reponsepage', array('id'=>$id));
         }
 
+        $comment = new Commentaire();
+        $commentform = $this->createForm(CommentaireType::class, $comment);
+
+        // 2) handle the submit (will only happen on POST)
+        $commentform->handleRequest($request);
+        if ($commentform->isSubmitted() && $commentform->isValid()) {
+            $comment->setDate(new \DateTime());
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $comment->setCreateur($usr);
+            $em = $this->getDoctrine()->getManager();
+            $repobj = $em
+                ->getRepository('WCSWildExchangeBundle:Reponses')
+                ->find($_POST['reponseid']);
+            $comment->setReponse($repobj);
+            $em->persist($comment);
+            $em->flush();
+            $this->checkBadges();
+
+            return $this->redirectToRoute('reponsepage', array('id'=>$id));
+
+        }
+
         $em = $this->getDoctrine()->getManager();
         $questionobj = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
@@ -122,7 +146,7 @@ class DefaultController extends Controller
         $listereponse = $questionobj->getReponses();
 
         return $this->render('WCSWildExchangeBundle:Default:reponses.html.twig', array('form'=>$form->createView(),
-            'question'=>$questionobj, 'listereponse'=>$listereponse));
+            'question'=>$questionobj, 'listereponse'=>$listereponse, 'commentform'=>$commentform->createView()));
     }
     public function dashboardAction()
     {

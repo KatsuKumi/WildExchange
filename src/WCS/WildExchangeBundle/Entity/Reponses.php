@@ -51,6 +51,11 @@ class Reponses
      */
     private $createur;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire",  mappedBy="reponse")
+     */
+    private $commentaires;
+
 
     
     public function getId()
@@ -188,5 +193,38 @@ class Reponses
     public function getVotes()
     {
         return $this->votes;
+    }
+
+    /**
+     * Add commentaires
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Commentaire $commentaires
+     * @return Reponses
+     */
+    public function addCommentaire(\WCS\WildExchangeBundle\Entity\Commentaire $commentaires)
+    {
+        $this->commentaires[] = $commentaires;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaires
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Commentaire $commentaires
+     */
+    public function removeCommentaire(\WCS\WildExchangeBundle\Entity\Commentaire $commentaires)
+    {
+        $this->commentaires->removeElement($commentaires);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }
