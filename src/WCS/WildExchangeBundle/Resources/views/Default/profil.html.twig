@@ -40,42 +40,87 @@
         </div>
     </div>
     <div class="container">
+        <div class="page-header">
+            <h1 id="timeline">Journal des actions</h1>
+        </div>
+        <ul class="timeline">
+
+            {% for action in recentaction %}
+                {% if action.titre is defined %}
+                    <li>
+                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title">A poser une question</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>{{ action.titre }}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% else %}
+                    {% if action.value is defined %}
+                        {% if action.question %}
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">A voter pour une question</h4>
+                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>{{ action.question.titre }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        {% else %}
+                            {% if action.question %}
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">A voter pour une réponse sur la question :</h4>
+                                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>{{ action.reponse.question.titre }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                    <li>
+                        <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
+                         <div class="timeline-panel">
+                         <div class="timeline-heading">
+                        <h4 class="timeline-title">A répondu à une question :</h4>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                    </div>
+                    <div class="timeline-body">
+                        <p> {{ action.question.titre }}</p>
+                            </div>
+                            </div>
+                            </li>
+
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="container">
         <div class="row">
-                <div class="boite col-lg-5">
-                    <div class="row">
-
-                        <h1>Journal des actions</h1>
-                    </div>
-                    <div class="row">
-                        <p>
-                        {% for action in recentaction %}
-                            {% if action.titre is defined %}
-                             <span>A poser la question : {{ action.titre }} {{ action.date|time_ago_in_words }}</span><br>
-                             {% else %}
-                             {% if action.value is defined %}
-                                 {% if action.question %}
-                                 A voter pour : {{ action.question.titre }} {{ action.date|time_ago_in_words }}<br>
-                                     {% else %}
-                                         A voter pour une réponse à la question : {{ action.reponse.question.titre }} {{ action.date|time_ago_in_words }}<br>
-                                     {% endif %}
-                             {% else %}
-                             A répondu à {{ action.question.titre }} {{ action.date|time_ago_in_words }}<br>
-                             {% endif %}
-                             {% endif %}
-                        {% endfor %}
-
-                        </p>
-                    </div>
-                </div>
-
-                <div class="boite col-lg-5 col-lg-offset-2">
+                <div class="boite col-lg-12">
                     <h1>Statistiques de contribution</h1>
-                    <p>Nombre de questions postés: {{ user.questions|length }}<br>
+                    <div class="center-block whitetext">
+                        <br>
+                        Nombre de questions postés: {{ user.questions|length }}<br>
                         Nombre de réponses postés: {{ user.reponses|length }}<br>
                         Nombre de votes envoyés: {{ user.votes|length }}<br>
                         Nombre de commentaires postés:<br>
                         Nombre de votes reçus: {{ votetothisuser|length }}<br>
-                    </p>
+                    </div>
                 </div>
         </div>
         <div class="row">
