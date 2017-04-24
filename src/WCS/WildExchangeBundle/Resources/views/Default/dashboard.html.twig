@@ -43,7 +43,6 @@
                     <ul>
                         <li class="active" data-target="Détails">Détails</li>
                         <li data-target="Historique">Historique</li>
-                        <li data-target="Autre">Autre</li>
                     </ul>
                 </nav>
                 <div class="tab-target targeted date" id="Détails">
@@ -161,10 +160,10 @@
             <div class="col-xs-12 col-md-4 col-md-offset-1 container badgeblock">
                 <h2 class="text-center">Badges</h2>
                 {% if app.user.badges|length == 0 %}
-                    Aucun badge !
+                    <div class="badge"> Aucun badge ! </div>
                     {% else %}
                     {% for badge in app.user.badges  %}
-                        <img class="badgeimg" src="{{ asset(badge.imgurl) }}"><span class="badgename">{{ badge.nom }}</span><br/>
+                        <img class="badgeimg" src="{{ asset(badge.imgurl) }}"><span class="badgename">{{ badge.nom }}</span>
                     {% endfor %}
                 {% endif %}
             </div>
@@ -190,50 +189,21 @@
                         <h3>Statistiques Globales</h3>
                         <div class="title_border"></div>
                         <p>Tag question le plus utilisé : {{ mostusedtag }}</p>
-                        <p>Réponses écrites : {{ app.user.reponses|length }}</p>
-                        <p>Total Like reçus : +{{ voteusr|length }}</p>
-                        <p>Questions posées : {{ app.user.questions|length }}</p>
+                        <p>Nombre de réponses écrites : {{ app.user.reponses|length }}</p>
+                        <p>Nombre total de Like reçus : + {{ voteusr|length }}</p>
+                        <p>Nombre de questions posées : {{ app.user.questions|length }}</p>
 
                     </div>
                     <div class="col-md-4 feature">
                         <i class="glyphicon glyphicon-briefcase"></i>
-                        <h3>Utilisateur</h3>
+                        <h3>Succès Utilisateur</h3>
                         <div class="title_border"></div>
                         <p> Rang actuel : {{ app.user.rang.nom }} </p>
                         <p> Badges obtenus : {{ app.user.badges|length }} badge(s) </p>
-                        <p> Questions résolues : {{ resolvedquestion|length }} </p>
+                        <p> Questions résolues : 5 </p>
 
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!---- AUTRE ----->
-        <div class="tab-target" id="Autre">
-            <div class="container">
-                <div class="row">
-                    <div class="boiteDvote">
-                        <h1>Journal des Actions</h1>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="boiteD col-lg-5">
-                        <h1>Questions posées</h1>
-                        <p> Comment faire un Dashboard ?</p>
-                    </div>
-
-                    <div class="boiteD col-lg-5 col-lg-offset-2">
-                        <h1>Statistiques de la question</h1>
-                        <p>Tag Question :</p>
-                        <p>Nombre de Like :</p>
-                        <p>Nombre de Réponses :</p>
-                        <p>Meilleure réponse :</p>
-                    </div>
-
-                </div>
-
             </div>
         </div>
 

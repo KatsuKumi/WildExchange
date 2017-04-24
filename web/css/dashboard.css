@@ -302,7 +302,6 @@ body {
 #tabs ul {
     list-style-type:none;
     height:65px;
-    padding:0;
     margin:0px 10px 40px 230px;
 }
 
@@ -588,6 +587,11 @@ i{
 .badgeimg{
     width: 150px;
     height: auto;
+}
+
+.badge{
+    display: block ;
+    margin-top: 50px;
 }
 @media (max-width: 950px) {
     .badgeimg{
