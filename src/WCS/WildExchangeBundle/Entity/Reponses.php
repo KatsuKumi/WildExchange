@@ -52,7 +52,7 @@ class Reponses
     private $createur;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire",  mappedBy="reponse")
+     * @ORM\OneToMany(targetEntity="Commentaire",  mappedBy="reponse" , cascade={"remove"})
      */
     private $commentaires;
 
