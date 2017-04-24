@@ -115,7 +115,7 @@ class DefaultController extends Controller
 
         // 2) handle the submit (will only happen on POST)
         $commentform->handleRequest($request);
-        if ($commentform->isSubmitted() && $commentform->isValid()) {
+        if ($commentform->isSubmitted()) {
             $comment->setDate(new \DateTime());
             $usr= $this->get('security.context')->getToken()->getUser();
             $comment->setCreateur($usr);
