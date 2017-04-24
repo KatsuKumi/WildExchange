@@ -157,7 +157,7 @@
                                                     <ul class="dropdown-menu">
                                                         {% if app.user == reponse.createur %}
                                                         <li><a href="{{ path('deletereppage', {'id':reponse.id} )}}">Supprimer la réponse</a></li>
-                                                        <li><a href="#">Editer la réponse</a></li>
+                                                        <li><a href="{{ path('editreppage', {'id':reponse.id} ) }}">Editer la réponse</a></li>
                                                         {% endif %}
                                                         {% if app.user == question.createur %}
                                                         <li><a href="{{ path('solutionpage', {'questionid': question.id, 'reponseid': reponse.id}) }}">Marquer comme solution</a></li>
@@ -196,7 +196,28 @@
                                         <p class="verysmallpaddingtop">
                                             {{ reponse.contenu }}
                                         </p>
+
                                     </div>
+                                        <div class="post-comments pull-right">
+                                            <div class="media">
+                                                <!-- first comment -->
+
+                                                <div class="media-heading">
+                                                     <span class="label label-info">Utilisateur</span> Il y a x temps
+                                                </div>
+
+                                                <div class="panel-collapse collapse in" id="collapseThree">
+
+
+                                                    <div class="media-body">
+                                                        <p>petit lorem pour le comment</p>
+
+                                                    </div>
+                                                </div>
+                                                <!-- comments -->
+
+                                            </div>
+                                        </div>
                                 </li>
                                 {% endif %}
                             {% endfor %}

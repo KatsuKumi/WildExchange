@@ -73,7 +73,7 @@ class DefaultController extends Controller
     public function sortbyVote($list){
 
         usort($list, function($a, $b) {
-            return count($a->getVotes()->getValues()) < count($b->getVotes()->getValues()) ? -1 : 1;
+            return count($a->getVotes()->getValues()) - count($b->getVotes()->getValues());
         });
         $list = array_reverse($list);
         return $list;
