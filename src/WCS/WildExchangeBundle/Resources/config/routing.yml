@@ -79,5 +79,5 @@ editreppage:
         defaults: {  _controller: WCSWildExchangeBundle:Reponse:Edit}
 
 docspage:
-        path: /docs
+        path: /docs/{tag}/
         defaults: {  _controller: WCSWildExchangeBundle:Docs:docs}
