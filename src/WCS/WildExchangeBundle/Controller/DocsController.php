@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DocsController extends Controller
 {
-    public function docsAction(Request $request)
+    public function docsAction()
     {
         return $this->render('WCSWildExchangeBundle:Default:docs.html.twig');
     }
