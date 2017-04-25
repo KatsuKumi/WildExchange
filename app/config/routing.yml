@@ -1,6 +1,11 @@
 wcs_wild_exchange:
     resource: "@WCSWildExchangeBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
+
+
+logout:
+    path: /
+    defaults: { _controller: WCSWildExchangeBundle:Default:Redirect }
 
 logout:
     path: /logout
