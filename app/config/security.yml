@@ -11,21 +11,16 @@ security:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        in_memory:
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         our_db_provider:
             entity:
                 class: WCSWildExchangeBundle:Utilisateur
                 property: pseudo
-                # if you're using multiple entity managers
-                # manager_name: customer
-        in_memory:
-            memory:
-                users:
-                    admin:
-                        password: pass
-                        roles: ROLE_ADMIN
-                    foo:
-                        password: foo
-                        roles: ROLE_USER
+
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
