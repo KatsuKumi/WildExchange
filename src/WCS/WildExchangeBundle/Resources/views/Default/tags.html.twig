@@ -16,7 +16,7 @@
                             <div class="centertext">
                                 {{ value.nom }}
                             </div>
-                            <a  class="cadre-droit" href="#">DOCUMENTATIONS</a>
+                            <a  class="cadre-droit" href="{{ path('docspage', { 'tag': value.nom, page: 1 }) }}">DOCUMENTATIONS</a>
                         </div>
                 </div>
                 </a>
