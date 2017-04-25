@@ -41,7 +41,7 @@
     </div>
     <div class="container">
         <div class="page-header">
-            <h1 id="timeline">Journal des actions</h1>
+            <h1 id="timeline">{% trans %}Journal des actions{% endtrans %}</h1>
         </div>
         <ul class="timeline">
 
@@ -51,7 +51,7 @@
                         <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4 class="timeline-title">A posté une question :</h4>
+                                <h4 class="timeline-title">{% trans %}A posté une question{% endtrans %} :</h4>
                                 <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
                             </div>
                             <div class="timeline-body">
@@ -66,7 +66,7 @@
                                 <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
-                                        <h4 class="timeline-title">A voté en faveur d'une question !</h4>
+                                        <h4 class="timeline-title">{% trans %}A voté en faveur d'une question !{% endtrans %}</h4>
                                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
                                     </div>
                                     <div class="timeline-body">
@@ -80,7 +80,7 @@
                                     <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">A voté sur une réponse de la question :</h4>
+                                            <h4 class="timeline-title">{% trans %}A voté sur une réponse de la question{% endtrans %} :</h4>
                                             <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
                                         </div>
                                         <div class="timeline-body">
@@ -95,7 +95,7 @@
                         <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
                          <div class="timeline-panel">
                          <div class="timeline-heading">
-                        <h4 class="timeline-title">A répondu à une question :</h4>
+                        <h4 class="timeline-title">{% trans %}A répondu à une question{% endtrans %} :</h4>
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
                     </div>
                     <div class="timeline-body">
@@ -112,14 +112,14 @@
     <div class="container">
         <div class="row">
                 <div class="boite col-lg-12">
-                    <h1>Statistiques de contribution</h1>
+                    <h1>{% trans %}Statistiques de contribution{% endtrans %}</h1>
                     <div class="center-block whitetext">
                         <br>
-                        Nombre de questions postés : {{ user.questions|length }}<br>
-                        Nombre de réponses postés : {{ user.reponses|length }}<br>
-                        Nombre de votes envoyés : {{ user.votes|length }}<br>
-                        Nombre de commentaires postés : {{ user.commentaires|length }}<br>
-                        Nombre de votes reçus : {{ votetothisuser|length }}<br>
+                        {% trans %}Nombre de questions postés{% endtrans %} : {{ user.questions|length }}<br>
+                        {% trans %}Nombre de réponses postés{% endtrans %} : {{ user.reponses|length }}<br>
+                        {% trans %}Nombre de votes envoyés{% endtrans %} : {{ user.votes|length }}<br>
+                        {% trans %}Nombre de commentaires postés{% endtrans %} : {{ user.commentaires|length }}<br>
+                        {% trans %}Nombre de votes reçus{% endtrans %} : {{ votetothisuser|length }}<br>
                     </div>
                 </div>
         </div>
@@ -130,14 +130,14 @@
                         {% for top in topquestion|slice(0, 5) %}
                         {% if top.titre is defined %}
                                 <span class="veryverysmallpaddingtop">
-                                    <div class="col-md-7">Question : Titre : <u><a href="{{ path('reponsepage', {'id':top.id}) }}">{{ top.titre}}</a></u></div>
-                                    <div class="col-md-5">Nombre de votes : {{ top.votes|length }}</div>
+                                    <div class="col-md-7">{% trans %}Question{% endtrans %} : {% trans %}Titre{% endtrans %} : <u><a href="{{ path('reponsepage', {'id':top.id}) }}">{{ top.titre}}</a></u></div>
+                                    <div class="col-md-5">{% trans %}Nombre de votes{% endtrans %} : {{ top.votes|length }}</div>
                                 </span>
                                 <br>
                             {% else %}
                                 <span class="veryverysmallpaddingtop">
-                                    <div class="col-md-7">Réponse : Titre : <u><a href="{{ path('reponsepage', {'id':top.question.id}) }}">{{ top.question.titre }}</a></u></div>
-                                    <div class="col-md-5">Nombre de votes : {{ top.votes|length }}</div>
+                                    <div class="col-md-7">{% trans %}Réponse{% endtrans %} : {% trans %}Titre{% endtrans %} : <u><a href="{{ path('reponsepage', {'id':top.question.id}) }}">{{ top.question.titre }}</a></u></div>
+                                    <div class="col-md-5">{% trans %}Nombre de votes{% endtrans %} : {{ top.votes|length }}</div>
                                 </span>
                                 <br>
                             {% endif %}
