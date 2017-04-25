@@ -109,6 +109,7 @@
                                                 </span>
                                                     {{ question.solution.date|time_ago_in_words }}
                                                 </div>
+
                                                 <div class="ckbox">
                                                     {% set votenb = 0 %}
                                                     {% for vote in question.solution.votes %}

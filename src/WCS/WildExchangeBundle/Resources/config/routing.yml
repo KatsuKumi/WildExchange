@@ -77,3 +77,7 @@ deletereppage:
 editreppage:
         path: /editrep/{id}
         defaults: {  _controller: WCSWildExchangeBundle:Reponse:Edit}
+
+docspage:
+        path: /docs/{tag}/{page}
+        defaults: {  _controller: WCSWildExchangeBundle:Docs:docs}

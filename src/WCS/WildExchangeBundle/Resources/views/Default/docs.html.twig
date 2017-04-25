@@ -1,0 +1,245 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questions{% endblock %}
+
+    {% block style %}
+        <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+        <style>
+            body {
+                background: url('{{ asset('questions.jpg') }}') no-repeat center fixed;
+                background-size: cover;
+            }
+        </style>
+    {% endblock %}
+
+{% block body %}
+    {% set SORTLIST = ['date', 'vote'] %}
+    <div class="container text-center">
+        <div class="row">
+
+            <section class="content paddingtop">
+
+                <div class="col-md-12">
+                    <div class="panel panel-default panelbg">
+                        <h1>Documentations</h1>
+                        <div class="span12">
+                            <form id="custom-search-form" class="form-search form-horizontal pull-right" action="{{ path('recherchepage' , {'page':1}) }}" method="get">
+                                <div class="input-append span12">
+                                    <div class="searchdiv">
+                                        <input type="text" class="search-query" name="q" placeholder="Rechercher">
+                                        <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="pull-left">
+                            <div class="btn-group">
+                                <div class="wrap-select">
+                                    <div id="dd" class="wrapper-dropdown-3">
+                                        <span>Trier par {% if sort %}{{ sort }}{% else %}date{% endif %}</span>
+                                        <ul class="dropdown">
+                                            {% for sorttype in SORTLIST %}
+                                                {% if q %}
+                                                    {% if sorttype != sort %}
+                                                        {% if sort %}
+                                                            <li><a href="{{ path('recherchepage', {page: 1}) }}?q={{ q }}&sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                        {% else %}
+                                                            {% if sorttype != 'date' %}
+                                                                <li><a href="{{ path('recherchepage', {page: 1}) }}?q={{ q }}&sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if sorttype != sort %}
+                                                        {% if sort %}
+                                                            <li><a href="{{ path('questionpage', { 'tag': tag, page: 1}) }}?sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                        {% else %}
+                                                            {% if sorttype != 'date' %}
+                                                                <li><a href="{{ path('questionpage', { 'tag': tag, page: 1}) }}?sort={{ sorttype }}">Trier par {{ sorttype }}</a></li>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                {% if tag %}
+                                <a href="{{ path('ajoutpage', {'tag': tag}) }}">
+                                    <button type="button" class="btn btn-default btn-filter" data-target="all">Ajouter
+                                        une doc
+                                    </button>
+                                    {% endif %}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                {% for question in questions %}
+
+                                    <tr data-status="">
+                                        <td>
+
+                                            <div class="ckbox">
+                                                {% set votenb = 0 %}
+                                                {% for vote in question.votes %}
+                                                    {% if vote.value == true %}
+                                                        {% set votenb = votenb + 1 %}
+                                                    {% else %}
+                                                        {% set votenb = votenb - 1 %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                <button type="button" class="btn btnplus" data-target="{{ question.id }}" data-type="plus">
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="vote" id="vote{{  question.id }}">{{ votenb }}</div>
+
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <div class="media">
+                                                <a href="{{ path('profilpage', {'id':question.createur.id} )}}" class="pull-left">
+                                                    <img src="{{ asset(question.createur.avatarurl) }}"
+                                                         class="avatar-32x">
+                                                </a>
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">{{ question.date|time_ago_in_words }}</span>
+                                                    <a href="{{ path('reponsepage', {'id':question.id} )}}">
+                                                        <h4 class="title">
+                                                            {{ question.titre }}
+                                                            <span class="pull-right utilisateur">{{ question.createur.nom }} {{ question.createur.prenom }}</span>
+                                                        </h4>
+                                                    </a>
+                                                    <p class="summary">{{ question.contenu }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <ul class="pagination">
+                        {% if q %}
+                            <li><a href="{{ path('recherchepage', { page: 1 }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">«</a></li>
+                            {% for i in 1..maxpage %}
+                                {% if i == actual %}
+                                    <li class="active"><a href="{{ path('recherchepage', { page: i }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">{{ i }}<span class="sr-only">(current)</span></a></li>
+                                {% else %}
+                                    <li><a href="{{ path('recherchepage', {page: i }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li><a href="{{ path('recherchepage', {page: maxpage+1 }) }}?q={{ q }}{% if sort %}&sort={{ sort }}{% endif %}">»</a></li>
+
+                        {% else %}
+                            <li><a href="{{ path('questionpage', { 'tag': tag, page: 1 }) }}{% if sort %}?sort={{ sort }}{% endif %}">«</a></li>
+                            {% for i in 1..maxpage %}
+                                {% if i == actual %}
+                                    <li class="active"><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}{% if sort %}?sort={{ sort }}{% endif %}">{{ i }}<span class="sr-only">(current)</span></a></li>
+                                {% else %}
+                                    <li><a href="{{ path('questionpage', { 'tag': tag, page: i }) }}{% if sort %}?sort={{ sort }}{% endif %}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li><a href="{{ path('questionpage', { 'tag': tag, page: maxpage+1 }) }}{% if sort %}?sort={{ sort }}{% endif %}">»</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="content-footer">
+                </div>
+        </div>
+    </div>
+    </section>
+
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(window).scroll(function () {
+
+            if ($(this).scrollTop() == 0) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if ($(this).scrollTop() == 0) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+
+
+        function DropDown(el) {
+            this.dd = el;
+            this.placeholder = this.dd.children('span');
+            this.opts = this.dd.find('.dropdown a');
+            this.initEvents();
+        }
+        DropDown.prototype = {
+            initEvents : function() {
+                var obj = this;
+
+                obj.dd.on('click', function(event){
+                    $(this).toggleClass('active');
+                });
+
+                obj.opts.on('click',function(){
+                    var opt = $(this);
+                    obj.val = opt.text();
+                    obj.index = opt.index();
+                    obj.placeholder.text(obj.val);
+                });
+            },
+            getValue : function() {
+                return this.val;
+            },
+            getIndex : function() {
+                return this.index;
+            }
+        }
+        var dd = new DropDown( $('#dd') );
+    </script>
+    <script>
+        function callvote(something, id){
+            $.ajax({
+                url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
+                type:'POST',
+                data:
+                    {
+                        question_id: id,
+                        vote: something
+                    },
+                complete: function(msg)
+                {
+                    console.log(msg.responseText);
+                    document.getElementById('vote' + id).innerHTML= msg.responseText;
+                    $('#vote' + id).removeClass();
+                    $('#vote' + id).addClass('vote');
+                    $('#vote' + id).addClass(something);
+
+                }
+            });
+        }
+        $('.btnplus').click(function()
+        {
+            var id = $(this).data("target");
+            callvote('plus', id);
+        });
+    </script>
+{% endblock %}
