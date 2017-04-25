@@ -35,15 +35,19 @@ class Tags
      */
     private $imageurl;
 
-
-
-
     /**
      * Many Groups have Many Users.
      * @ORM\ManyToMany(targetEntity="Questions", mappedBy="tags")
      * @ORM\OrderBy({"date" = "DESC"})
      */
     private $questions;
+
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="Docs", mappedBy="tags")
+     * @ORM\OrderBy({"date" = "ASC"})
+     */
+    private $docs;
 
 
     /**
@@ -140,5 +144,38 @@ class Tags
     public function getQuestions()
     {
         return $this->questions;
+    }
+
+    /**
+     * Add docs
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Docs $docs
+     * @return Tags
+     */
+    public function addDoc(\WCS\WildExchangeBundle\Entity\Docs $docs)
+    {
+        $this->docs[] = $docs;
+
+        return $this;
+    }
+
+    /**
+     * Remove docs
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Docs $docs
+     */
+    public function removeDoc(\WCS\WildExchangeBundle\Entity\Docs $docs)
+    {
+        $this->docs->removeElement($docs);
+    }
+
+    /**
+     * Get docs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocs()
+    {
+        return $this->docs;
     }
 }
