@@ -5,12 +5,12 @@ namespace WCS\WildExchangeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Docs
+ * DocsOff
  *
- * @ORM\Table(name="docs")
- * @ORM\Entity(repositoryClass="WCS\WildExchangeBundle\Repository\DocsRepository")
+ * @ORM\Table(name="docs_off")
+ * @ORM\Entity(repositoryClass="WCS\WildExchangeBundle\Repository\DocsOffRepository")
  */
-class Docs
+class DocsOff
 {
     /**
      * @var int
@@ -36,21 +36,9 @@ class Docs
     private $url;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="Date", type="datetime")
-     */
-    private $date;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="docs")
-     */
-    private $createur;
-
-    /**
      * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="docs")
-     * @ORM\JoinTable(name="docs_tags")
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="docsoff")
+     * @ORM\JoinTable(name="docsoff_tags")
      */
     private $tags;
 
@@ -69,7 +57,7 @@ class Docs
      * Set titre
      *
      * @param string $titre
-     * @return Docs
+     * @return DocsOff
      */
     public function setTitre($titre)
     {
@@ -92,7 +80,7 @@ class Docs
      * Set url
      *
      * @param string $url
-     * @return Docs
+     * @return DocsOff
      */
     public function setUrl($url)
     {
@@ -110,52 +98,6 @@ class Docs
     {
         return $this->url;
     }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return Docs
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * Set createur
-     *
-     * @param \WCS\WildExchangeBundle\Entity\Utilisateur $createur
-     * @return Docs
-     */
-    public function setCreateur(\WCS\WildExchangeBundle\Entity\Utilisateur $createur = null)
-    {
-        $this->createur = $createur;
-
-        return $this;
-    }
-
-    /**
-     * Get createur
-     *
-     * @return \WCS\WildExchangeBundle\Entity\Utilisateur 
-     */
-    public function getCreateur()
-    {
-        return $this->createur;
-    }
     /**
      * Constructor
      */
@@ -168,7 +110,7 @@ class Docs
      * Add tags
      *
      * @param \WCS\WildExchangeBundle\Entity\Tags $tags
-     * @return Docs
+     * @return DocsOff
      */
     public function addTag(\WCS\WildExchangeBundle\Entity\Tags $tags)
     {

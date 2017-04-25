@@ -49,6 +49,11 @@ class Tags
      */
     private $docs;
 
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="DocsOff", mappedBy="tags")
+     */
+    private $docsoff;
 
     /**
      * Get id
@@ -177,5 +182,38 @@ class Tags
     public function getDocs()
     {
         return $this->docs;
+    }
+
+    /**
+     * Add docsoff
+     *
+     * @param \WCS\WildExchangeBundle\Entity\DocsOff $docsoff
+     * @return Tags
+     */
+    public function addDocsoff(\WCS\WildExchangeBundle\Entity\DocsOff $docsoff)
+    {
+        $this->docsoff[] = $docsoff;
+
+        return $this;
+    }
+
+    /**
+     * Remove docsoff
+     *
+     * @param \WCS\WildExchangeBundle\Entity\DocsOff $docsoff
+     */
+    public function removeDocsoff(\WCS\WildExchangeBundle\Entity\DocsOff $docsoff)
+    {
+        $this->docsoff->removeElement($docsoff);
+    }
+
+    /**
+     * Get docsoff
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocsoff()
+    {
+        return $this->docsoff;
     }
 }
