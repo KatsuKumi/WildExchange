@@ -166,7 +166,11 @@ class Utilisateur implements UserInterface
      */
     private $commentaires;
 
-    public function getRoles() { return array('ROLE_USER'); }
+    public function getRoles()
+    {
+        return 'ROLE_ADMIN';
+    }
+
     public function getPassword()
     {
         return $this->motDePasse;

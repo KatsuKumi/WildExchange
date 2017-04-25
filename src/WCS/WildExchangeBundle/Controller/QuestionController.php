@@ -16,6 +16,34 @@ class QuestionController extends Controller
     /**
      * @Route("/ajout", name="question_ajout")
      */
+    /*   Génération de la page question   */
+    public function questionsAction($tag, $page)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $tagobj = $em
+            ->getRepository('WCSWildExchangeBundle:Tags')
+            ->findOneByNom($tag);
+        if (empty($tagobj)){
+            $this->addFlash('connexion', "Ce tag n'existe pas !");
+            return $this->redirectToRoute('tagspage');
+        }
+        $pagequerry = $page*5-5;
+        $allquestion = $tagobj->getQuestions()->getValues();
+
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : null;
+        switch ($sort) {
+            case 'vote':
+                $allquestion = $this->sortbyVote($allquestion);
+                break;
+            default:
+                break;
+        }
+        $listquestion = array_slice($allquestion, $pagequerry, 5);
+        $maxpage = ceil(count($allquestion)/5);
+        return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> null, 'sort' => $sort ));
+    }
+    /*   Génération de la page d'ajout de question avec création and handling de formulaire   */
     public function ajoutAction(Request $request, $tag)
     {
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -58,12 +86,12 @@ class QuestionController extends Controller
             array('form' => $form->createView())
         );
     }
-
+    /*   Fonction de vote   */
     public function VoteAction(Request $request)
     {
 
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->render('WCSWildExchangeBundle:Default:vote.html.twig', array('question'=> $question));
+            return $this->render('homepage');
         }
         $usr= $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -119,7 +147,7 @@ class QuestionController extends Controller
 
         }
     }
-
+    /*   Fonction de recherche   */
     public function rechercheAction($page){
 
         if (empty($_GET['q'])){
@@ -168,7 +196,7 @@ class QuestionController extends Controller
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => '', 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> str_replace(" ", "+", $_GET['q']), 'sort' => $sort));
 
     }
-
+    /*   Tri par vote   */
     public function sortbyVote($list){
 
         usort($list, function($a, $b) {
@@ -179,7 +207,7 @@ class QuestionController extends Controller
 
 
     }
-
+    /*   Vérification des badges   */
     public function checkBadges(){
         $usr= $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -227,7 +255,7 @@ class QuestionController extends Controller
 
         $em->flush();
     }
-
+    /*   Suppression de question   */
     public function deleteAction($id){
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('homepage');
@@ -265,6 +293,7 @@ class QuestionController extends Controller
 
 
     }
+    /*   Fonction de résolution de question   */
     public function editstatusAction($id){
 
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -303,6 +332,7 @@ class QuestionController extends Controller
 
 
     }
+    /*   Edition de question   */
     public function editAction($id){
 
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -343,44 +373,8 @@ class QuestionController extends Controller
             array('question' => $question)
         );
     }
-    public function deleterepAction($id){
-
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirectToRoute('homepage');
-        }
-        $usr= $this->get('security.context')->getToken()->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $reponse = $em
-            ->getRepository('WCSWildExchangeBundle:Reponses')
-            ->find($id);
-
-        if (empty($reponse)){
-            $this->addFlash('notuseroradmin', "La réponse n'existe pas/plus !");
-            return $this->redirectToRoute('tagspage');
-        }
-
-        if($reponse->getCreateur() == $usr || $usr->getRang()->getId() >= 2){
-            $id = $reponse->getQuestion()->getId();
-            var_dump($id);
-            $em->remove($reponse);
-            $em->flush();
-            $this->addFlash(
-                'deletesuccess',
-                'La réponse a bien été supprimée !'
-            );
-            return $this->redirectToRoute('reponsepage', array('id'=>$id));
-        }
-        else{
-            $this->addFlash(
-                'faildelete',
-                'Vous ne pouvez pas supprimer cette réponse !'
-            );
-            $referer = $this->getRequest()->headers->get('referer');
-
-            return $this->redirect($referer);
-        }
-    }
-    public function setsolutionAction($questionid, $reponseid){
+    /*   Fonction pour appliquer une solution à une question   */
+    public function SetSolutionAction($questionid, $reponseid){
 
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('homepage');
@@ -420,47 +414,5 @@ class QuestionController extends Controller
             return $this->redirect($referer);
         }
     }
-    public function editrepAction($id){
 
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usr= $this->get('security.context')->getToken()->getUser();
-            $this->addFlash('connexion', "Vous devez être connecté pour editer une question !");
-            return $this->redirectToRoute('connectionpage');
-        }
-        // 1) build the form
-        $em = $this->getDoctrine()->getManager();
-
-        $reponse = $em
-            ->getRepository('WCSWildExchangeBundle:Reponses')
-            ->find($id);
-
-        if (empty($reponse)){
-            $this->addFlash('notuseroradmin', "La réponse n'existe pas/plus !");
-            return $this->redirectToRoute('tagspage');
-        }
-
-        $usr= $this->get('security.context')->getToken()->getUser();
-
-        if($reponse->getCreateur()->getId() != $usr->getId() || !$usr->getRang()->getId() >= 2){
-            $this->addFlash('notuseroradmin', "Vous ne pouvez pas editer cette réponse !");
-            return $this->redirectToRoute('reponsepage', array('id'=>$reponse->getQuestion()->getId()));
-        }
-
-        if (isset($_POST['contenu'])) {
-            $this->checkBadges();
-            $reponse->setContenu($_POST['contenu']);
-            $em->flush();
-            $this->addFlash(
-                'ajoutsuccess',
-                'Votre réponse a bien été éditée !'
-            );
-
-            return $this->redirectToRoute('reponsepage', array('id'=>$reponse->getQuestion()->getId()));
-        }
-
-        return $this->render(
-            'WCSWildExchangeBundle:Default:editerrep.html.twig',
-            array('reponse' => $reponse)
-        );
-    }
 }

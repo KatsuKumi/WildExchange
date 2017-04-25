@@ -1,12 +1,18 @@
 wcs_wild_exchange:
     resource: "@WCSWildExchangeBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
+    requirements:
+        _locale: en|fr
 
+wcs_wild_exchange_admin:
+    resource: "@WCSWildExchangeBundle/Resources/config/routingadmin.yml"
+    prefix:   /admin/
 
-logout:
+IndexRedirection:
     path: /
     defaults: { _controller: WCSWildExchangeBundle:Default:Redirect }
 
 logout:
     path: /logout
     defaults: { _controller: WCSWildExchangeBundle:Security:logout }
+
