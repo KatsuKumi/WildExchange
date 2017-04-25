@@ -227,6 +227,7 @@ class QuestionController extends Controller
 
         $em->flush();
     }
+
     public function deleteAction($id){
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('homepage');
@@ -262,12 +263,10 @@ class QuestionController extends Controller
             return $this->redirect($referer);
         }
 
-        $referer = $this->getRequest()->headers->get('referer');
-
-        return $this->redirect($referer);
 
     }
     public function editstatusAction($id){
+
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('homepage');
         }
@@ -302,9 +301,6 @@ class QuestionController extends Controller
             return $this->redirect($referer);
         }
 
-        $referer = $this->getRequest()->headers->get('referer');
-
-        return $this->redirect($referer);
 
     }
     public function editAction($id){
@@ -383,10 +379,6 @@ class QuestionController extends Controller
 
             return $this->redirect($referer);
         }
-
-        $referer = $this->getRequest()->headers->get('referer');
-
-        return $this->redirect($referer);
     }
     public function setsolutionAction($questionid, $reponseid){
 
@@ -427,10 +419,6 @@ class QuestionController extends Controller
             $referer = $this->getRequest()->headers->get('referer');
             return $this->redirect($referer);
         }
-
-        $referer = $this->getRequest()->headers->get('referer');
-
-        return $this->redirect($referer);
     }
     public function editrepAction($id){
 

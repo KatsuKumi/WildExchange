@@ -4,10 +4,6 @@ namespace WCS\WildExchangeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Security\Core\SecurityContext;
 use WCS\WildExchangeBundle\Entity\Commentaire;
 use WCS\WildExchangeBundle\Entity\Reponses;
 use WCS\WildExchangeBundle\Form\CommentaireType;
@@ -16,9 +12,14 @@ use WCS\WildExchangeBundle\Form\ReponsesType;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function RedirectAction(){
+
+        return $this->redirectToRoute('homepage');
+    }
+    public function indexAction(Request $request)
     {
 
+        $request->setLocale('fr');
         $em = $this->getDoctrine()->getManager();
         $questions = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
@@ -231,7 +232,6 @@ class DefaultController extends Controller
      */
     public function logoutAction()
     {
-        // The security layer will intercept this request, else redirect to login page
         $this->addFlash('warning', $this->get('translator')->trans('login_expired'));
         return $this->redirect($this->generateUrl('login'));
     }

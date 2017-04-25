@@ -22,3 +22,10 @@ services:
     arguments: ["@translator"]
     tags:
         - { name: twig.extension }
+
+  app.locale_listener:
+    class: WCS\WildExchangeBundle\EventListener\LocaleListener
+    arguments: ['%kernel.default_locale%']
+    tags:
+        - { name: kernel.event_subscriber }
+
