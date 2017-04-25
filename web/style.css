@@ -503,7 +503,14 @@ button {
 
 }
 
+.cadre-gauche{
+    font-size: 18px;
+}
 
+.Cdroit{
+
+    font-size: 18px;
+}
 /*//// QUESTIONS ////*/
 .plus{
     color: #5cb85c;

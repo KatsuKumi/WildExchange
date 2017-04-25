@@ -2,11 +2,6 @@
 {% block body %}
 
     <div class="container-fluid smallpaddingtop">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <p class=tagstitle> TAGS</p>
-            </div>
-        </div>
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -16,11 +11,13 @@
                 <a href="{{ path('questionpage', { 'tag': value.nom, page: 1 }) }}">
 
                 <div class="col-md-6 col-sm-6 col-xs-12 ">
-                    <div class="img-responsive" style="background-image: url({{ asset(value.imageurl) |replace({"\n":'', "\r":'', ' ':''})}});">
-                        <div class="centertext">
-                            {{ value.nom }}
+                        <div class="img-responsive" style="background-image: url({{ asset(value.imageurl) |replace({"\n":'', "\r":'', ' ':''})}});">
+                            <a class="cadre-gauche" href="{{ path('questionpage', { 'tag': value.nom, page: 1 }) }}">QUESTIONS</a>
+                            <div class="centertext">
+                                {{ value.nom }}
+                            </div>
+                            <a href="{{ path('questionpage', { 'tag': value.nom, page: 1 }) }}" class="Cdroit">DOCUMENTATION</a>
                         </div>
-                    </div>
                 </div>
                 </a>
 
