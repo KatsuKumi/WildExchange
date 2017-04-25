@@ -22,7 +22,7 @@ class UserController extends Controller
             ->findAll();
         $votetothisuser = array();
         foreach ($votes as $vote){
-            if ($vote->getQuestion()->getCreateur() == $usr){
+            if ($vote->getQuestion() && $vote->getQuestion()->getCreateur() == $usr){
                 array_push($votetothisuser, $vote);
             }
         }
@@ -122,4 +122,15 @@ class UserController extends Controller
         return $this->render('WCSWildExchangeBundle:Default:profil.html.twig', array('user' => $user, 'votetothisuser' => $votetothisuser, 'topquestion' => $topquestions, 'recentaction' => $allaction));
     }
 
+    /*   Fontion de tri par Vote des questions   */
+    public function sortbyVote($list){
+
+        usort($list, function($a, $b) {
+            return count($a->getVotes()->getValues()) - count($b->getVotes()->getValues());
+        });
+        $list = array_reverse($list);
+        return $list;
+
+
+    }
 }

@@ -164,4 +164,53 @@ class ReponseController extends Controller
             array('reponse' => $reponse)
         );
     }
+
+    /*   Vérification des badges   */
+    public function checkBadges(){
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $allbadge = $em
+            ->getRepository('WCSWildExchangeBundle:Badge')
+            ->findAll();
+        foreach ($allbadge as $badge){
+
+            if($badge->getMinquestion()){
+                if (count($usr->getQuestions()) >= $badge->getMinquestion() )
+                {
+                    if (!in_array($badge, $usr->getBadges()->getValues())) {
+                        $badge->addUtilisateur($usr);
+                        $usr->addBadge($badge);
+                        $em->persist($badge);
+                        $em->persist($usr);
+                    }
+                }
+            }
+            else if ($badge->getMinreponse()){
+                if (count($usr->getReponses()) >= $badge->getMinreponse() )
+                {
+                    if (!in_array($badge, $usr->getBadges()->getValues())) {
+                        $badge->addUtilisateur($usr);
+                        $usr->addBadge($badge);
+                        $em->persist($badge);
+                        $em->persist($usr);
+                    }
+                }
+            }
+            else if ($badge->getMinvote()){
+                if (count($usr->getVotes()) >= $badge->getMinvote() )
+                {
+                    if (!in_array($badge, $usr->getBadges()->getValues())) {
+                        $badge->addUtilisateur($usr);
+                        $usr->addBadge($badge);
+                        $em->persist($badge);
+                        $em->persist($usr);
+                    }
+
+                }
+            }
+        }
+
+        $em->flush();
+    }
 }

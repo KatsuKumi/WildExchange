@@ -168,7 +168,7 @@ class Utilisateur implements UserInterface
 
     public function getRoles()
     {
-        return 'ROLE_ADMIN';
+        return $this->getRang()->getId() > 1 ? array('ROLE_ADMIN') : array('ROLE_USER');
     }
 
     public function getPassword()

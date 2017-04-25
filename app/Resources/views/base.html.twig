@@ -55,7 +55,7 @@
                 <li><a class="accueil" href="{{ path('tagspage') }}">Explorer</a></li>
                 {% if app.user %}
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-expanded="false"><img class="avatar-16x" src="{{ asset(app.user.getAvatarURL()) }}"><span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-expanded="false"><img class="avatar-16x" src="{{ asset(app.user.avatarurl) }}"><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Bonjour, {{ app.user.username }} !</a></li>
                             <li class="divider"></li>

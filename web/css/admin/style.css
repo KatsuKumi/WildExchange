@@ -423,3 +423,10 @@ body{background-color: #ecf0f1;}
     overflow: hidden;
     color: #fff;
 }
+
+.avatar-16x{
+    height: 50px !important;
+    width: 50px !important;
+    overflow: hidden;
+    border-radius: 50px;
+}
