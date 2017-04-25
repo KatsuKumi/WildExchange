@@ -504,12 +504,30 @@ button {
 }
 
 .cadre-gauche{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
     font-size: 18px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-bottom: 10px;
 }
 
-.Cdroit{
+.cadre-droit{
 
-    font-size: 18px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 17px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-bottom: 10px;
 }
 /*//// QUESTIONS ////*/
 .plus{

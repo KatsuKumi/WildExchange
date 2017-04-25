@@ -10,6 +10,6 @@ class DocsController extends Controller
 {
     public function docsAction(Request $request)
     {
-        return $this->render('WCSWildExchangeBundle:Default:index.html.twig');
+        return $this->render('WCSWildExchangeBundle:Default:docs.html.twig');
     }
 }
