@@ -13,3 +13,15 @@ deletequestion:
 deletereponse:
     path: /delete/reponse/
     defaults: { _controller: WCSWildExchangeBundle:Staff:deletereponse }
+
+deletecomment:
+    path: /delete/comment/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletecomment }
+
+deletedoc:
+    path: /delete/doc/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletedoc }
+
+deletevote:
+    path: /delete/vote/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletevote }
