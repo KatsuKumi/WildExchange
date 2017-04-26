@@ -16,96 +16,112 @@
     <div class="container text-center">
         <div class="row">
 
-    <div class="container text-center">
-        <div class="row">
+            <div class="container text-center">
+                <div class="row">
 
-            <section class="content paddingtop">
+                    <section class="content paddingtop">
 
-                <div class="col-md-12">
-                    <div class="panel panel-default panelbg">
-                        <h1>Documentations</h1>
-                        <div class="span12">
-                            <form id="custom-search-form" class="form-search form-horizontal pull-right" action="{{ path('recherchepage' , {'page':1}) }}" method="get">
-                                <div class="input-append span12">
-                                    <div class="searchdiv">
-                                        <input type="text" class="search-query" name="q" placeholder="Rechercher">
-                                        <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i></button>
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelbg">
+                                <h1>Documentations</h1>
+                                <div class="span12">
+                                    <form id="custom-search-form" class="form-search form-horizontal pull-right"
+                                          action="{{ path('recherchepage' , {'page':1}) }}" method="get">
+                                        <div class="input-append span12">
+                                            <div class="searchdiv">
+                                                <input type="text" class="search-query" name="q"
+                                                       placeholder="Rechercher">
+                                                <button type="submit" class="btn"><i
+                                                            class="glyphicon glyphicon-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    {% for docsoff in tags.docsoff %}
+                                    <div class="table-container">
+                                        <table class="table table-filter">
+                                            <tbody>
+
+                                            <div class="media-body">
+                                                <h4 class="titleof">
+                                                    <a href="{{ docsoff.url }}">{{ docsoff.titre }}</a>
+                                                </h4>
+                                            </div>
+
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                        <div class="pull-right">
+                                            <div class="btn-group">
+                                                {% if tags %}
+                                                <a href="{{ path('ajoutdocspage', {'tag': tags.nom}) }}">
+                                                    <button type="button" class="btn btn-default btn-filter"
+                                                            data-target="all">Ajouter
+                                                        une documentation
+                                                    </button>
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="table-container">
+                                            <table class="table table-filter">
+                                                <tbody>
+                                                {% for doc in tags.docs %}
+
+                                                    <tr data-status="">
+                                                        <td>
+
+
+                                                        </td>
+
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            <div class="media">
+                                                                <a href="{{ path('profilpage', {'id':doc.createur.id} ) }}"
+                                                                   class="pull-left">
+                                                                    <img src="{{ asset(doc.createur.avatarurl) }}"
+                                                                         class="avatar-32x">
+                                                                </a>
+                                                                <div class="media-body">
+                                                                    <span class="media-meta pull-right">{{ doc.date|time_ago_in_words }}</span>
+                                                                    <a href="{{ path('docspage', {'tag': tags.nom, 'id':doc.id} ) }}">
+                                                                        <h4 class="title">
+                                                                            <a href="{{ doc.url }}">{{ doc.titre }}</a>
+                                                                            <span class="pull-right utilisateur">{{ doc.createur.nom }} {{ doc.createur.prenom }}</span>
+                                                                        </h4>
+                                                                    </a>
+                                                                    <p class="summary">
+
+                                                                        {% if 'youtube.com' in doc.url %}
+                                                                            {% set id= doc.url|split('=', 2)[1]|split('&')[0] %}
+                                                                            <a href="{{ doc.url }}"><img
+                                                                                        src="http://img.youtube.com/vi/{{ id }}/0.jpg"></a>
+                                                                            <a href="{{ doc.url }}">{{ doc.url }}</a>
+                                                                        {% else %}
+                                                                            <a href="{{ doc.url }}">{{ doc.url }}</a>
+                                                                        {% endif %}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
-
-           {% for docsoff in tags.docsoff %}
-           <div class="table-container">
-                                <table class="table table-filter">
-                                    <tbody>
-
-           <div class="media-body">
-           <h4 class="titleof">
-           <a href="{{docsoff.url}}">{{docsoff.titre}}</a>
-                    </h4>
-                     </div>
-
-           {% endfor %}
-
-</tbody>
-</table>
-           <div class="pull-right">
-                                <div class="btn-group">
-                                    {% if tags %}
-                                        <a href="{{ path('ajoutdocspage', {'tag': tags.nom}) }}">
-                                            <button type="button" class="btn btn-default btn-filter" data-target="all">Ajouter
-                                            une documentation
-                                        </button>
-                                    {% endif %}
-                                    </a>
-                                </div>
-                            </div>
-                             <div class="table-container">
-                                <table class="table table-filter">
-                                    <tbody>
-                                    {% for doc in tags.docs %}
-
-                                        <tr data-status="">
-                                            <td>
-
-
-                                            </td>
-
-                                            <td>
-                                            </td>
-                                            <td>
-                                                <div class="media">
-                                                    <a href="{{ path('profilpage', {'id':doc.createur.id} )}}" class="pull-left">
-                                                        <img src="{{ asset(doc.createur.avatarurl) }}"
-                                                             class="avatar-32x">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <span class="media-meta pull-right">{{ doc.date|time_ago_in_words }}</span>
-                                                        <a href="{{ path('docspage', {'tag': tags.nom, 'id':doc.id} )}}">
-                                                        <h4 class="title">
-                                                          <a href="{{doc.url}}">{{doc.titre}}</a>
-                                                            <span class="pull-right utilisateur">{{ doc.createur.nom }} {{ doc.createur.prenom }}</span>
-                                                        </h4>
-                                                        </a>
-                                                        <p class="summary">
-
-                                                        {% if 'youtube.com' in doc.url %}
-                                                        {%  set id= doc.url|split('=', 2)[1]|split('&')[0] %}
-                                                        <a href="{{doc.url}}"><img src="http://img.youtube.com/vi/{{ id }}/0.jpg"></a>
-                                                        <a href="{{doc.url}}">{{ doc.url }}</a>
-                                                        {% else %}
-                                                        <a href="{{doc.url}}">{{ doc.url }}</a>
-                                                        {% endif %}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
 
 
 
