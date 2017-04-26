@@ -33,10 +33,24 @@
                                     </div>
                                 </div>
                             </form>
+
            {% for docsoff in tags.docsoff %}
-                    {{ docsoff.titre }}<br/>
+           <div class="table-container">
+                                <table class="table table-filter">
+                                    <tbody>
+                                    <div class="media">
+           <div class="media-body">
+           <h4 class="title">
+               <a href="{{ path({{ docsoff.titre }}, {'url':docsoff.url} )}}">
+                    </h4>
+                     </div>
+                     </div>
            {% endfor %}
+           </tbody>
+                                </table>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </section>
