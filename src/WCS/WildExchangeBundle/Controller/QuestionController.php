@@ -29,7 +29,9 @@ class QuestionController extends Controller
             return $this->redirectToRoute('tagspage');
         }
         $pagequerry = $page*5-5;
-        $allquestion = $tagobj->getQuestions()->getValues();
+        $allquestion = $tagobj->
+
+        getQuestions()->getValues();
 
         $sort = isset($_GET['sort']) ? $_GET['sort'] : null;
         switch ($sort) {
