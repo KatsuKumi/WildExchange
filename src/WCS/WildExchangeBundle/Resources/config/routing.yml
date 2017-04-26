@@ -81,3 +81,7 @@ editreppage:
 docspage:
         path: /docs/{tag}/
         defaults: {  _controller: WCSWildExchangeBundle:Docs:docs}
+
+ajoutdocspage:
+        path:     /ajoutdocs/{tag}
+        defaults: {  _controller: WCSWildExchangeBundle:Docs:ajoutdocs }

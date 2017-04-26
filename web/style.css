@@ -726,6 +726,16 @@ input{
     margin-bottom: 10px;
 }
 
+/*//// DOCS ////*/
+
+.title a {
+    color: #000;
+}
+.title a:hover
+{
+    color: #1FA597;
+}
+
 /*//// PROFIL ////*/
 
 .card {

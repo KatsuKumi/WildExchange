@@ -46,6 +46,18 @@
                      </div>
 
            {% endfor %}
+
+           <div class="pull-right">
+                                <div class="btn-group">
+                                    {% if tags %}
+                                        <a href="{{ path('ajoutdocspage', {'tag': tags.nom}) }}">
+                                            <button type="button" class="btn btn-default btn-filter" data-target="all">Ajouter
+                                            une question
+                                        </button>
+                                    {% endif %}
+                                    </a>
+                                </div>
+                            </div>
            </tbody>
                                 </table>
                             </div>
@@ -53,6 +65,7 @@
 
                     </div>
                 </div>
+
             </section>
         </div>
     </div>
