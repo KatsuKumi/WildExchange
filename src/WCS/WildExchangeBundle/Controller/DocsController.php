@@ -51,14 +51,13 @@ class DocsController extends Controller
             $status = $em
                 ->getRepository('WCSWildExchangeBundle:Status')
                 ->find(1);
-            $doc->setStatus($status);
             $em->persist($doc);
             $em->flush();
             $this->addFlash(
                 'ajoutsuccess',
                 'Votre documentation a bien été ajoutée !'
             );
-            $this->checkBadges();
+
 
             return $this->redirectToRoute('docspage', array('tag'=>$tag, 'page'=>    1));
         }

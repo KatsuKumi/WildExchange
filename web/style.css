@@ -730,6 +730,7 @@ input{
 
 .title a {
     color: #000;
+    font-size: 23px;
 }
 .title a:hover
 {
