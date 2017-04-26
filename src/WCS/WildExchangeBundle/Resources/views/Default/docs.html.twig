@@ -6,16 +6,13 @@
         <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
         <style>
             body {
-                background: url('{{ asset('questions.jpg') }}') no-repeat center fixed;
-                background-size: cover;
+                background : url('{{ asset('questions.jpg') }}') no-repeat center fixed;
+                background-size : cover;
             }
         </style>
     {% endblock %}
 
 {% block body %}
-    <div class="container text-center">
-        <div class="row">
-
     <div class="container text-center">
         <div class="row">
 
@@ -34,22 +31,22 @@
                                 </div>
                             </form>
 
-           {% for docsoff in tags.docsoff %}
-           <div class="table-container">
-                                <table class="table table-filter">
-                                    <tbody>
+                        {% for docsoff in tags.docsoff %}
+                            <div class="table-container">
+                             <table class="table table-filter">
+                                <tbody>
+                                    <div class="media-body">
+                                        <h4 class="title">
+                                            <a href="{{docsoff.url}}">{{docsoff.titre}}
+                                            </a>
+                                         </h4>
+                                    </div>
 
-           <div class="media-body">
-           <h4 class="title">
-           <a href="{{docsoff.url}}">{{docsoff.titre}}</a>
-                    </h4>
-                     </div>
-
-           {% endfor %}
-           </tbody>
-                                </table>
+                        {% endfor %}
+                                 </tbody>
+                              </table>
                             </div>
-                        </div>
+                         </div>
 
                     </div>
                 </div>
@@ -81,49 +78,49 @@
 
 
         function DropDown(el) {
-            this.dd = el;
-            this.placeholder = this.dd.children('span');
-            this.opts = this.dd.find('.dropdown a');
+            this.dd                                                   = el;
+            this.placeholder                                          = this.dd.children('span');
+            this.opts                                                 = this.dd.find('.dropdown a');
             this.initEvents();
         }
-        DropDown.prototype = {
-            initEvents : function() {
-                var obj = this;
+        DropDown.prototype                                            = {
+            initEvents                                                : function() {
+                var obj                                               = this;
 
                 obj.dd.on('click', function(event){
                     $(this).toggleClass('active');
                 });
 
                 obj.opts.on('click',function(){
-                    var opt = $(this);
-                    obj.val = opt.text();
-                    obj.index = opt.index();
+                    var opt                                           = $(this);
+                    obj.val                                           = opt.text();
+                    obj.index                                         = opt.index();
                     obj.placeholder.text(obj.val);
                 });
             },
-            getValue : function() {
+            getValue                                                  : function() {
                 return this.val;
             },
-            getIndex : function() {
+            getIndex                                                  : function() {
                 return this.index;
             }
         }
-        var dd = new DropDown( $('#dd') );
+        var dd                                                        = new DropDown( $('#dd') );
     </script>
     <script>
         function callvote(something, id){
             $.ajax({
-                url: '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
-                type:'POST',
+                url                                                   : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('votepage')}}',
+                type                                                  : 'POST',
                 data:
                     {
-                        question_id: id,
-                        vote: something
+                        question_id                                   : id,
+                        vote                                          : something
                     },
-                complete: function(msg)
+                complete                                              : function(msg)
                 {
                     console.log(msg.responseText);
-                    document.getElementById('vote' + id).innerHTML= msg.responseText;
+                    document.getElementById('vote' + id).innerHTML    = msg.responseText;
                     $('#vote' + id).removeClass();
                     $('#vote' + id).addClass('vote');
                     $('#vote' + id).addClass(something);
@@ -133,7 +130,7 @@
         }
         $('.btnplus').click(function()
         {
-            var id = $(this).data("target");
+            var id                                                    = $(this).data("target");
             callvote('plus', id);
         });
     </script>
