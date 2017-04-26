@@ -743,6 +743,13 @@ input{
 .title a {
     color: #1FA597;
 }
+.summary a {
+    color: black;
+}
+.summary img {
+    width: 150px;
+}
+
 /*//// PROFIL ////*/
 
 .card {

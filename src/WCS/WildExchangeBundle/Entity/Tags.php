@@ -45,7 +45,7 @@ class Tags
     /**
      * Many Groups have Many Users.
      * @ORM\ManyToMany(targetEntity="Docs", mappedBy="tags")
-     * @ORM\OrderBy({"date" = "ASC"})
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     private $docs;
 

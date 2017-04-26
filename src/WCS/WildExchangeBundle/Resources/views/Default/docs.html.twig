@@ -87,7 +87,16 @@
                                                             <span class="pull-right utilisateur">{{ doc.createur.nom }} {{ doc.createur.prenom }}</span>
                                                         </h4>
                                                         </a>
-                                                        <p class="summary">{{ doc.url }}</p>
+                                                        <p class="summary">
+
+                                                        {% if 'youtube.com' in doc.url %}
+                                                        {%  set id= doc.url|split('=', 2)[1]|split('&')[0] %}
+                                                        <a href="{{doc.url}}"><img src="http://img.youtube.com/vi/{{ id }}/0.jpg"></a>
+                                                        <a href="{{doc.url}}">{{ doc.url }}</a>
+                                                        {% else %}
+                                                        <a href="{{doc.url}}">{{ doc.url }}</a>
+                                                        {% endif %}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </td>
