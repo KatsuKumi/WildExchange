@@ -80,7 +80,7 @@
                                         </small>
                                     </div>
                                     <p class="verysmallpaddingtop">
-                                        {{ question.contenu }}
+                                        {{ question.contenu|nl2br }}
                                     </p>
                                 </div>
                             </li>
@@ -136,7 +136,7 @@
                                             </strong>
                                         </div>
                                         <p class="verysmallpaddingtop">
-                                            {{ question.solution.contenu }}
+                                            {{ question.solution.contenu|nl2br }}
                                         </p>
                                     </div>
                                 </li>
@@ -195,7 +195,7 @@
                                             </strong>
                                         </div>
                                         <p class="verysmallpaddingtop">
-                                            {{ reponse.contenu }}
+                                            {{ reponse.contenu|nl2br }}
                                         </p>
 
                                     </div>
@@ -230,7 +230,7 @@
 
 
                                                     <div class="media-body">
-                                                        <p class="textaligncenter">{{ commentaire.contenu }}</p>
+                                                        <p class="textaligncenter">{{ commentaire.contenu|nl2br }}</p>
 
                                                     </div>
                                                 </div>
