@@ -7,7 +7,7 @@
                 <div class="col-md-12 text-center">
                     <div class="page-title">
                         <h2><i class="active"><i class="fa fa-dashboard"></i> Dashboard<br>
-                            <small>Vue global</small>
+                            <small>Vue globale</small>
                         </h2>
                         <ol class="breadcrumb"><br>
                         </ol>
@@ -65,10 +65,10 @@
                                 Réponses
                             </div>
                             <div class="circle-tile-number text-faded">
-                                10
+                                {{ reponses|length }}
                                 <span id="sparklineB"></span>
                             </div>
-                            <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                            <a  data-toggle="collapse" data-parent="#allpanel" data-target="#reponse-panel" class="circle-tile-footer">Voir plus <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                             <div class="circle-tile-number text-faded">
                                 {{ commentaires|length }}
                             </div>
-                            <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                            <a  data-toggle="collapse" data-parent="#allpanel" data-target="#commentaire-panel" class="circle-tile-footer">Voir plus <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -102,10 +102,10 @@
                                 Documents
                             </div>
                             <div class="circle-tile-number text-faded">
-                                24
+                                {{ docs|length }}
                                 <span id="sparklineC"></span>
                             </div>
-                            <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                            <a  data-toggle="collapse" data-parent="#allpanel" data-target="#docs-panel" class="circle-tile-footer">Voir plus <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -121,10 +121,10 @@
                                 Votes
                             </div>
                             <div class="circle-tile-number text-faded">
-                                {{ commentaires|length }}
+                                {{ votes|length }}
                                 <span id="sparklineD"></span>
                             </div>
-                            <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                            <a  data-toggle="collapse" data-parent="#allpanel" data-target="#votes-panel" class="circle-tile-footer">Voir plus <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -185,6 +185,7 @@
                                         <th><input type="text" class="form-control" placeholder="#" disabled></th>
                                         <th><input type="text" class="form-control" placeholder="Titre" disabled></th>
                                         <th><input type="text" class="form-control" placeholder="Contenu" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Tag" disabled></th>
                                         <th><input type="text" class="form-control" placeholder="Créateur" disabled></th>
                                         <th><input type="text" class="form-control" placeholder="Status" disabled></th>
                                         <th class="text-center">Action</th>
@@ -196,6 +197,7 @@
                                             <td>{{ question.id }}</td>
                                             <td>{{ question.titre }}</td>
                                             <td>{{ question.contenu|slice(0,30) }}...</td>
+                                            <td>{% if question.tags[0] is defined %}{{ question.tags[0].nom }}{% else %} Aucun {% endif %}</td>
                                             <td>{{ question.createur.pseudo }}</td>
                                             <td>{{ question.status.nom }}</td>
                                             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
@@ -207,7 +209,152 @@
                             </div>
                         </div>
                     </div>
-            </div>
+                    <div id="reponse-panel" class="reponse-panel panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <h3>Réponses</h3>
+                        <div class="row">
+                            <div class="panel panel-primary filterable">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Réponses</h3>
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtre</button>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                    <tr class="filters">
+                                        <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Question" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Contenu" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Créateur" disabled></th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for reponse in reponses %}
+                                        <tr>
+                                            <td>{{ reponse.id }}</td>
+                                            <td>{{ reponse.question.titre }}</td>
+                                            <td>{{ reponse.contenu|slice(0,30) }}...</td>
+                                            <td>{{ reponse.createur.pseudo }}</td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="commentaire-panel" class="commentaire-panel panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <h3>Commentaires</h3>
+                        <div class="row">
+                            <div class="panel panel-primary filterable">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Commentaires</h3>
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtre</button>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                    <tr class="filters">
+                                        <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Question" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Contenu" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Créateur" disabled></th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for commentaire in commentaires %}
+                                        <tr>
+                                            <td>{{ commentaire.id }}</td>
+                                            <td>{{ commentaire.reponse.question.titre }}</td>
+                                            <td>{{ commentaire.contenu|slice(0,30) }}...</td>
+                                            <td>{{ commentaire.createur.pseudo }}</td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="docs-panel" class="docs-panel panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <h3>Documents</h3>
+                        <div class="row">
+                            <div class="panel panel-primary filterable">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Documents</h3>
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtre</button>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                    <tr class="filters">
+                                        <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Titre" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="URL" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Tag" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Créateur" disabled></th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for doc in docs %}
+                                        <tr>
+                                            <td>{{ doc.id }}</td>
+                                            <td>{{ doc.titre }}</td>
+                                            <td>{{ doc.url|slice(0,30) }}...</td>
+                                            <td>{{ doc.tags[0].nom }}</td>
+                                            <td>{{ doc.createur.pseudo }}</td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="votes-panel" class="votes-panel panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <h3>Votes</h3>
+                        <div class="row">
+                            <div class="panel panel-primary filterable">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Votes</h3>
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtre</button>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                    <tr class="filters">
+                                        <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Question" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Votant" disabled></th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for vote in votes %}
+                                        <tr>
+                                            <td>{{ vote.id }}</td>
+                                            <td>{% if vote.question %}{{ vote.question.titre }}{% else %} {{ vote.reponse.question.titre }}{% endif %}</td>
+                                            <td>{{ vote.votant.pseudo }}</td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
         </div><!-- page-wrapper END-->
     </div><!-- container-1 END-->

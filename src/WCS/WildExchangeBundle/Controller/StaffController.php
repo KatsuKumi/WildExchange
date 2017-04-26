@@ -22,7 +22,14 @@ class StaffController extends Controller
         $reponses = $em
             ->getRepository('WCSWildExchangeBundle:Reponses')
             ->findAll();
-        return $this->render('WCSWildExchangeBundle:Admin:index.html.twig', array('utilisateur' => $utilisateurs, 'commentaires' => $commentaires, 'questions' => $questions, 'reponses' => $reponses));
+        $docs = $em
+            ->getRepository('WCSWildExchangeBundle:docs')
+            ->findAll();
+        $votes = $em
+            ->getRepository('WCSWildExchangeBundle:Vote')
+            ->findAll();
+
+        return $this->render('WCSWildExchangeBundle:Admin:index.html.twig', array('utilisateur' => $utilisateurs, 'commentaires' => $commentaires, 'questions' => $questions, 'reponses' => $reponses, 'docs'=>$docs, 'votes'=>$votes));
     }
 
 }
