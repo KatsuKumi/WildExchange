@@ -1349,3 +1349,14 @@ input{
     font-weight: bolder;
     margin-right: 5px;
 }
+
+.drapeau{
+    height: 50px !important;
+    width: 50px !important;
+}
+.drapbtn{
+    padding: 0 !important;
+}
+.drapbtn{
+    background-color: transparent !important;
+}

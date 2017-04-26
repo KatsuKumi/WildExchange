@@ -71,6 +71,12 @@
                     {% else %}
                     <li><a class="accueil" href="{{ path('connectionpage') }}">{% trans %}Se connecter{% endtrans %}</a></li>
                     <li><a class="accueil" href="{{ path('inscriptionpage') }}">{% trans %}S'inscrire{% endtrans %}</a></li>
+
+                    {% endif %}
+                {% if app.request.locale == 'fr' %}
+               <li><a class="drapbtn" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"><img class="drapeau" src="https://wpcct2016.sciencesconf.org/conference/wpcct2016/pages/United_Kingdom_flag_icon.png"></a></li>
+                    {% else %}
+               <li><a class="drapbtn" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"><img class="drapeau" src="https://cdn3.iconfinder.com/data/icons/finalflags/256/France-Flag.png"></a></li>
                 {% endif %}
 
             </ul>

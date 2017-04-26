@@ -68,7 +68,7 @@ body, html{height:100%}
 @media (min-width:768px){
     .container-1{
         width:15%;
-        min-height: 100vh;
+        min-height: 300vh;
         float:left;
         background-color: rgb(52, 73, 94);
     }

@@ -16,7 +16,6 @@ class DefaultController extends Controller
     /*   Génération de la page d'acceuil   */
     public function indexAction(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $questions = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
