@@ -31,5 +31,44 @@ class StaffController extends Controller
 
         return $this->render('WCSWildExchangeBundle:Admin:index.html.twig', array('utilisateur' => $utilisateurs, 'commentaires' => $commentaires, 'questions' => $questions, 'reponses' => $reponses, 'docs'=>$docs, 'votes'=>$votes));
     }
+    public function deleteuserAction(){
 
+        $id = $_POST['id'];
+        if (!empty($id)){
+            $em = $this->getDoctrine()->getManager();
+            $user = $em
+                ->getRepository('WCSWildExchangeBundle:Utilisateur')
+                ->find($id);
+            $em->remove($user);
+            $em->flush();
+        }
+
+    }
+
+    public function deletequestionAction(){
+
+        $id = $_POST['id'];
+        if (!empty($id)){
+            $em = $this->getDoctrine()->getManager();
+            $user = $em
+                ->getRepository('WCSWildExchangeBundle:Questions')
+                ->find($id);
+            $em->remove($user);
+            $em->flush();
+        }
+
+    }
+    public function deletereponseAction(){
+
+        $id = $_POST['id'];
+        if (!empty($id)){
+            $em = $this->getDoctrine()->getManager();
+            $user = $em
+                ->getRepository('WCSWildExchangeBundle:Reponses')
+                ->find($id);
+            $em->remove($user);
+            $em->flush();
+        }
+
+    }
 }

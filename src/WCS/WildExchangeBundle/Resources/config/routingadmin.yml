@@ -1,3 +1,15 @@
 admin_homepage:
     path:     /
     defaults: { _controller: WCSWildExchangeBundle:Staff:index }
+
+deleteuser:
+    path: /delete/user/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deleteuser }
+
+deletequestion:
+    path: /delete/question/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletequestion }
+
+deletereponse:
+    path: /delete/reponse/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletereponse }

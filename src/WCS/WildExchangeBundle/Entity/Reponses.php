@@ -43,6 +43,7 @@ class Reponses
 
     /**
      * @ORM\ManyToOne(targetEntity="Questions", inversedBy="reponses")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $question;
 

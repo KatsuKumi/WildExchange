@@ -140,29 +140,30 @@ class Utilisateur implements UserInterface
      * @ORM\ManyToMany(targetEntity="Badge",  mappedBy="utilisateurs")
      */
     private $badges;
+
     /**
      * @ORM\ManyToOne(targetEntity="Ecole", inversedBy="utilisateurs")
      */
     private $ecole;
 
     /**
-     * @ORM\OneToMany(targetEntity="Questions", mappedBy="createur")
+     * @ORM\OneToMany(targetEntity="Questions", mappedBy="createur", cascade={"remove"})
      */
     private $questions;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Vote", mappedBy="votant")
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="votant", cascade={"remove"})
      */
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reponses", mappedBy="createur")
+     * @ORM\OneToMany(targetEntity="Reponses", mappedBy="createur", cascade={"remove"})
      */
     private $reponses;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="createur")
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="createur", cascade={"remove"})
      */
     private $commentaires;
 

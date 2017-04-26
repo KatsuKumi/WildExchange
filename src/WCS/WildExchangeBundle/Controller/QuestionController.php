@@ -40,7 +40,7 @@ class QuestionController extends Controller
                 break;
         }
         $listquestion = array_slice($allquestion, $pagequerry, 5);
-        $maxpage = ceil(count($allquestion)/5);
+        $maxpage = ceil(count($allquestion)/5) == 0 ? 1 : ceil(count($allquestion)/5);
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => $tag, 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> null, 'sort' => $sort ));
     }
     /*   Génération de la page d'ajout de question avec création and handling de formulaire   */

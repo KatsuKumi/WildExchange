@@ -31,7 +31,7 @@
                                 {{ utilisateur|length }}
                                 <span id="sparklineA"></span>
                             </div>
-                            <a  data-toggle="collapse" data-parent="#allpanel" data-target="#utilisateur-panel" class="circle-tile-footer">Voir plus <i class="fa fa-chevron-circle-right"></i></a>
+                            <a data-toggle="collapse" data-parent="#allpanel" data-target="#utilisateur-panel" class="circle-tile-footer">Voir plus <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -160,8 +160,7 @@
                                         <td>{{ user.prenom }}</td>
                                         <td>{{ user.pseudo }}</td>
                                         <td>{{ user.rang.nom }}</td>
-                                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-
+                                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs deluserbtn" data-target="{{ user.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>
@@ -200,7 +199,7 @@
                                             <td>{% if question.tags[0] is defined %}{{ question.tags[0].nom }}{% else %} Aucun {% endif %}</td>
                                             <td>{{ question.createur.pseudo }}</td>
                                             <td>{{ question.status.nom }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delquestionbtn" data-target="{{ question.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -236,7 +235,7 @@
                                             <td>{{ reponse.question.titre }}</td>
                                             <td>{{ reponse.contenu|slice(0,30) }}...</td>
                                             <td>{{ reponse.createur.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xsdel reponsebtn"  data-target="{{ reponse.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -344,7 +343,7 @@
                                             <td>{{ vote.id }}</td>
                                             <td>{% if vote.question %}{{ vote.question.titre }}{% else %} {{ vote.reponse.question.titre }}{% endif %}</td>
                                             <td>{{ vote.votant.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs "><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -365,6 +364,60 @@
         /*
          Please consider that the JS part isn't production ready at all, I just code it to show the concept of merging filters and titles together !
          */
+
+        $('.deluserbtn').click(function(event){
+
+            event.preventDefault();
+            var r = confirm("Voulez vous vraiment supprimer cette utilisateur ?");
+            if (r == true) {
+                var id = $(this).data('target');
+                $.ajax({
+
+                    url : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('deleteuser') }}',
+
+                    type : 'POST', // Le type de la requête HTTP, ici devenu POST
+                    data : 'id=' + id, // On fait passer nos variables, exactement comme en GET, au script more_com.php
+                    dataType : 'html'
+                });
+                $(this).closest('tr').remove();
+            }
+        });
+
+        $('.delquestionbtn').click(function(event){
+
+            event.preventDefault();
+            var r = confirm("Voulez vous vraiment supprimer cette question ?");
+            if (r == true) {
+                var id = $(this).data('target');
+                $.ajax({
+
+                    url : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('deletequestion') }}',
+
+                    type : 'POST', // Le type de la requête HTTP, ici devenu POST
+                    data : 'id=' + id, // On fait passer nos variables, exactement comme en GET, au script more_com.php
+                    dataType : 'html'
+                });
+                $(this).closest('tr').remove();
+            }
+        });
+
+        $('.delreponsebtn').click(function(event){
+
+            event.preventDefault();
+            var r = confirm("Voulez vous vraiment supprimer cette réponse ?");
+            if (r == true) {
+                var id = $(this).data('target');
+                $.ajax({
+
+                    url : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('deletereponse') }}',
+
+                    type : 'POST', // Le type de la requête HTTP, ici devenu POST
+                    data : 'id=' + id, // On fait passer nos variables, exactement comme en GET, au script more_com.php
+                    dataType : 'html'
+                });
+                $(this).closest('tr').remove();
+            }
+        });
         $(document).ready(function(){
             var $myGroup = $('#allpanel');
             $myGroup.on('show.bs.collapse','.collapse', function() {
