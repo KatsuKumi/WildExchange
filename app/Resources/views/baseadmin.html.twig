@@ -24,7 +24,7 @@
 <nav class="navbar navbar-inverse top-navbar" id="top-nav">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"><img class="img-responsive avatar-16x" src="{{ asset('logoBlue.png') }}" width="150" height="20" style="margin-left: 10px;"></a>
+            <a class="navbar-brand" href="{{ path('homepage') }}"><img class="img-responsive avatar-16x" src="{{ asset('logoBlue.png') }}" width="150" height="20" style="margin-left: 10px;"></a>
 
             <a href="javascript:;" class="sidebar-toggle">
                 <i class="fa fa-bars"></i>
@@ -46,12 +46,12 @@
                 <p class="welcome"><i class="fa fa-key"></i> Connecté en tant que</p>
                 <p class="name tooltip-sidebar-logout">
                     <span class="last-name">{{ app.user.pseudo }}</span>
-                    <a href="#"><i class="fa fa-sign-out"></i></a>
+                    <a href="{{ path('logout') }}"><i class="fa fa-sign-out"></i></a>
                 </p>
             </li>
 
             <li class="dashboard">
-                <a class="active" href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
+                <a class="active" href="{{ path('admin_homepage') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
             </li>
             <!-- Supprimez à partir d'ici si besoin du reste des boites -->
         </ul>

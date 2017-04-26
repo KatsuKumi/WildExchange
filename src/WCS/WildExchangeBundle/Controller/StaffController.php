@@ -109,4 +109,16 @@ class StaffController extends Controller
         }
 
     }
+
+    public function edituserAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em
+            ->getRepository('WCSWildExchangeBundle:Utilisateur')
+            ->find($id);
+
+        return $this->render('WCSWildExchangeBundle:Admin:edituser.html.twig', array('user'=>$user));
+
+    }
 }

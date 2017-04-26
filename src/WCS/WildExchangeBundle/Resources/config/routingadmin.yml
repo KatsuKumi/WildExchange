@@ -25,3 +25,11 @@ deletedoc:
 deletevote:
     path: /delete/vote/
     defaults: { _controller: WCSWildExchangeBundle:Staff:deletevote }
+
+deletevote:
+    path: /delete/vote/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletevote }
+
+edituser:
+    path: /edit/user/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:edituser }

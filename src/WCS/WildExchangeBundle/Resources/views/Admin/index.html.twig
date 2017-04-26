@@ -160,7 +160,7 @@
                                         <td>{{ user.prenom }}</td>
                                         <td>{{ user.pseudo }}</td>
                                         <td>{{ user.rang.nom }}</td>
-                                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs deluserbtn" data-target="{{ user.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                        <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('edituser', {'id': user.id}) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs deluserbtn" data-target="{{ user.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>
@@ -201,6 +201,9 @@
                                             <td>{{ question.status.nom }}</td>
                                             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delquestionbtn" data-target="{{ question.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
+                                            <form>
+
+                                            </form>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -480,7 +483,7 @@
         });
         $(document).ready(function(){
             var $myGroup = $('#allpanel');
-            $myGroup.on('show.bs.collapse','.collapse', function() {
+                $myGroup.on('show.bs.collapse','.collapse', function() {
                 $myGroup.find('.collapse.in').collapse('hide');
             });
             $('.filterable .btn-filter').click(function(){
