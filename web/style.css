@@ -732,7 +732,7 @@ input{
 /*//// DOCS ////*/
 
 .titleof a {
-    background: linear-gradient(to right,black,#e43350);
+    background: linear-gradient(to right,black,#0f0f0f);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size:23px;
