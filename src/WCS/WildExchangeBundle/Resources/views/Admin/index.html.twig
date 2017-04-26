@@ -235,7 +235,7 @@
                                             <td>{{ reponse.question.titre }}</td>
                                             <td>{{ reponse.contenu|slice(0,30) }}...</td>
                                             <td>{{ reponse.createur.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xsdel reponsebtn"  data-target="{{ reponse.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delreponsebtn"  data-target="{{ reponse.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
