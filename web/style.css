@@ -732,9 +732,12 @@ input{
 /*//// DOCS ////*/
 
 .titleof a {
-    color: #000;
-    font-size: 23px;
+    background: linear-gradient(to right,black,#e43350);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:23px;
 }
+
 .titleof a:hover
 {
     color: darkred;
