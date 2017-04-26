@@ -166,6 +166,12 @@ class Utilisateur implements UserInterface
      */
     private $commentaires;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Docs", mappedBy="createur")
+     */
+    private $docs;
+
     public function getRoles()
     {
         return $this->getRang()->getId() > 1 ? array('ROLE_ADMIN') : array('ROLE_USER');

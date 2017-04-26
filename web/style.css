@@ -485,16 +485,21 @@ button {
     display: flex;
     background-position: center;
 }
-
+.inlineblock{
+    display: inline-block;
+    vertical-align: center;
+    margin:auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
 .centertext{
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.8);
     color: white;
     font-size: 50px;
-    width: 100%;
     text-align: center;
     margin: auto;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: center;
 }
 
 .img-responsive:hover {
@@ -506,9 +511,8 @@ button {
 .cadre-gauche{
     background-color: rgba(0,0,0,0.5);
     color: white;
-    font-size: 18px;
-    width: 100%;
-    text-align: center;
+    font-size: 20px;
+    text-align: left;
     margin: auto;
     display: inline-block;
     vertical-align: middle;
@@ -520,9 +524,8 @@ button {
 
     background-color: rgba(0,0,0,0.5);
     color: white;
-    font-size: 17px;
-    width: 100%;
-    text-align: center;
+    font-size: 18px;
+    text-align: right;
     margin: auto;
     display: inline-block;
     vertical-align: middle;

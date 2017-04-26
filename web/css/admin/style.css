@@ -1,5 +1,7 @@
 body{background-color: #ecf0f1;}
 
+body, html{height:100%}
+
 .navbar-inverse {
     background-color: #2C3E50;
     border-color: #2C3E50;
@@ -35,14 +37,47 @@ body{background-color: #ecf0f1;}
     display: inline-block;
     padding: 3px 22px;
 }
+.container-fluid{
+    padding:0 !important;
+    overflow: hidden;
+}
+.filterable {
+    margin-top: 15px;
+}
+.filterable .panel-heading .pull-right {
+    margin-top: -20px;
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #333;
+}
+
 @media (min-width:768px){
-    .container-1{width:15%;float:left;}
+    .container-1{
+        width:15%;
+        min-height: 100vh;
+        float:left;
+        background-color: rgb(52, 73, 94);
+    }
     .container-2{width:100%;float: left;}
 }
 
 @media (max-width:768px){
     .container-1{width:100%;}
-    .container-2{width:100%;}
+    .container-2{width:100% !important;}
 }
 .container-1:after,
 .container-2:before
@@ -227,7 +262,6 @@ body{background-color: #ecf0f1;}
     #page-wrapper {
 
         padding: 0 30px;
-        min-height: 1300px;
         border-left: 1px solid #2c3e50;
     }
 }
