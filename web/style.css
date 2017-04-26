@@ -728,15 +728,17 @@ input{
 
 /*//// DOCS ////*/
 
-.title a {
+.titleof a {
     color: #000;
     font-size: 23px;
 }
-.title a:hover
+.titleof a:hover
 {
     color: #1FA597;
 }
-
+.title a {
+    color: #1FA597;
+}
 /*//// PROFIL ////*/
 
 .card {
