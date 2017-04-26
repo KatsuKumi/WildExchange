@@ -71,4 +71,42 @@ class StaffController extends Controller
         }
 
     }
+    public function deletecommentAction(){
+
+        $id = $_POST['id'];
+        if (!empty($id)){
+            $em = $this->getDoctrine()->getManager();
+            $user = $em
+                ->getRepository('WCSWildExchangeBundle:Commentaire')
+                ->find($id);
+            $em->remove($user);
+            $em->flush();
+        }
+
+    }
+    public function deletedocAction(){
+
+        $id = $_POST['id'];
+        if (!empty($id)){
+            $em = $this->getDoctrine()->getManager();
+            $user = $em
+                ->getRepository('WCSWildExchangeBundle:Docs')
+                ->find($id);
+            $em->remove($user);
+            $em->flush();
+        }
+
+    }
+    public function deletevoteAction(){
+        $id = $_POST['id'];
+        if (!empty($id)){
+            $em = $this->getDoctrine()->getManager();
+            $user = $em
+                ->getRepository('WCSWildExchangeBundle:Docs')
+                ->find($id);
+            $em->remove($user);
+            $em->flush();
+        }
+
+    }
 }

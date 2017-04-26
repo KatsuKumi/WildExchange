@@ -271,7 +271,7 @@
                                             <td>{{ commentaire.reponse.question.titre }}</td>
                                             <td>{{ commentaire.contenu|slice(0,30) }}...</td>
                                             <td>{{ commentaire.createur.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delcommbtn"  data-target="{{ commentaire.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -309,7 +309,7 @@
                                             <td>{{ doc.url|slice(0,30) }}...</td>
                                             <td>{{ doc.tags[0].nom }}</td>
                                             <td>{{ doc.createur.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs deldocbtn"  data-target="{{ doc.id }}"><span class="glyphicon glyphicon-remove "></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -332,6 +332,7 @@
                                     <thead>
                                     <tr class="filters">
                                         <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                                        <th><input type="text" class="form-control" placeholder="Cible" disabled></th>
                                         <th><input type="text" class="form-control" placeholder="Question" disabled></th>
                                         <th><input type="text" class="form-control" placeholder="Votant" disabled></th>
                                         <th class="text-center">Action</th>
@@ -341,9 +342,15 @@
                                     {% for vote in votes %}
                                         <tr>
                                             <td>{{ vote.id }}</td>
-                                            <td>{% if vote.question %}{{ vote.question.titre }}{% else %} {{ vote.reponse.question.titre }}{% endif %}</td>
+                                            {% if vote.question %}
+                                                <td>Question</td>
+                                                <td>{{ vote.question.titre }}</td>
+                                                {% else %}
+                                                    <td>Réponse</td>
+                                                    <td>{{ vote.reponse.question.titre }}</td>
+                                             {% endif %}
                                             <td>{{ vote.votant.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs "><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delvotebtn"  data-target="{{ vote.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -410,6 +417,59 @@
                 $.ajax({
 
                     url : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('deletereponse') }}',
+
+                    type : 'POST', // Le type de la requête HTTP, ici devenu POST
+                    data : 'id=' + id, // On fait passer nos variables, exactement comme en GET, au script more_com.php
+                    dataType : 'html'
+                });
+                $(this).closest('tr').remove();
+            }
+        });
+
+        $('.delcommbtn').click(function(event){
+
+            event.preventDefault();
+            var r = confirm("Voulez vous vraiment supprimer ce commentaire  ?");
+            if (r == true) {
+                var id = $(this).data('target');
+                $.ajax({
+
+                    url : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('deletecomment') }}',
+
+                    type : 'POST', // Le type de la requête HTTP, ici devenu POST
+                    data : 'id=' + id, // On fait passer nos variables, exactement comme en GET, au script more_com.php
+                    dataType : 'html'
+                });
+                $(this).closest('tr').remove();
+            }
+        });
+
+        $('.deldocbtn').click(function(event){
+
+            event.preventDefault();
+            var r = confirm("Voulez vous vraiment supprimer ce document  ?");
+            if (r == true) {
+                var id = $(this).data('target');
+                $.ajax({
+
+                    url : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('deletedoc') }}',
+
+                    type : 'POST', // Le type de la requête HTTP, ici devenu POST
+                    data : 'id=' + id, // On fait passer nos variables, exactement comme en GET, au script more_com.php
+                    dataType : 'html'
+                });
+                $(this).closest('tr').remove();
+            }
+        });
+        $('.delvotebtn').click(function(event){
+
+            event.preventDefault();
+            var r = confirm("Voulez vous vraiment supprimer ce vote  ?");
+            if (r == true) {
+                var id = $(this).data('target');
+                $.ajax({
+
+                    url : '{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('deletevote') }}',
 
                     type : 'POST', // Le type de la requête HTTP, ici devenu POST
                     data : 'id=' + id, // On fait passer nos variables, exactement comme en GET, au script more_com.php
