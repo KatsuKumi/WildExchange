@@ -11,7 +11,7 @@ services:
 
   redirect.after.login:
     class: WCS\WildExchangeBundle\Redirection\LoginRedirection
-    arguments: [@security.context, @router, @session]
+    arguments: [@security.context, @router, @session, @doctrine.orm.entity_manager]
 
   redirect.after.logout:
     class: WCS\WildExchangeBundle\Redirection\LogoutRedirection

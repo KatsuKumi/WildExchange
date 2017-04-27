@@ -15,55 +15,59 @@
                         </ol>
                     </div>
 
-                    <form method="POST">
+
+                        {{ form_start(form) }}
                         <div class="form-group">
-                            <label>Pseudo</label>
-                            <input type="text" name="pseudo" class="form-control" value="{{ user.pseudo }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Adresse Email</label>
-                            <input type="email" name="email" class="form-control" id="email" value="{{ user.email }}">
+                            {{ form_row(form.pseudo)}}
                         </div>
 
                         <div class="form-group">
-                            <label>Mot de passe</label>
-                            <input type="password" name="password" class="form-control">
+                            {{ form_row(form.motDePasse)}}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_row(form.email)}}
                         </div>
                         <div class="form-group">
-                            <label>Nom</label>
-                            <input type="text" name="nom" class="form-control" value="{{ user.nom }}">
+                            {{ form_row(form.nom)}}
                         </div>
                         <div class="form-group">
-                            <label>Prenom</label>
-                            <input type="text" name="prenom" class="form-control" value="{{ user.prenom }}">
+                            {{ form_row(form.prenom)}}
                         </div>
                         <div class="form-group">
-                            <label>Centre d'intéret</label>
-                            <input type="text" name="centre" class="form-control" value="{{ user.interet }}">
+                            {{ form_row(form.interet)}}
                         </div>
                         <div class="form-group">
-                            <label>GitHub</label>
-                            <input type="text" name="github" class="form-control" value="{{ user.github }}">
+                            {{ form_row(form.github)}}
                         </div>
                         <div class="form-group">
-                            <label>Facebook</label>
-                            <input type="text" name="facebook" class="form-control" value="{{ user.facebook }}">
+                            {{ form_row(form.facebook)}}
                         </div>
                         <div class="form-group">
-                            <label>Twitter</label>
-                            <input type="text" name="twitter" class="form-control" value="{{ user.twitter }}">
+                            {{ form_row(form.twitter)}}
                         </div>
                         <div class="form-group">
-                            <label>Linkedin</label>
-                            <input type="text" name="linkedin" class="form-control" value="{{ user.linkedin }}">
+                            {{ form_row(form.linkedin)}}
                         </div>
                         <div class="form-group">
-                            <label>Avatar URL</label>
-                            <input type="text" name="avatar" class="form-control" value="{{ user.avatarurl }}">
+                            {{ form_row(form.avatarurl)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.dateInscription)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.dateConnexion)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.rang)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.ecole)}}
                         </div>
 
                         <button type="submit" class="btn btn-primary">Envoyer</button>
-                    </form>
+
+                        {{ form_end(form) }}
 
                 </div>
             </div>

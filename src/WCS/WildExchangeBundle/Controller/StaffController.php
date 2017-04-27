@@ -3,6 +3,8 @@
 namespace WCS\WildExchangeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use WCS\WildExchangeBundle\Form\UtilisateursType;
 
 
 class StaffController extends Controller
@@ -110,7 +112,7 @@ class StaffController extends Controller
 
     }
 
-    public function edituserAction($id){
+    public function edituserAction(Request $request, $id){
 
         $em = $this->getDoctrine()->getManager();
 
@@ -118,7 +120,31 @@ class StaffController extends Controller
             ->getRepository('WCSWildExchangeBundle:Utilisateur')
             ->find($id);
 
-        return $this->render('WCSWildExchangeBundle:Admin:edituser.html.twig', array('user'=>$user));
+        $form = $this->createForm(UtilisateursType::class, $user);
 
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+                // 3) Encode the password (you could also do this via Doctrine listener)
+                $password = $this->get('security.password_encoder')
+                    ->encodePassword($user, $user->getMotDePasse());
+                $user->setMotDePasse($password);
+                $em->persist($user);
+                $em->flush();
+
+
+                $this->addFlash(
+                    'inscriptionsuccess',
+                    'Vous êtes bien inscrit !'
+                );
+                return $this->redirectToRoute('admin_homepage');
+
+        }
+
+        return $this->render(
+            'WCSWildExchangeBundle:Admin:edituser.html.twig',
+            array('form' => $form->createView(), 'user' => $user,
+                'error' => null)
+        );
     }
 }
