@@ -4,8 +4,11 @@ namespace WCS\WildExchangeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use WCS\WildExchangeBundle\Form\CommentaireType;
+use WCS\WildExchangeBundle\Form\DocsType;
 use WCS\WildExchangeBundle\Form\UtilisateurTypeAdmin;
 use WCS\WildExchangeBundle\Form\QuestionsTypeAdmin;
+use WCS\WildExchangeBundle\Form\ReponsesTypeAdmin;
 
 
 class StaffController extends Controller
@@ -165,6 +168,84 @@ class StaffController extends Controller
         return $this->render(
             'WCSWildExchangeBundle:Admin:editquestion.html.twig',
             array('form' => $form->createView(), 'question' => $question,
+                'error' => null)
+        );
+    }
+
+
+
+    public function editreponseAction(Request $request, $id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $reponse = $em
+            ->getRepository('WCSWildExchangeBundle:Reponses')
+            ->find($id);
+
+        $form = $this->createForm(ReponsesTypeAdmin::class, $reponse);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($reponse);
+            $em->flush();
+            return $this->redirectToRoute('admin_homepage');
+
+        }
+
+        return $this->render(
+            'WCSWildExchangeBundle:Admin:editreponse.html.twig',
+            array('form' => $form->createView(), 'reponse' => $reponse,
+                'error' => null)
+        );
+    }
+    public function editcommentAction(Request $request, $id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $comment = $em
+            ->getRepository('WCSWildExchangeBundle:Commentaire')
+            ->find($id);
+
+        $form = $this->createForm(CommentaireType::class, $comment);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('admin_homepage');
+
+        }
+
+        return $this->render(
+            'WCSWildExchangeBundle:Admin:editcommentaire.html.twig',
+            array('form' => $form->createView(), 'comment' => $comment,
+                'error' => null)
+        );
+    }
+    public function editdocAction(Request $request, $id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $docs = $em
+            ->getRepository('WCSWildExchangeBundle:Docs')
+            ->find($id);
+
+        $form = $this->createForm(DocsType::class, $docs);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($docs);
+            $em->flush();
+            return $this->redirectToRoute('admin_homepage');
+
+        }
+
+        return $this->render(
+            'WCSWildExchangeBundle:Admin:editdoc.html.twig',
+            array('form' => $form->createView(), 'doc' => $docs,
                 'error' => null)
         );
     }

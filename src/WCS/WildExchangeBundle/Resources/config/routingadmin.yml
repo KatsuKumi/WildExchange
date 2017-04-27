@@ -37,3 +37,16 @@ edituser:
 editquestion:
     path: /edit/question/{id}
     defaults: { _controller: WCSWildExchangeBundle:Staff:editquestion }
+
+
+editreponse:
+    path: /edit/reponse/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editreponse }
+
+editcomment:
+    path: /edit/comment/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editcomment }
+
+editdoc:
+    path: /edit/doc/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editdoc }

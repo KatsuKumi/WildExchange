@@ -238,7 +238,7 @@
                                             <td>{{ reponse.question.titre }}</td>
                                             <td>{{ reponse.contenu|slice(0,30) }}...</td>
                                             <td>{{ reponse.createur.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delreponsebtn"  data-target="{{ reponse.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('editreponse', {'id': reponse.id}) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delreponsebtn"  data-target="{{ reponse.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -274,7 +274,7 @@
                                             <td>{{ commentaire.reponse.question.titre }}</td>
                                             <td>{{ commentaire.contenu|slice(0,30) }}...</td>
                                             <td>{{ commentaire.createur.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delcommbtn"  data-target="{{ commentaire.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('editcomment', {'id': commentaire.id}) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delcommbtn"  data-target="{{ commentaire.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -312,7 +312,7 @@
                                             <td>{{ doc.url|slice(0,30) }}...</td>
                                             <td>{{ doc.tags[0].nom }}</td>
                                             <td>{{ doc.createur.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs deldocbtn"  data-target="{{ doc.id }}"><span class="glyphicon glyphicon-remove "></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs'  href="{{ path('editdoc', {'id': doc.id}) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs deldocbtn"  data-target="{{ doc.id }}"><span class="glyphicon glyphicon-remove "></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
@@ -353,7 +353,7 @@
                                                     <td>{{ vote.reponse.question.titre }}</td>
                                              {% endif %}
                                             <td>{{ vote.votant.pseudo }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delvotebtn"  data-target="{{ vote.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a href="#" class="btn btn-danger btn-xs delvotebtn"  data-target="{{ vote.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                         </tr>
                                     {% endfor %}
