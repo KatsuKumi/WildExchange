@@ -199,7 +199,7 @@
                                             <td>{% if question.tags[0] is defined %}{{ question.tags[0].nom }}{% else %} Aucun {% endif %}</td>
                                             <td>{{ question.createur.pseudo }}</td>
                                             <td>{{ question.status.nom }}</td>
-                                            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delquestionbtn" data-target="{{ question.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                            <td class="text-center"><a class='btn btn-info btn-xs' href="{{ path('editquestion', {'id': question.id}) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs delquestionbtn" data-target="{{ question.id }}"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 
                                             <form>
 

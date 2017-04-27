@@ -471,3 +471,9 @@ input{
 label{
     width: 100%;
 }
+
+textarea {
+    width: 70%;
+    height: 120px;
+    resize: none;
+}

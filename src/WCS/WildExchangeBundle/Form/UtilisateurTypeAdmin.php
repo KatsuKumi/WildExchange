@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-class UtilisateursType extends AbstractType
+class UtilisateurTypeAdmin extends AbstractType
 {
     /**
      * {@inheritdoc}

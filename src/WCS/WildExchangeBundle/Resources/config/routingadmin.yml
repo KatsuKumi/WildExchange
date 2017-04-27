@@ -33,3 +33,7 @@ deletevote:
 edituser:
     path: /edit/user/{id}
     defaults: { _controller: WCSWildExchangeBundle:Staff:edituser }
+
+editquestion:
+    path: /edit/question/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editquestion }

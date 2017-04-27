@@ -4,7 +4,8 @@ namespace WCS\WildExchangeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use WCS\WildExchangeBundle\Form\UtilisateursType;
+use WCS\WildExchangeBundle\Form\UtilisateurTypeAdmin;
+use WCS\WildExchangeBundle\Form\QuestionsTypeAdmin;
 
 
 class StaffController extends Controller
@@ -120,7 +121,7 @@ class StaffController extends Controller
             ->getRepository('WCSWildExchangeBundle:Utilisateur')
             ->find($id);
 
-        $form = $this->createForm(UtilisateursType::class, $user);
+        $form = $this->createForm(UtilisateurTypeAdmin::class, $user);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
@@ -131,12 +132,6 @@ class StaffController extends Controller
                 $user->setMotDePasse($password);
                 $em->persist($user);
                 $em->flush();
-
-
-                $this->addFlash(
-                    'inscriptionsuccess',
-                    'Vous êtes bien inscrit !'
-                );
                 return $this->redirectToRoute('admin_homepage');
 
         }
@@ -144,6 +139,32 @@ class StaffController extends Controller
         return $this->render(
             'WCSWildExchangeBundle:Admin:edituser.html.twig',
             array('form' => $form->createView(), 'user' => $user,
+                'error' => null)
+        );
+    }
+
+    public function editquestionAction(Request $request, $id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $question = $em
+            ->getRepository('WCSWildExchangeBundle:Questions')
+            ->find($id);
+
+        $form = $this->createForm(QuestionsTypeAdmin::class, $question);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($question);
+            $em->flush();
+            return $this->redirectToRoute('admin_homepage');
+
+        }
+
+        return $this->render(
+            'WCSWildExchangeBundle:Admin:editquestion.html.twig',
+            array('form' => $form->createView(), 'question' => $question,
                 'error' => null)
         );
     }
