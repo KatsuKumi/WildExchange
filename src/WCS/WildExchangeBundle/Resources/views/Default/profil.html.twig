@@ -25,8 +25,10 @@
                     </div>
                     <div class="info">
                         <div class="title">
-                            {{ user.prenom }} {{ user.nom }}
+                            {{ user.prenom }} {{ user.nom }}<br><br>
+
                         </div>
+                        <h3>{{ user.rang.nom }}</h3>
 
                     </div>
                     <div class="btn-toolbar card-body-social" role="toolbar">
@@ -120,6 +122,7 @@
                         {% trans %}Nombre de votes envoyés{% endtrans %} : {{ user.votes|length }}<br>
                         {% trans %}Nombre de commentaires postés{% endtrans %} : {{ user.commentaires|length }}<br>
                         {% trans %}Nombre de votes reçus{% endtrans %} : {{ votetothisuser|length }}<br>
+
                     </div>
                 </div>
         </div>
