@@ -57,7 +57,7 @@
                                 <p>{{ bestquestion.contenu }}<span>...</span></p>
                             </div>
                             <div class="lien-blog-home">
-                                <span>En savoir plus</span>
+                                <span>{% trans %}En savoir plus{% endtrans %}</span>
                             </div>
                         </a>
                         {% endif %}
@@ -73,14 +73,14 @@
                                 <p>{{ question.contenu }}<span>...</span></p>
                             </div>
                             <div class="lien-blog-home">
-                                <span>En savoir plus</span>
+                                <span>{% trans %}En savoir plus{% endtrans %}</span>
                             </div>
                         </a>
                     </div>
                     {% endfor %}
                     <div class="col-page col-sm-4 col-md-3">
                         <a href="{{ path('inscriptionpage') }}" class="toutes-les-publication-home">
-                            <span>Rejoignez-nous pour en voir plus!</span>
+                            <span>{% trans %}Rejoignez-nous pour en voir plus!{% endtrans %}</span>
                         </a>
                     </div>
                 </div>
