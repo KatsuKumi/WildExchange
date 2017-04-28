@@ -119,7 +119,7 @@
                                                             <span class="pull-right utilisateur">{{ question.createur.nom }} {{ question.createur.prenom }}</span>
                                                         </h4>
                                                         </a>
-                                                        <p class="summary">{{ question.contenu }}</p>
+                                                        <p class="summary">{{ question.contenu|slice(0, 200) }}...</p>
                                                     </div>
                                                 </div>
                                             </td>
