@@ -105,27 +105,233 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // wcs_wild_exchange_homepage
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'wcs_wild_exchange_homepage');
-            }
-
-            return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'wcs_wild_exchange_homepage',);
-        }
-
-        // testtemplate
-        if ($pathinfo === '/template') {
-            return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\DefaultController::testAction',  '_route' => 'testtemplate',);
-        }
-
         // homepage
-        if (rtrim($pathinfo, '/') === '') {
+        if (preg_match('#^/(?P<_locale>en|fr)/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'homepage');
             }
 
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'homepage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        // connectionpage
+        if (preg_match('#^/(?P<_locale>en|fr)/connexion$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'connectionpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\SecurityController::connexionAction',));
+        }
+
+        // login
+        if (preg_match('#^/(?P<_locale>en|fr)/login$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'login')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\SecurityController::loginAction',));
+        }
+
+        // forgetpage
+        if (preg_match('#^/(?P<_locale>en|fr)/forget$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'forgetpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\SecurityController::forgetAction',));
+        }
+
+        // inscriptionpage
+        if (preg_match('#^/(?P<_locale>en|fr)/inscription$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'inscriptionpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\RegistrationController::registerAction',));
+        }
+
+        // tagspage
+        if (preg_match('#^/(?P<_locale>en|fr)/tags$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'tagspage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\DefaultController::tagsAction',));
+        }
+
+        // questionpage
+        if (preg_match('#^/(?P<_locale>en|fr)/questions/(?P<tag>[^/]++)/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'questionpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::questionsAction',));
+        }
+
+        // ajoutpage
+        if (preg_match('#^/(?P<_locale>en|fr)/ajout/(?P<tag>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'ajoutpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::ajoutAction',));
+        }
+
+        // deletepage
+        if (preg_match('#^/(?P<_locale>en|fr)/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'deletepage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::deleteAction',));
+        }
+
+        // editpage
+        if (preg_match('#^/(?P<_locale>en|fr)/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'editpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::editAction',));
+        }
+
+        // editstatuspage
+        if (preg_match('#^/(?P<_locale>en|fr)/editstatus/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'editstatuspage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::editstatusAction',));
+        }
+
+        // solutionpage
+        if (preg_match('#^/(?P<_locale>en|fr)/solution/(?P<questionid>[^/]++)/(?P<reponseid>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'solutionpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::SetSolutionAction',));
+        }
+
+        // votepage
+        if (preg_match('#^/(?P<_locale>en|fr)/vote$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'votepage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::VoteAction',));
+        }
+
+        // recherchepage
+        if (preg_match('#^/(?P<_locale>en|fr)/recherche/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'recherchepage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\QuestionController::rechercheAction',));
+        }
+
+        // reponsepage
+        if (preg_match('#^/(?P<_locale>en|fr)/reponses/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'reponsepage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\ReponseController::reponsesAction',));
+        }
+
+        // profilpage
+        if (preg_match('#^/(?P<_locale>en|fr)/profil/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'profilpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\UserController::profilAction',));
+        }
+
+        // dashboardformpage
+        if (preg_match('#^/(?P<_locale>en|fr)/dashboardform$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'dashboardformpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\UserController::editprofilAction',));
+        }
+
+        // dashboardpage
+        if (preg_match('#^/(?P<_locale>en|fr)/dashboard$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'dashboardpage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\UserController::dashboardAction',));
+        }
+
+        // deletereppage
+        if (preg_match('#^/(?P<_locale>en|fr)/deletereponse/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'deletereppage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\ReponseController::DeleteAction',));
+        }
+
+        // editreppage
+        if (preg_match('#^/(?P<_locale>en|fr)/editrep/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'editreppage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\ReponseController::EditAction',));
+        }
+
+        // docspage
+        if (preg_match('#^/(?P<_locale>en|fr)/docs/(?P<tag>[^/]++)/?$#s', $pathinfo, $matches)) {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'docspage');
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'docspage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\DocsController::docsAction',));
+        }
+
+        // ajoutdocspage
+        if (preg_match('#^/(?P<_locale>en|fr)/ajoutdocs/(?P<tag>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'ajoutdocspage')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\DocsController::ajoutdocsAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/admin')) {
+            // admin_homepage
+            if (rtrim($pathinfo, '/') === '/admin') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'admin_homepage');
+                }
+
+                return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::indexAction',  '_route' => 'admin_homepage',);
+            }
+
+            if (0 === strpos($pathinfo, '/admin/delete')) {
+                // deleteuser
+                if (rtrim($pathinfo, '/') === '/admin/delete/user') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'deleteuser');
+                    }
+
+                    return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::deleteuserAction',  '_route' => 'deleteuser',);
+                }
+
+                // deletequestion
+                if (rtrim($pathinfo, '/') === '/admin/delete/question') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'deletequestion');
+                    }
+
+                    return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::deletequestionAction',  '_route' => 'deletequestion',);
+                }
+
+                // deletereponse
+                if (rtrim($pathinfo, '/') === '/admin/delete/reponse') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'deletereponse');
+                    }
+
+                    return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::deletereponseAction',  '_route' => 'deletereponse',);
+                }
+
+                // deletecomment
+                if (rtrim($pathinfo, '/') === '/admin/delete/comment') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'deletecomment');
+                    }
+
+                    return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::deletecommentAction',  '_route' => 'deletecomment',);
+                }
+
+                // deletedoc
+                if (rtrim($pathinfo, '/') === '/admin/delete/doc') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'deletedoc');
+                    }
+
+                    return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::deletedocAction',  '_route' => 'deletedoc',);
+                }
+
+                // deletevote
+                if (rtrim($pathinfo, '/') === '/admin/delete/vote') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'deletevote');
+                    }
+
+                    return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::deletevoteAction',  '_route' => 'deletevote',);
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin/edit')) {
+                // edituser
+                if (0 === strpos($pathinfo, '/admin/edit/user') && preg_match('#^/admin/edit/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edituser')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::edituserAction',));
+                }
+
+                // editquestion
+                if (0 === strpos($pathinfo, '/admin/edit/question') && preg_match('#^/admin/edit/question/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'editquestion')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::editquestionAction',));
+                }
+
+                // editreponse
+                if (0 === strpos($pathinfo, '/admin/edit/reponse') && preg_match('#^/admin/edit/reponse/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'editreponse')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::editreponseAction',));
+                }
+
+                // editcomment
+                if (0 === strpos($pathinfo, '/admin/edit/comment') && preg_match('#^/admin/edit/comment/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'editcomment')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::editcommentAction',));
+                }
+
+                // editdoc
+                if (0 === strpos($pathinfo, '/admin/edit/doc') && preg_match('#^/admin/edit/doc/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'editdoc')), array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\StaffController::editdocAction',));
+                }
+
+            }
+
+        }
+
+        // IndexRedirection
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'IndexRedirection');
+            }
+
+            return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\DefaultController::RedirectAction',  '_route' => 'IndexRedirection',);
+        }
+
+        // logout
+        if ($pathinfo === '/logout') {
+            return array (  '_controller' => 'WCS\\WildExchangeBundle\\Controller\\SecurityController::logoutAction',  '_route' => 'logout',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

@@ -2,10 +2,25 @@
 # http://symfony.com/doc/current/security.html
 security:
 
+
+    encoders:
+        WCS\WildExchangeBundle\Entity\Utilisateur: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        our_db_provider:
+            entity:
+                class: WCSWildExchangeBundle:Utilisateur
+                property: pseudo
+
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -14,11 +29,22 @@ security:
             security: false
 
         main:
+            pattern: ^/
             anonymous: ~
-            # activate different ways to authenticate
+            form_login:
+                provider: our_db_provider
+                csrf_token_generator: security.csrf.token_manager
+                login_path: connectionpage
+                check_path: login
+                success_handler: redirect.after.login
+                remember_me: true
+            logout:
+                path:   /logout
+                success_handler: redirect.after.logout
+                invalidate_session: false
 
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            #form_login: ~
+    access_control:
+        - { path: ^/connexion, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscription, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }

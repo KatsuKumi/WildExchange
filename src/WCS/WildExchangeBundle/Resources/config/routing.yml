@@ -1,6 +1,87 @@
-wcs_wild_exchange_homepage:
+homepage:
     path:     /
     defaults: { _controller: WCSWildExchangeBundle:Default:index }
-testtemplate:
-    path:     /template
-    defaults: { _controller: WCSWildExchangeBundle:Default:test }
+
+connectionpage:
+    path:     /connexion
+    defaults: { _controller: WCSWildExchangeBundle:Security:connexion }
+
+login:
+    path:     /login
+    defaults: { _controller: WCSWildExchangeBundle:Security:login }
+
+forgetpage:
+    path:    /forget
+    defaults: {  _controller: WCSWildExchangeBundle:Security:forget }
+
+inscriptionpage:
+    path:     /inscription
+    defaults: {  _controller: WCSWildExchangeBundle:Registration:register }
+
+tagspage:
+    path:     /tags
+    defaults: {  _controller: WCSWildExchangeBundle:Default:tags }
+
+questionpage:
+    path:     /questions/{tag}/{page}
+    defaults: {  _controller: WCSWildExchangeBundle:Question:questions }
+
+ajoutpage:
+        path:     /ajout/{tag}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:ajout }
+
+deletepage:
+        path: /delete/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:delete}
+
+editpage:
+        path: /edit/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:edit}
+
+editstatuspage:
+        path: /editstatus/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:editstatus}
+
+solutionpage:
+        path: /solution/{questionid}/{reponseid}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:SetSolution}
+
+votepage:
+    path:    /vote
+    defaults: {  _controller: WCSWildExchangeBundle:Question:Vote }
+
+recherchepage:
+        path: /recherche/{page}
+        defaults: {  _controller: WCSWildExchangeBundle:Question:recherche}
+
+reponsepage:
+        path:     /reponses/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Reponse:reponses }
+
+profilpage:
+        path:     /profil/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:User:profil }
+
+dashboardformpage:
+        path:     /dashboardform
+        defaults: {  _controller: WCSWildExchangeBundle:User:editprofil}
+
+dashboardpage:
+        path:     /dashboard
+        defaults: {  _controller: WCSWildExchangeBundle:User:dashboard }
+
+deletereppage:
+        path: /deletereponse/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Reponse:Delete}
+
+editreppage:
+        path: /editrep/{id}
+        defaults: {  _controller: WCSWildExchangeBundle:Reponse:Edit}
+
+docspage:
+        path: /docs/{tag}/
+        defaults: {  _controller: WCSWildExchangeBundle:Docs:docs}
+
+ajoutdocspage:
+        path:     /ajoutdocs/{tag}
+        defaults: {  _controller: WCSWildExchangeBundle:Docs:ajoutdocs }

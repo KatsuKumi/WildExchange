@@ -1,7 +1,111 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}{% endblock %}
-{% block title %}Accueil{% endblock %}
-
+{% block style %}
+    <style>
+        .image{
+            background: url('{{ asset('accueil1.jpg') }}') no-repeat center fixed;
+            background-size: cover;
+            background-position: 0 100%;
+            min-height: 500px;
+        }
+    </style>
+{% endblock %}
 {% block body %}
+    <div class="container-fluid image">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <p class=largetitle> WILD EXCHANGE</p>
+                <p class="slogan"> {% trans %}Echangez sans chaussures{% endtrans %}</p>
+               <div class="span12">
+                <form id="custom-search-form" class="form-search form-horizontal pull-right" action="{{ path('recherchepage' , {'page':1}) }}" method="get">
+                    <div class="input-append span12">
+                        <div class="searchdiv">
+                                <input type="text" class="search-query" name="q" placeholder="Rechercher">
+                                <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+               </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <p class="presentation">{% trans %}Une plateforme d'échange collaborative fiable et puissante.{% endtrans %}</br>
+                    </br>
+                    {% trans %}Wild Exchange est un site web proposant des questions et réponses sur un large choix de thèmes concernant la programmation informatique.{% endtrans %}</br>
+                    </br>
+                    {% trans %}Il fait partie du réseau de sites Wild Code School .{% endtrans %}</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="publication-blog-home">
+        <div class="container-fluid">
+            <div class="">
+                <h2>Questions</h2>
+                <div class="row-page row">
+                    <div class="col-page col-sm-8 col-md-6">
+                        {% if bestquestion %}
+                        <a href="{{ path('reponsepage', {'id':bestquestion.id} )}}" class="black fond-publication-home">
+                            <div class="img-publication-principal-home">
+                                <img class="" src="{{ asset(bestquestion.tags[0].imageurl)|replace({"\n":'', "\r":'', ' ':''}) }}">
+                            </div>
+                            <div class="contenu-publication-principal-home">
+                                <h3>{{ bestquestion.titre }}</h3>
+                                <p>{{ bestquestion.contenu|slice(0,150  ) }}<span>...</span></p>
+                            </div>
+                            <div class="lien-blog-home">
+                                <span>{% trans %}En savoir plus{% endtrans %}</span>
+                            </div>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% for question in questions %}
+                    <div class="col-page col-sm-4 col-md-3">
+                        <a href="{{ path('reponsepage', {'id':question.id} )}}"  class="fond-publication-home">
+                            <div class="img-publication-home">
+                                <img class="img-responsive" src="{{ asset(question.tags[0].imageurl)|replace({"\n":'', "\r":'', ' ':''}) }}">
+                            </div>
+                            <div class="contenu-publication-home">
+                                <h3>{{ question.titre }}</h3>
+                                <p>{{ question.contenu|slice(0,150) }}<span>...</span></p>
+                            </div>
+                            <div class="lien-blog-home">
+                                <span>{% trans %}En savoir plus{% endtrans %}</span>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    <div class="col-page col-sm-4 col-md-3">
+                        <a href="{{ path('inscriptionpage') }}" class="toutes-les-publication-home">
+                            <span>{% trans %}Rejoignez-nous pour en voir plus!{% endtrans %}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block js %}
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
 {% endblock %}
