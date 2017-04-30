@@ -5,12 +5,12 @@ namespace WCS\WildExchangeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tags
+ * Status
  *
- * @ORM\Table(name="tags")
- * @ORM\Entity(repositoryClass="WCS\WildExchangeBundle\Repository\TagsRepository")
+ * @ORM\Table(name="status")
+ * @ORM\Entity(repositoryClass="WCS\WildExchangeBundle\Repository\StatusRepository")
  */
-class Tags
+class Status
 {
     /**
      * @var int
@@ -28,23 +28,11 @@ class Tags
      */
     private $nom;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="imageurl", type="string", length=255)
-     */
-    private $imageurl;
-
-
-
 
     /**
-     * Many Groups have Many Users.
-     * @ORM\ManyToMany(targetEntity="Questions", mappedBy="tags")
-     * @ORM\OrderBy({"date" = "DESC"})
+     * @ORM\OneToMany(targetEntity="Questions", mappedBy="status")
      */
     private $questions;
-
 
     /**
      * Get id
@@ -60,7 +48,7 @@ class Tags
      * Set nom
      *
      * @param string $nom
-     * @return Tags
+     * @return Status
      */
     public function setNom($nom)
     {
@@ -78,29 +66,6 @@ class Tags
     {
         return $this->nom;
     }
-
-    /**
-     * Set imageurl
-     *
-     * @param string $imageurl
-     * @return Tags
-     */
-    public function setImageurl($imageurl)
-    {
-        $this->imageurl = $imageurl;
-
-        return $this;
-    }
-
-    /**
-     * Get imageurl
-     *
-     * @return string 
-     */
-    public function getImageurl()
-    {
-        return $this->imageurl;
-    }
     /**
      * Constructor
      */
@@ -113,7 +78,7 @@ class Tags
      * Add questions
      *
      * @param \WCS\WildExchangeBundle\Entity\Questions $questions
-     * @return Tags
+     * @return Status
      */
     public function addQuestion(\WCS\WildExchangeBundle\Entity\Questions $questions)
     {

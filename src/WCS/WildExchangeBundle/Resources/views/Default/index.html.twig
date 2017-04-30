@@ -54,7 +54,7 @@
                             </div>
                             <div class="contenu-publication-principal-home">
                                 <h3>{{ bestquestion.titre }}</h3>
-                                <p>{{ bestquestion.contenu }}<span>...</span></p>
+                                <p>{{ bestquestion.contenu|slice(0,150  ) }}<span>...</span></p>
                             </div>
                             <div class="lien-blog-home">
                                 <span>{% trans %}En savoir plus{% endtrans %}</span>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="contenu-publication-home">
                                 <h3>{{ question.titre }}</h3>
-                                <p>{{ question.contenu }}<span>...</span></p>
+                                <p>{{ question.contenu|slice(0,150) }}<span>...</span></p>
                             </div>
                             <div class="lien-blog-home">
                                 <span>{% trans %}En savoir plus{% endtrans %}</span>

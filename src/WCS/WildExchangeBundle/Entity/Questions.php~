@@ -48,6 +48,12 @@ class Questions
      */
     private $createur;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="questions")
+     */
+    private $status;
+
     /**
      * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="questions")
@@ -57,14 +63,19 @@ class Questions
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Vote", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="question" , cascade={"remove"})
      */
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reponses",  mappedBy="question")
+     * @ORM\OneToMany(targetEntity="Reponses",  mappedBy="question", cascade={"all"}, orphanRemoval=true)
      */
     private $reponses;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Reponses", cascade={"remove"})
+     */
+    private $solution;
 
     /**
      * Get id
@@ -236,8 +247,88 @@ class Questions
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
+
     public function getVotes()
     {
         return $this->votes;
+    }
+
+    /**
+     * Add reponses
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Reponses $reponses
+     * @return Questions
+     */
+    public function addReponse(\WCS\WildExchangeBundle\Entity\Reponses $reponses)
+    {
+        $this->reponses[] = $reponses;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponses
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Reponses $reponses
+     */
+    public function removeReponse(\WCS\WildExchangeBundle\Entity\Reponses $reponses)
+    {
+        $this->reponses->removeElement($reponses);
+    }
+
+    /**
+     * Get reponses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponses()
+    {
+        return $this->reponses;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Status $status
+     * @return Questions
+     */
+    public function setStatus(\WCS\WildExchangeBundle\Entity\Status $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Status 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set solution
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Reponses $solution
+     * @return Questions
+     */
+    public function setSolution(\WCS\WildExchangeBundle\Entity\Reponses $solution = null)
+    {
+        $this->solution = $solution;
+
+        return $this;
+    }
+
+    /**
+     * Get solution
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Reponses 
+     */
+    public function getSolution()
+    {
+        return $this->solution;
     }
 }

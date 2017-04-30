@@ -41,10 +41,17 @@ class Vote
      */
     private $votant;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="Questions", inversedBy="votes")
+     * @ORM\ManyToOne(targetEntity="Questions", inversedBy="votes" , cascade={"remove"})
      */
     private $question;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Reponses", inversedBy="votes", cascade={"remove"})
+     */
+    private $reponse;
 
 
     /**
@@ -147,5 +154,28 @@ class Vote
     public function getQuestion()
     {
         return $this->question;
+    }
+
+    /**
+     * Set reponse
+     *
+     * @param \WCS\WildExchangeBundle\Entity\Reponses $reponse
+     * @return Vote
+     */
+    public function setReponse(\WCS\WildExchangeBundle\Entity\Reponses $reponse = null)
+    {
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+    /**
+     * Get reponse
+     *
+     * @return \WCS\WildExchangeBundle\Entity\Reponses 
+     */
+    public function getReponse()
+    {
+        return $this->reponse;
     }
 }
