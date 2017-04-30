@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container-fluid smallpaddingtop">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            {% for value in attributes %}
+            {% endfor %}
+            {% for value in attributes %}
+                <a href="{{ path('questionpage', { 'tag': value.nom, page: 1 }) }}">
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="img-responsive" style="background-image: url({{ asset(value.imageurl) |replace({"\n":'', "\r":'', ' ':''})}});">
+                            <div class="container inlineblock">
+
+                                <div class="cadre-gauche col-md-12 col-xs-12">
+                                    <a class="" href="{{ path('questionpage', { 'tag': value.nom, page: 1 }) }}">QUESTIONS</a>
+                                </div>
+                                <div class="centertext  col-md-12 col-xs-12">
+                                    {{ value.nom }}
+                                </div>
+                                <div class=" cadre-droit col-md-12 col-xs-12">
+                                    <a  class="" href="{{ path('docspage', { 'tag': value.nom, page: 1 }) }}">DOCUMENTATIONS</a>
+                                </div>
+                            </div>
+                            </div>
+                </div>
+                </a>
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+

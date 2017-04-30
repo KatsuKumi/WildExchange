@@ -1,0 +1,52 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: WCSWildExchangeBundle:Staff:index }
+
+deleteuser:
+    path: /delete/user/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deleteuser }
+
+deletequestion:
+    path: /delete/question/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletequestion }
+
+deletereponse:
+    path: /delete/reponse/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletereponse }
+
+deletecomment:
+    path: /delete/comment/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletecomment }
+
+deletedoc:
+    path: /delete/doc/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletedoc }
+
+deletevote:
+    path: /delete/vote/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletevote }
+
+deletevote:
+    path: /delete/vote/
+    defaults: { _controller: WCSWildExchangeBundle:Staff:deletevote }
+
+edituser:
+    path: /edit/user/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:edituser }
+
+editquestion:
+    path: /edit/question/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editquestion }
+
+
+editreponse:
+    path: /edit/reponse/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editreponse }
+
+editcomment:
+    path: /edit/comment/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editcomment }
+
+editdoc:
+    path: /edit/doc/{id}
+    defaults: { _controller: WCSWildExchangeBundle:Staff:editdoc }

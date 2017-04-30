@@ -1,0 +1,76 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block body %}
+
+    <div class="container-2">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="page-title">
+                        <h2><i class="active"><i class="fa fa-user"></i> Modification <br>
+                                <small>Utilisateur</small>
+                        </h2>
+                        <ol class="breadcrumb">
+                            {{ user.pseudo }}
+                        </ol>
+                    </div>
+
+
+                        {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_row(form.pseudo)}}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_row(form.motDePasse)}}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_row(form.email)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.nom)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.prenom)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.interet)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.github)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.facebook)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.twitter)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.linkedin)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.avatarurl)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.dateInscription)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.dateConnexion)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.rang)}}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.ecole)}}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+
+                        {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block body %}
+
+    <div class="container-2">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="page-title">
+                        <h2><i class="active"><i class="fa fa-question-circle-o"></i> Modification <br>
+                                <small>Questions</small>
+                            </i>
+                        </h2>
+                        <ol class="breadcrumb">
+                            {{ doc.titre }}
+                        </ol>
+                    </div>
+
+
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_row(form.titre)}}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.url)}}
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

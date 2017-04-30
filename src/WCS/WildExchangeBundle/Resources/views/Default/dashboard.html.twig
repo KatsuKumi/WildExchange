@@ -1,0 +1,302 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <style>
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Regular.ttf') }}');
+        }
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Bold.ttf') }}');
+            font-weight: bold;
+        }
+        body{
+            font-family: "Open Sans", sans-serif;
+        }
+    </style>
+    <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+
+{% endblock %}
+{% block body %}
+    <div class="container-fluid smallpaddingtop">
+    <div id="menu-overlay"></div>
+    <div id="menu-toggle" class="closed" data-title="Menu">
+        <i class="fa fa-bars"></i>
+        <i class="fa fa-times"></i>
+    </div>
+    <div id="content container-fluid">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 blue">
+                        <img src="{{ asset(( app.user.avatarurl)) }}" class="avatar-160x" style=" margin-top: 20px;">
+                        <span class="username">
+                       {{ app.user.username }}
+                        </span>
+                    </div>
+                </div>
+
+                <nav id="tabs">
+                    <ul>
+                        <li class="active" data-target="Détails">Détails</li>
+                        <li data-target="Historique">Historique</li>
+                    </ul>
+                </nav>
+                <div class="tab-target targeted date" id="Détails">
+                    Dernière connexion le {{ app.user.dateConnexion|date(' d/m/Y') }}
+                </div>
+            </div>
+        <!---- DETAILS ----->
+        <div class="tab-target targeted" id="Détails">
+            <div class="col-xs-12 col-md-7 container-fluid">
+                <form method="post" action="{{ path('dashboardformpage') }}" enctype="multipart/form-data">
+                <div class="inline row">
+                    <div class="col-xs-12 col-md-6">
+                        <label class="control-label">Avatar</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+
+                        <div class="file">
+                            <div class="input-group image-preview">
+                                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                <span class="input-group-btn">
+                                    <!-- image-preview-clear button -->
+                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                        <span class="glyphicon glyphicon-remove"></span> Effacer
+                                    </button>
+                                                    <!-- image-preview-input -->
+                                    <div class="btn btn-default image-preview-input">
+                                        <label for="upload" id="browsebtn">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="image-preview-input-title">Parcourir</span>
+                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="avatar" id="upload" style="display: none;"/> <!-- rename it -->
+                                        </label>
+                                    </div>
+                                </span>
+                            </div><!-- /input-group image-preview [TO HERE]-->
+                        </div>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-12 col-md-6">
+                        <label class="control-label">E-mail</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <input class ="file dashboard-things" type="email" name="email" placeholder="Email" value="{{ app.user.email }}" style="margin-top: 0px; height: 35px;">
+                    </div>
+
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-12 col-md-6">
+                        <label class="control-label">Mot de Passe</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <input class ="file" type="password" name="password" placeholder="******" style="margin-top: 0px; height: 35px;">
+                    </div>
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-12 col-md-6">
+                        <label class="control-label">Social</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <ul class="soclist">
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-github fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="GitHub" value="{{ app.user.github }}" placeholder="@GitHub">
+                                </div>
+                            </li>
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-twitter-square fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="Twitter" value="{{ app.user.twitter }}" placeholder="@Twitter">
+                                </div>
+                            </li>
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-facebook-official fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="Facebook" value="{{ app.user.facebook }}" placeholder="@Facebook">
+                                </div>
+                            </li>
+                            <li class="soc">
+                                <div>
+                                    <i class="fa fa-linkedin-square fa" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <input class="file dashboard-things socinput" type="text" name="LinkedLn" value="{{ app.user.linkedin }}" placeholder="@LinkedLn">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="inline row">
+                    <div class="col-xs-12 col-md-6">
+                    <label class="control-label">Centre d'Interêts</label>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                    <input type="text" class="file" data-role="tagsinput" value="{{ app.user.interet }}" name="interet">
+                    </div>
+                </div>
+                    <div class="row">
+                        <input class="btnsubmit btn btn-default" type="submit" name="submit" value="Envoyer" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12 col-md-4 col-md-offset-1 container badgeblock">
+                <h2 class="text-center">Badges</h2>
+                {% if app.user.badges|length == 0 %}
+                    <div class="badge"> Aucun badge ! </div>
+                    {% else %}
+                    {% for badge in app.user.badges  %}
+                        <img class="badgeimg" src="{{ asset(badge.imgurl) }}"><span class="badgename">{{ badge.nom }}</span><br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+
+        </div>
+        <!---- HISTORIQUE ----->
+
+        <div class="tab-target" id="Historique">
+            <div class="container" id="features">
+                <div class="row">
+                    <div class="col-md-4 feature">
+                        <i class="glyphicon glyphicon-picture"></i>
+                        <h3>Questions posées</h3>
+                        <div class="title_border"></div>
+                        {% for question in app.user.questions|slice(0, 5) %}
+                            <p>{{ question.titre }}</p>
+                        {% endfor %}
+
+                    </div>
+                    <div class="col-md-4 feature">
+                        <i class="glyphicon glyphicon-globe"></i>
+                        <h3>Statistiques Globales</h3>
+                        <div class="title_border"></div>
+                        <p>Tag question le plus utilisé : {{ mostusedtag }}</p>
+                        <p>Nombre de réponses écrites : {{ app.user.reponses|length }}</p>
+                        <p>Nombre total de Like reçus : + {{ voteusr|length }}</p>
+                        <p>Nombre de questions posées : {{ app.user.questions|length }}</p>
+
+                    </div>
+                    <div class="col-md-4 feature">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                        <h3>Succès Utilisateur</h3>
+                        <div class="title_border"></div>
+                        <p> Rang actuel : {{ app.user.rang.nom }} </p>
+                        <p> Badges obtenus : {{ app.user.badges|length }} badge(s) </p>
+                        <p> Questions résolues : {{ resolvedquestion|length }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            </div>
+    </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $('#menu-toggle,#menu-overlay').click(function(){
+            $('body').toggleClass('open-menu');
+        });
+
+        $('#main-nav li a').click(function(){
+            $('#main-nav li').removeClass('active');
+            $(this).parent().addClass('active')
+        });
+
+        $('#tabs li').click(function(){
+            var clickTarget = $(this).attr('data-target');
+            $('.tab-target').removeClass('targeted');
+            $('#'+clickTarget).addClass("targeted");
+            $('#tabs li').removeClass('active');
+            $(this).addClass('active')
+        });
+
+        $('#admin-search input').on('focus',function(){
+            $('#header_logo').addClass('hidden');
+        });
+        $('#admin-search input').on('blur',function(){
+            $('#header_logo').removeClass('hidden');
+        });
+    </script>
+    <script>
+        $(document).on('click', '#close-preview', function(){
+            $('.image-preview').popover('hide');
+            // Hover befor close the preview
+            $('.image-preview').hover(
+                function () {
+                    $('.image-preview').popover('show');
+                },
+                function () {
+                    $('.image-preview').popover('hide');
+                }
+            );
+        });
+
+        $(function() {
+            // Create the close button
+            var closebtn = $('<button/>', {
+                type:"button",
+                text: 'x',
+                id: 'close-preview',
+                style: 'font-size: initial;',
+            });
+            closebtn.attr("class","close pull-right");
+            // Set the popover default content
+            $('.image-preview').popover({
+                trigger:'manual',
+                html:true,
+                title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+                content: "There's no image",
+                placement:'bottom'
+            });
+            // Clear event
+            $('.image-preview-clear').click(function(){
+                $('.image-preview').attr("data-content","").popover('hide');
+                $('.image-preview-filename').val("");
+                $('.image-preview-clear').hide();
+                $('.image-preview-input input:file').val("");
+                $(".image-preview-input-title").text("Browse");
+            });
+            // Create the preview image
+            $(".image-preview-input input:file").change(function (){
+                var img = $('<img/>', {
+                    id: 'dynamic',
+                    width:250,
+                    height:200
+                });
+                var file = this.files[0];
+                var reader = new FileReader();
+                // Set preview image into the popover data-content
+                reader.onload = function (e) {
+                    $(".image-preview-input-title").text("Change");
+                    $(".image-preview-clear").show();
+                    $(".image-preview-filename").val(file.name);
+                    img.attr('src', e.target.result);
+                    $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
+    <script src="{{ asset('bootstrap-tagsinput.min.js') }}"></script>
+
+{% endblock %}

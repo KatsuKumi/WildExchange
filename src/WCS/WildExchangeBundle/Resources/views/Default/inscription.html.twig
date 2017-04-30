@@ -1,0 +1,79 @@
+    {% extends 'base.html.twig' %}
+    {% block title %}Inscription{% endblock %}
+    {% block style %}
+        <link href="{{ asset('css/formulaire.css') }}" rel="stylesheet" type="text/css" media="screen">
+        <link href="{{ asset('bootstrap-tagsinput.css') }}" rel="stylesheet" type="text/css" media="screen">
+        <style>
+            body{
+                background: url('{{ asset('seconnecter.jpg') }}') no-repeat center fixed;
+                background-size: cover;
+            }
+        </style>
+    {% endblock %}
+    {% block body %}
+
+        <div class="container-fluid paddingtop">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="wrap login">
+                        <p class="form-title">
+                            Coordonnées</p>
+                        {% if error %}
+                            <h3>{{ error }}</h3>
+                        {% endif %}
+                        {{ form_start(form, { 'attr' : { 'class': 'login' } }) }}
+
+
+                        {{ form_errors(form.pseudo)}}
+                        {{ form_widget(form.pseudo)}}
+
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.email) }}
+
+                        {{ form_errors(form.motDePasse.first) }}
+                        {{ form_widget(form.motDePasse.first) }}
+
+                        {{ form_errors(form.motDePasse.second) }}
+                        {{ form_widget(form.motDePasse.second) }}
+
+                        {{ form_errors(form.nom) }}
+                        {{ form_widget(form.nom) }}
+
+                        {{ form_errors(form.prenom) }}
+                        {{ form_widget(form.prenom) }}
+
+                        {{ form_errors(form.interet) }}
+                        {{ form_widget(form.interet) }}
+
+                        {{ form_errors(form.ecole) }}
+                        {{ form_widget(form.ecole) }}
+                        <button type=submit onclick="return false;" style="display:none;"></button>
+                        <input type="submit" value="Enregistrer" class="btn btn-success btn-sm" />
+                        {{ form_end(form) }}
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{{ asset('bootstrap-tagsinput.min.js') }}"></script>
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
+{% endblock %}

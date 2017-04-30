@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block style %}
+    <link href="{{ asset('css/formulaire.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <style>
+        body{
+            background: url('{{ asset('seconnecter.jpg') }}') no-repeat center fixed;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container paddingtop">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pr-wrap">
+                    <div class="pass-reset">
+                        <label>
+                            Entrer votre email</label>
+                        <input type="email" placeholder="Email" />
+                        <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                    </div>
+                </div>
+                <div class="wrap">
+                    <p class="form-title">
+                        Se Connecter</p>
+
+                    <form class="login" action="{{ path('forgetpage') }}" method="post">
+                        <input type="text" placeholder="Pseudo ou Email" name="email" value=""/>
+                        <input type="submit" value="Envoyer" class="btn btn-success btn-sm" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script>
+        $(window).scroll(function(){
+
+            if( $(this).scrollTop() == 0 ) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if( $(this).scrollTop() == 0 ) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top') ) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
+{% endblock %}

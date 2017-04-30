@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <style>
+        .image {
+            background: url('{{ asset('accueil1.jpg') }}') no-repeat center fixed;
+            background-size: cover;
+            background-position: 0 100%;
+            min-height: 400px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card hovercard">
+                    <div class="cardheader">
+
+                    </div>
+                    <div class="avatar">
+                        <img src="{{ asset(user.avatarurl) }}">
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            {{ user.prenom }} {{ user.nom }}<br><br>
+
+                        </div>
+                        <h3>{{ user.rang.nom }}</h3>
+
+                    </div>
+                    <div class="btn-toolbar card-body-social" role="toolbar">
+                        <a href="https://github.com/{{ user.github|replace({'@': ''}) }}"><div class="btn-group fa fa-github-alt git"></div></a>
+                        <a href="https://www.linkedin.com/in/{{ user.linkedin|replace({'@': ''}) }}"><div class="btn-group linkedin fa fa-linkedin-square"></div></a>
+                        <a href="https://twitter.com/{{ user.twitter|replace({'@': ''}) }}"><div class="btn-group twitter fa fa-twitter"></div></a>
+                        <a href="https://www.facebook.com/{{ user.facebook|replace({'@': ''}) }}"><div class="btn-group facebook fa fa-facebook"></div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="page-header">
+            <h1 id="timeline">{% trans %}Journal des actions{% endtrans %}</h1>
+        </div>
+        <ul class="timeline">
+
+            {% for action in recentaction %}
+                {% if action.titre is defined %}
+                    <li>
+                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title">{% trans %}A posté une question{% endtrans %} :</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>{{ action.titre }}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% else %}
+                    {% if action.value is defined %}
+                        {% if action.question %}
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">{% trans %}A voté en faveur d'une question !{% endtrans %}</h4>
+                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>{{ action.question.titre }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        {% else %}
+                            {% if action.question %}
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">{% trans %}A voté sur une réponse de la question{% endtrans %} :</h4>
+                                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>{{ action.reponse.question.titre }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                    <li>
+                        <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
+                         <div class="timeline-panel">
+                         <div class="timeline-heading">
+                        <h4 class="timeline-title">{% trans %}A répondu à une question{% endtrans %} :</h4>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ action.date|time_ago_in_words }}</small></p>
+                    </div>
+                    <div class="timeline-body">
+                        <p> {{ action.question.titre }}</p>
+                            </div>
+                            </div>
+                            </li>
+
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+                <div class="boite col-lg-12">
+                    <h1>{% trans %}Statistiques de contribution{% endtrans %}</h1>
+                    <div class="center-block whitetext">
+                        <br>
+                        {% trans %}Nombre de questions postés{% endtrans %} : {{ user.questions|length }}<br>
+                        {% trans %}Nombre de réponses postés{% endtrans %} : {{ user.reponses|length }}<br>
+                        {% trans %}Nombre de votes envoyés{% endtrans %} : {{ user.votes|length }}<br>
+                        {% trans %}Nombre de commentaires postés{% endtrans %} : {{ user.commentaires|length }}<br>
+                        {% trans %}Nombre de votes reçus{% endtrans %} : {{ votetothisuser|length }}<br>
+
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+                <div class="boitevote">
+                    <h1>Top vote</h1>
+                    <div class="center-block whitetext">
+                        {% for top in topquestion|slice(0, 5) %}
+                        {% if top.titre is defined %}
+                                <span class="veryverysmallpaddingtop">
+                                    <div class="col-md-7">{% trans %}Question{% endtrans %} : {% trans %}Titre{% endtrans %} : <u><a href="{{ path('reponsepage', {'id':top.id}) }}">{{ top.titre}}</a></u></div>
+                                    <div class="col-md-5">{% trans %}Nombre de votes{% endtrans %} : {{ top.votes|length }}</div>
+                                </span>
+                                <br>
+                            {% else %}
+                                <span class="veryverysmallpaddingtop">
+                                    <div class="col-md-7">{% trans %}Réponse{% endtrans %} : {% trans %}Titre{% endtrans %} : <u><a href="{{ path('reponsepage', {'id':top.question.id}) }}">{{ top.question.titre }}</a></u></div>
+                                    <div class="col-md-5">{% trans %}Nombre de votes{% endtrans %} : {{ top.votes|length }}</div>
+                                </span>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(window).scroll(function () {
+
+            if ($(this).scrollTop() == 0) {
+                $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+            }
+            else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
+                $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+            }
+
+        });
+
+        if ($(this).scrollTop() == 0) {
+            $('.navbar-defaultt').addClass('x-navbar-fixed-top');
+        }
+        else if ($('.navbar-defaultt').hasClass('x-navbar-fixed-top')) {
+            $('.navbar-defaultt').removeClass('x-navbar-fixed-top');
+        }
+    </script>
+{% endblock %}
