@@ -1,25 +1,245 @@
+{% trans_default_domain "app" %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <style src="style.css"></style>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        <div id="navbar">
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="minimum-scale=1, maximum-scale=1, width=device-width" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css">
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/icheck-bootstrap.min.css') }}" />
+    <link href="{{ asset('style.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog-jim.css') }}" />
+    <script src="{{ asset('js/snap.svg-min.js') }}"></script>
+    <script src="{{ asset('js/modernizr.custom.js') }}"></script>
+    <style>
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Regular.ttf') }}');
+        }
+        @font-face {
+            font-family: wcsfont;
+            src: url('{{ asset('Alwyn Bold.ttf') }}');
+            font-weight: bold;
+        }
+        body{
+            font-family: "Open Sans", sans-serif;
+        }
+    </style>
+    <title>Wild Exchange - {% block title %}{% endblock %}</title>
+    {% block style %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-defaultt">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="" href="{{ path('homepage') }}">
+                <img src= "{{ asset('logoBlue.png') }}" ><div class="navbar-titre">Wild exchange</div>
+            </a>
 
         </div>
-        <div id="content">
-            {% block body %}
 
-            {% endblock %}
-        </div>
-        <div id="footer">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="accueil" href="{{ path('tagspage') }}">{% trans %}Explorer{% endtrans %}</a></li>
+                {% if app.user %}
 
+                    {% if app.user.rang.id > 1 %}
+                        <li><a class="accueil" href="{{ path('admin_homepage') }}">{% trans %}Administration{% endtrans %}</a></li>
+                    {% endif %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-expanded="false"><img class="avatar-16x" src="{{ asset(app.user.avatarurl) }}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">{% trans %}Bonjour{% endtrans %}, {{ app.user.username }} !</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ path('profilpage', {'id':app.user.id} )}}">{% trans %}Mon profil{% endtrans %}</a></li>
+                            <li><a href="{{ path('dashboardpage') }}">Dashboard</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ path('logout') }}">{% trans %}Se déconnecter{% endtrans %}</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li><a class="accueil" href="{{ path('connectionpage') }}">{% trans %}Se connecter{% endtrans %}</a></li>
+                    <li><a class="accueil" href="{{ path('inscriptionpage') }}">{% trans %}S'inscrire{% endtrans %}</a></li>
+
+                    {% endif %}
+                {% if app.request.locale == 'fr' %}
+               <li><a class="drapbtn" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"><img class="drapeau" src="https://wpcct2016.sciencesconf.org/conference/wpcct2016/pages/United_Kingdom_flag_icon.png"></a></li>
+                    {% else %}
+               <li><a class="drapbtn" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"><img class="drapeau" src="https://cdn3.iconfinder.com/data/icons/finalflags/256/France-Flag.png"></a></li>
+                {% endif %}
+
+            </ul>
         </div>
-        {% block javascripts %}{% endblock %}
-    </body>
+    </div>
+</nav>
+
+
+
+
+                                                    <!-- Ceci est un Trou Noir -->
+
+
+
+
+<script src="{{ asset('js/classie.js') }}"></script>
+<script src="{{ asset('js/dialogFx.js') }}"></script>
+{% for type, flash_messages in app.session.flashBag.all %}
+    {% for flash_message in flash_messages %}
+
+        <div class="container">
+            <div class="content">
+                <header class="codrops-header">
+                    <div class="button-wrap"><button data-dialog="somedialog" class="trigger" id="flash-{{ type }}" style="display:none;">Open Dialog</button></div>
+                </header>
+                <div id="somedialog" class="dialog">
+                    <div class="dialog__overlay"></div>
+                    <div class="dialog__content">
+                        <div class="morph-shape" data-morph-open="M199.5,100c0,54.955-44.768,99.5-100,99.5s-100-44.545-100-99.5c0-54.956,44.769-99.5,100-99.5
+	S199.5,45.044,199.5,100z">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+                                <path d="M199.5,100c0,0.552-44.768,1-100,1s-100-0.448-100-1s44.769-1,100-1S199.5,99.448,199.5,100z"></path>
+                            </svg>
+                        </div>
+                        <div class="dialog-inner">
+                            <h2>{{ flash_message }}</h2><div><button class="action" data-dialog-close>Fermer</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /content -->
+        </div><!-- /container -->
+
+        <script>
+            (function() {
+
+                var dlgtrigger = document.querySelector( '[data-dialog]' ),
+
+                    somedialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog' ) ),
+                    // svg..
+                    morphEl = somedialog.querySelector( '.morph-shape' ),
+                    s = Snap( morphEl.querySelector( 'svg' ) ),
+                    path = s.select( 'path' ),
+                    initialPath = path.attr('d'),
+                    steps = {
+                        open : morphEl.getAttribute( 'data-morph-open' )
+                    },
+                    dlg = new DialogFx( somedialog, {
+                        onOpenDialog : function( instance ) {
+                            // reset path
+                            morphEl.querySelector( 'svg > path' ).setAttribute( 'd', initialPath );
+                            // animate path
+                            path.stop().animate( { 'path' : steps.open }, 300, mina.easein );
+                        }
+                    } );
+
+                dlgtrigger.addEventListener( 'click', dlg.toggle.bind(dlg) );
+                document.getElementById('flash-{{ type }}').click();
+            })();
+        </script>
+    {% endfor %}
+{% endfor %}
+{% block body %}{% endblock %}
+<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+{% block js %}{% endblock %}
+</body>
+<footer>
+
+    <div class="copyright">
+        <div class="container">
+            <p>{% trans %}Suivez-nous sur vos réseaux favoris{% endtrans %}</p>
+            <p>
+                <a href="http://www.github.com"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+                <a href="http://www.facebook.com"><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></a>
+                <a href="http://www.twitter.com"><i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
+                <a href="http://www.linkedin.com"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a>
+                <a href="http://www.youtube.com"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
+                <a href="http://www.instagram.com"><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></a>
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>{% trans %}La Wild Code School{% endtrans %}</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="https://wildcodeschool.fr/questcequela-wildcodeschool/"> {% trans %}Le concept{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/nos-formations-initiation-approfondissement-developpeur/"> {% trans %}Notre programme{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/candidat/"> {% trans %}Comment candidater{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/faq/"> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>{% trans %}Nos écoles{% endtrans %}</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="https://wildcodeschool.fr/la-loupe/"> La Loupe</a></li>
+                    <li><a href="https://wildcodeschool.fr/fontainebleau/"> Fontainebleau</a></li>
+                    <li><a href="https://wildcodeschool.fr/orleans/"> Orléans</a></li>
+                    <li><a href="https://wildcodeschool.fr/bordeaux/"> Bordeaux</a></li>
+                    <li><a href="https://wildcodeschool.fr/lyon/"> Lyon</a></li>
+                    <li><a href="https://wildcodeschool.fr/toulouse/"> Toulouse</a></li>
+                    <li><a href="https://wildcodeschool.fr/paris/"> Paris</a></li>
+                    <li><a href="https://wildcodeschool.fr/lille/"> Lille</a></li>
+                    <li><a href="https://wildcodeschool.fr/strasbourg/"> Starsbourg</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>{% trans %}Plan du site{% endtrans %}</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="{{ path('homepage') }}"> {% trans %}Accueil{% endtrans %}</a></li>
+                    <li><a href="{{ path('dashboardpage') }}"> Dashboard</a></li>
+                    <li><a href="{{ path('inscriptionpage') }}"> {% trans %}Inscription{% endtrans %}</a></li>
+                    <li><a href="{{ path('connectionpage') }}"> {% trans %}Se connecter{% endtrans %}</a></li>
+                    <li><a href="{{ path('tagspage') }}"> Tags</a></li>
+                    <li><a href="{{ path('forgetpage') }}"> {% trans %}Mot de Passe oublié{% endtrans %}</a> </li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>{% trans %}Notre blog{% endtrans %}</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="https://wildcodeschool.fr/blog/android-ios-application-mobile-entretien/"> > {% trans %}Android versus iOS : entretien avec deux experts{% endtrans %}
+                            <br/><small><em>avril 13, 2017</em></small></a></li>
+                    <li><a href="https://wildcodeschool.fr/blog/hackathon-wild-code-school/"> > {% trans %}Vie de l’école – retour sur le hackathon de mars à la Wild Code School{% endtrans %}
+                            <br/><small><em>avril 11, 2017</em></small></a></li>
+                    <li><a href="https://wildcodeschool.fr/blog/formation-courte-code/"> > {% trans %}La Wild Code School propose de nouvelles formations adaptées à tous les besoins{% endtrans %}
+                            <br/><small><em>avril 10, 2017</em></small></a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                <h6 class="heading7"><u>{% trans %}À propos{% endtrans %}</u></h6>
+                <ul class="footer-ul">
+                    <li><a href="https://wildcodeschool.fr/contact/"> {% trans %}Nous contacter{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/equipe/"> {% trans %}Notre équipe{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/offres-emplois/"> {% trans %}Offres d'emploi{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/recruter-un-developpeur/"> {% trans %}Recruter un développeur{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/developper-un-projet/"> {% trans %}Développer un projet{% endtrans %}</a></li>
+                    <li><a href="https://wildcodeschool.fr/nous-soutenir/"> {% trans %}Nous soutenir{% endtrans %}</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6 paddingtop-bottom ">
+                <img src="{{ asset('lightLogo-1.png') }}" class="avatar-32x">
+            </div>
+        </div>
+    </div>
+    <div class="ligne_footer"></div>
+
+    <div class="copyright">
+        <div class="container">
+            <p>Made with love by Wild Code School</p>
+        </div>
+    </div>
+
+</footer>
 </html>
-

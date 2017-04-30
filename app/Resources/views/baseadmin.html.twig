@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="sumit kumar">
+    <title>Admin WildExchange</title>
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
+</head>
+
+
+<body>
+
+
+<!--=============================
+           NAVIGATION
+ =============================-->
+
+<!--top nav start=======-->
+<nav class="navbar navbar-inverse top-navbar" id="top-nav">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ path('homepage') }}"><img class="img-responsive avatar-16x" src="{{ asset('logoBlue.png') }}" width="150" height="20" style="margin-left: 10px;"></a>
+
+            <a href="javascript:;" class="sidebar-toggle">
+                <i class="fa fa-bars"></i>
+            </a>
+
+            <span class="close-btn" id="hide-btn"><i class="fa fa-times" aria-hidden="true"></i></span>
+        </div>
+
+    </div>
+</nav>
+<!--    top nav end===========-->
+
+<!-- begin SIDE NAV USER PANEL -->
+    <div class="container-1" id="user-profil">
+        <ul id="side" class="nav navbar-nav-1 side-nav">
+
+            <li class="side-user">
+                <img  class="img-circle avatar-16x" src="{{ asset(app.user.avatarurl)}}" alt="Avatar">
+                <p class="welcome"><i class="fa fa-key"></i> Connecté en tant que</p>
+                <p class="name tooltip-sidebar-logout">
+                    <span class="last-name">{{ app.user.pseudo }}</span>
+                    <a href="{{ path('logout') }}"><i class="fa fa-sign-out"></i></a>
+                </p>
+            </li>
+
+            <li class="dashboard">
+                <a class="active" href="{{ path('admin_homepage') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <!-- Supprimez à partir d'ici si besoin du reste des boites -->
+        </ul>
+    </div>
+            <!--
+                        <li class="panel">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#charts">
+                                <i class="fa fa-bar-chart-o"></i> Statistiques
+                            </a>
+                        </li>
+
+                        <li class="panel">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#calendar">
+                                <i class="fa fa-calendar"></i> calendar <i class="fa fa-caret-down pull-right"></i>
+                            </a>
+
+                            <ul class="collapse nav" id="calendar">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Morris.js</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="panel">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#clipboard">
+                                <i class="fa fa-clipboard"></i> clipboard <i class="fa fa-caret-down pull-right"></i>
+                            </a>
+
+                            <ul class="collapse nav" id="clipboard">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Morris.js</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="panel">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#edit">
+                                <i class="fa fa-edit"></i> edit <i class="fa fa-caret-down pull-right"></i>
+                            </a>
+
+                            <ul class="collapse nav" id="edit">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Morris.js</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="panel">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#inbox">
+                                <i class="fa fa-inbox"></i> inbox <i class="fa fa-caret-down pull-right"></i>
+                            </a>
+
+                            <ul class="collapse nav" id="inbox">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Morris.js</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="panel">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#cogs">
+                                <i class="fa fa-cogs"></i> cogs <i class="fa fa-caret-down pull-right"></i>
+                            </a>
+
+                            <ul class="collapse nav" id="cogs">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Morris.js</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="panel">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#paper">
+                                <i class="fa fa-paper-plane"></i> paper <i class="fa fa-caret-down pull-right"></i>
+                            </a>
+
+                            <ul class="collapse nav" id="paper">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i> Morris.js</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            -->
+
+    {% block body %}
+    {% endblock %}
+
+
+
+
+
+
+
+
+<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".sidebar-toggle").click(function(){
+            $(this).hide(400);
+
+            $("#user-profil").show(400);
+
+            $("#hide-btn").show(400);
+
+            $(".container-2").css("width", "85%");
+
+
+        });
+
+        $("#hide-btn").click(function(){
+            $(this).hide();
+
+            $("#user-profil").hide();
+
+            $(".sidebar-toggle").show();
+
+            $(".container-2").css("width", "100%");
+
+
+        });
+        $(".sidebar-toggle").hide(400);
+
+        $("#user-profil").show(400);
+
+        $("#hide-btn").show(400);
+
+        $(".container-2").css("width", "85%");
+
+    });
+</script>
+
+{% block js %}
+{% endblock %}
+
+
+
+
+</body>
+</html>

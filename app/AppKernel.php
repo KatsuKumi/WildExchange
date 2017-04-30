@@ -15,7 +15,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
             new WCS\WildExchangeBundle\WCSWildExchangeBundle(),
         );
 
@@ -33,10 +32,5 @@ class AppKernel extends Kernel
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
-	public function init()
-	{
-	    // get rid of Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone
-	    date_default_timezone_set( 'Europe/Paris' );
-	    parent::init();
-	}
+
 }
