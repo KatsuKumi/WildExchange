@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuestionsRepository extends EntityRepository
 {
+    public function findAllSortedByVotes($tagid = null)
+    {
+        $querry =  $this->createQueryBuilder('a')
+            ->select('COUNT(u) AS HIDDEN nbrVotes', 'a')
+            ->leftJoin('a.votes', 'u')
+            ->orderBy('nbrVotes', 'DESC')
+            ->groupBy('a');
+
+        if ($tagid){
+            $querry
+                ->where(':tagid MEMBER OF a.tags')
+                ->setParameter("tagid", 1);
+
+        }
+
+        return $querry->getQuery()->getResult();
+
+    }
 }

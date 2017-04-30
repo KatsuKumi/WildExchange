@@ -19,8 +19,8 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $questions = $em
             ->getRepository('WCSWildExchangeBundle:Questions')
-            ->findAll();
-        $questions = $this->sortbyVote($questions);
+            ->findAllSortedByVotes();
+
         $bestquestion = $questions[0];
         $questions = array_slice($questions, 1, 5);
         return $this->render('WCSWildExchangeBundle:Default:index.html.twig', array('questions'=>$questions, 'bestquestion' => $bestquestion));
@@ -89,16 +89,5 @@ class DefaultController extends Controller
         }
 
         $em->flush();
-    }
-    /*   Fontion de tri par Vote des questions   */
-    public function sortbyVote($list){
-
-        usort($list, function($a, $b) {
-            return count($a->getVotes()->getValues()) - count($b->getVotes()->getValues());
-        });
-        $list = array_reverse($list);
-        return $list;
-
-
     }
 }

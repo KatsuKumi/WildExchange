@@ -29,16 +29,19 @@ class QuestionController extends Controller
             return $this->redirectToRoute('tagspage');
         }
         $pagequerry = $page*5-5;
-        $allquestion = $tagobj->
 
-        getQuestions()->getValues();
+        $allquestion = array();
 
         $sort = isset($_GET['sort']) ? $_GET['sort'] : null;
+
         switch ($sort) {
             case 'vote':
-                $allquestion = $this->sortbyVote($allquestion);
+                $allquestion = $em
+                    ->getRepository('WCSWildExchangeBundle:Questions')
+                    ->findAllSortedByVotes($tagobj->getId());
                 break;
             default:
+                $allquestion = $tagobj->getQuestions()->getValues();
                 break;
         }
         $listquestion = array_slice($allquestion, $pagequerry, 5);
@@ -198,7 +201,8 @@ class QuestionController extends Controller
         return $this->render('WCSWildExchangeBundle:Default:questions.html.twig', array('tag' => '', 'questions'=> $listquestion, 'maxpage' => $maxpage, 'actual'=> $page, 'q'=> str_replace(" ", "+", $_GET['q']), 'sort' => $sort));
 
     }
-    /*   Tri par vote   */
+
+    /*   Fontion de tri par Vote des questions   */
     public function sortbyVote($list){
 
         usort($list, function($a, $b) {
